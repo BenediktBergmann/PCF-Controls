@@ -20,3 +20,6 @@ Configuration | Description | Required
 ------------ | ------------- | -------------
 Allow Social Security number | Decides whether or not the Social Security Number is allowed as an input | X
 Allow Coordination number | Decides whether or not the Coordination Number is allowed as an input | X
+
+## Improvements/New Functions
+- [ ] Check agains Bisnode/Navet/Spar whether the given (and correct) SSSN exists in the system.

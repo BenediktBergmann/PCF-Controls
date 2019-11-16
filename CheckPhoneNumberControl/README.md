@@ -18,6 +18,7 @@ Allowed CC | Comma seperated list of allowed country codes. You can find a descr
 
 ## Improvements/New Functions
 - [ ] Optimize the check of swedish numbers.
+- [ ] Add possibility to exclude country codes.
 - [ ] Show indicator besides Inputfield.
 
 ## Used Libraries

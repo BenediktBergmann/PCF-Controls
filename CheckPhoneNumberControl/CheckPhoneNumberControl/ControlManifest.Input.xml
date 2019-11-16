@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="BeBeControls" constructor="CheckPhoneNumberControl" version="1.0.0" display-name-key="CheckPhoneNumberControl_Display_Key" description-key="CheckPhoneNumberControl_Desc_Key" control-type="standard">
+    <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
+    <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="SingleLine.Phone" usage="bound" required="true" />
+
+    <property name="allowedCC" display-name-key="PropertyAllowedCC_Display_Key" description-key="PropertyAllowedCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/CheckPhoneNumberControl.css" order="1" />
+      <resx path="strings/CheckPhoneNumberControl.1033.resx" version="1.0.0" />
+      <resx path="strings/CheckPhoneNumberControl.1053.resx" version="1.0.0" />
+    </resources>
+  </control>
+</manifest>

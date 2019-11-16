@@ -1,0 +1,57 @@
+.BeBeControls div {
+	width: 100%;
+}
+
+.BeBeControls input{
+	width: 100%;
+    float:none;
+    outline: none !important;
+    line-height: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid transparent;
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+}
+
+.BeBeControls input:hover{
+	border-color:rgb(102, 102, 102);
+}
+
+.BeBeControls input.incorrect {
+    color: red;
+    font-weight: bold;
+}
+
+.BeBeControls input.incorrect:hover {
+    border: 2px solid red;
+}
+
+.BeBeControls div.Error{
+    background-color: rgba(191, 9, 0, 0.075);
+    padding: 0.5rem;
+    display: inline-flex;
+    word-break: normal;
+    white-space: normal;
+    font-family: 'SegoeUI-Semibold', 'Segoe UI Semibold', 'Segoe UI Regular', 'Segoe UI';
+    display:none;
+}
+
+.BeBeControls div.Error.inputError{
+    display: inline-flex;
+}
+
+.BeBeControls div.Error label{
+    line-height: 2rem;
+    color: rgb(191, 9, 0);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.BeBeControls div.Error label.icon{
+    font-family: "Dyn CRM Symbol", "Segoe MDL2 Assets";
+    margin-right: 10px;
+}

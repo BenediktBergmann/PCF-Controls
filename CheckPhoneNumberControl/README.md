@@ -19,3 +19,6 @@ Allowed CC | Comma seperated list of allowed country codes. You can find a descr
 ## Improvements/New Functions
 - [ ] Optimize the check of swedish numbers.
 - [ ] Show indicator besides Inputfield.
+
+## Used Libraries
+- [libphonenumber-js](https://www.npmjs.com/package/libphonenumber-js) ([License](https://github.com/catamphetamine/libphonenumber-js/blob/HEAD/LICENSE))

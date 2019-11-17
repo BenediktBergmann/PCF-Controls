@@ -60,30 +60,75 @@
 </resheader>
   <data name="CheckPhoneNumberControl_Display_Key" xml:space="preserve">
     <value>Check Phone Number Control</value>
-    <comment></comment>
   </data>
   <data name="CheckPhoneNumberControl_Desc_Key" xml:space="preserve">
-    <value>Control that checks whether the input is a valid Phone Number. Libphonenumber package is used in this PCF Control. https://www.npmjs.com/package/libphonenumber-js</value>
-    <comment></comment>
+    <value>Control that checks whether the input is a valid Phone Number. Awesome-phonenumber package is used in this PCF Control. https://www.npm.red/package/awesome-phonenumber</value>
   </data>
   <data name="PropertyValueField_Display_Key" xml:space="preserve">
     <value>Input Value</value>
-    <comment></comment>
   </data>
   <data name="PropertyValueField_Desc_Key" xml:space="preserve">
     <value>The Input Value</value>
-    <comment></comment>
-  </data> 
+  </data>
+  <data name="PropertyDefaultCC_Display_Key" xml:space="preserve">
+    <value>Default Country Code</value>
+  </data>
+  <data name="PropertyDefaultCC_Desc_Key" xml:space="preserve">
+    <value>The default Country Code to check against. Has to be a ISO 3166 (alpha 2) country code. You can find a list of possible values here: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
+  </data>
   <data name="PropertyAllowedCC_Display_Key" xml:space="preserve">
     <value>Allowed Country Codes</value>
-    <comment></comment>
   </data>
   <data name="PropertyAllowedCC_Desc_Key" xml:space="preserve">
-    <value>A comma seperated list of allowed Country Codes. You can find a description of possible values here: https://www.npmjs.com/package/libphonenumber-js#country-code</value>
-    <comment></comment>
+    <value>A comma separated list of allowed Country Codes. ISO 3166 (alpha 2) country codes needs to be used. You can find a list of possible values here: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
   </data>
-  <data name="ErrorText_Key" xml:space="preserve">
+  <data name="PropertyExcludedCC_Display_Key" xml:space="preserve">
+    <value>Excluded Country Codes</value>
+    
+  </data>
+  <data name="PropertyExcludedCC_Desc_Key" xml:space="preserve">
+    <value>A comma separated list of excluded Country Codes. ISO 3166 (alpha 2) country codes needs to be used. You can find a list of possible values here: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
+  </data>
+  <data name="PropertyOutputFormat_Display_Key" xml:space="preserve">
+    <value>Output format</value>
+  </data>
+  <data name="PropertyOutputFormat_Desc_Key" xml:space="preserve">
+    <value>The format the output should have.</value>
+  </data>
+  <data name="PropertyOutputFormat_International_Display_Key" xml:space="preserve">
+    <value>International</value>
+  </data>
+  <data name="PropertyOutputFormat_International_Desc_Key" xml:space="preserve">
+    <value>International (+46 70 712 34 56)</value>
+  </data>
+  <data name="PropertyOutputFormat_National_Display_Key" xml:space="preserve">
+    <value>National</value>
+  </data>
+  <data name="PropertyOutputFormat_National_Desc_Key" xml:space="preserve">
+    <value>National (070-712 34 56)</value>
+  </data>
+  <data name="PropertyOutputFormat_E164_Desc_Key" xml:space="preserve">
+    <value>E164 (+46707123456)</value>
+  </data>
+  <data name="ErrorText_IncorrectNumber_Key" xml:space="preserve">
     <value>Incorrect Phone Number</value>
-    <comment></comment>
+  </data>
+  <data name="PropertyAllowedType_Display_Key" xml:space="preserve">
+    <value>Allowed types</value>
+  </data>
+  <data name="PropertyAllowedType_Desc_Key" xml:space="preserve">
+    <value>Comma separated list of allowed number types. You can find a list of possible values here: https://www.npmjs.com/package/awesome-phonenumber#phone-number-types</value>
+  </data>
+  <data name="PropertyExcludedType_Display_Key" xml:space="preserve">
+    <value>Excluded types</value>
+  </data>
+  <data name="PropertyExcludedType_Desc_Key" xml:space="preserve">
+    <value>Comma separated list of excluded number types. You can find a list of possible values here: https://www.npmjs.com/package/awesome-phonenumber#phone-number-types</value>
+  </data>
+  <data name="ErrorText_Unallowed_Country_Key" xml:space="preserve">
+    <value>Phone number of an Country that is not allowed.</value>
+  </data>
+  <data name="ErrorText_Unallowed_Type_Key" xml:space="preserve">
+    <value>Telephone number of a type that is not allowed.</value>
   </data>
 </root>

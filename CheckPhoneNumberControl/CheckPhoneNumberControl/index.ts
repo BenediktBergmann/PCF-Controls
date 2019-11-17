@@ -1,20 +1,28 @@
 import {IInputs, IOutputs} from "./generated/ManifestTypes";
-import { parsePhoneNumberFromString } from 'libphonenumber-js/max'
+var PhoneNumber = require( 'awesome-phonenumber' );
 
 export class CheckPhoneNumberControl implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
 	private _notifyOutputChanged: () => void;
+	private _context: ComponentFramework.Context<IInputs>;
 
 	private _inputElementOnChange: EventListenerOrEventListenerObject;
 
 	private _value: string;
+	private _defaultCC: string;
 	private _allowedCC: string[];
+	private _excludedCC: string[];
+	private _allowedTypes: string[];
+	private _excludedTypes: string[];
+
+	private _outputFormat: string;
 
 	// HTML container
 	private _container: HTMLDivElement;
 	private _inputElement: HTMLInputElement;
 	// label element created as part of this control
 	private _errorContainer: HTMLDivElement;
+	private _errorLabelElement: HTMLLabelElement;
 
 	/**
 	 * Empty constructor.
@@ -34,11 +42,36 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	 */
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{
+		this._defaultCC = "";
 		this._allowedCC = [];
+		this._excludedCC = [];
+		this._allowedTypes = [];
+		this._excludedTypes = [];
+
+		this._outputFormat = context.parameters.outputFormat.raw;
+
+		if(context.parameters.defaultCC.raw != null && context.parameters.defaultCC.raw != "" && context.parameters.defaultCC.raw.indexOf(',') == -1){
+			this._defaultCC = context.parameters.defaultCC.raw.trim().toUpperCase();
+		}
 
 		if(context.parameters.allowedCC.raw != null && context.parameters.allowedCC.raw != ""){
 			this._allowedCC = context.parameters.allowedCC.raw.split(',');
 			this._allowedCC = this._allowedCC.map(el => el.trim().toUpperCase());
+		}
+
+		if(context.parameters.excludedCC.raw != null && context.parameters.excludedCC.raw != ""){
+			this._excludedCC = context.parameters.excludedCC.raw.split(',');
+			this._excludedCC = this._excludedCC.map(el => el.trim().toUpperCase());
+		}
+
+		if(context.parameters.allowedType.raw != null && context.parameters.allowedType.raw != ""){
+			this._allowedTypes = context.parameters.allowedType.raw.split(',');
+			this._allowedTypes = this._allowedTypes.map(el => el.trim().toLowerCase());
+		}
+
+		if(context.parameters.excludedType.raw != null && context.parameters.excludedType.raw != ""){
+			this._excludedTypes = context.parameters.excludedType.raw.split(',');
+			this._excludedTypes = this._excludedTypes.map(el => el.trim().toLowerCase());
 		}
 
 		this._container = document.createElement("div");
@@ -46,6 +79,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._value = context.parameters.valueField.raw == null ? "" : context.parameters.valueField.raw;
 
 		this._notifyOutputChanged = notifyOutputChanged;
+		this._context = context;
 
 		this._inputElementOnChange = this.inputOnChange.bind(this);
 
@@ -54,18 +88,17 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._inputElement.setAttribute("type", "text");
 		this._inputElement.setAttribute("value", this._value);
 
-
 		var errorIconLabelElement = document.createElement("label");
 		errorIconLabelElement.innerHTML = "";
 		errorIconLabelElement.classList.add("icon");
 
-		var errorLabelElement = document.createElement("label");
-		errorLabelElement.innerHTML = context.resources.getString("ErrorText_Key");;
+		this._errorLabelElement = document.createElement("label");
+		this._errorLabelElement.innerHTML = context.resources.getString("ErrorText_IncorrectNumber_Key");
 
 		this._errorContainer = document.createElement("div");
 		this._errorContainer.classList.add("Error");
 		this._errorContainer.appendChild(errorIconLabelElement);
-		this._errorContainer.appendChild(errorLabelElement);
+		this._errorContainer.appendChild(this._errorLabelElement);
 		
 		// appending the HTML elements to the control's HTML container element.
 		this._container.appendChild(this._inputElement);
@@ -114,12 +147,13 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		}else{
 			this._inputElement.classList.remove("incorrect");
 			this._errorContainer.classList.remove("inputError");
-			var parsedPhoneNumber = parsePhoneNumberFromString(this._inputElement.value);
+			var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(this._inputElement.value, this._defaultCC) : PhoneNumber(this._inputElement.value);
+
 			if(parsedPhoneNumber === undefined){
 				this._value = this._inputElement.value;
 			}else {
-				this._value = parsedPhoneNumber.formatInternational();
-				this._inputElement.value = parsedPhoneNumber.formatInternational();
+				this._value = parsedPhoneNumber.getNumber(this._outputFormat);
+				this._inputElement.value = parsedPhoneNumber.getNumber(this._outputFormat);
 			}
 			this._notifyOutputChanged();
 		}
@@ -127,16 +161,26 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 
 	private isCorrectPhoneNumber(value: string): boolean{
 		var isValid = false;
-		var parsedPhoneNumber = parsePhoneNumberFromString(value);
+		var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(this._inputElement.value, this._defaultCC) : PhoneNumber(this._inputElement.value);
 
-		if(parsedPhoneNumber !== undefined && parsedPhoneNumber.isValid){
-			if(this._allowedCC != undefined && this._allowedCC.length > 0){
-				if(parsedPhoneNumber.country !== undefined && this._allowedCC.indexOf(parsedPhoneNumber.country) !== -1){
-					isValid = true;
-				}
-			}else{
-				isValid = true;
+		if(parsedPhoneNumber !== undefined && parsedPhoneNumber.isValid()){
+			isValid = true;
+			
+			if((this._allowedCC != undefined && this._allowedCC.length > 0 && this._allowedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) === -1) || 
+			   (this._excludedCC != undefined && this._excludedCC.length > 0 && this._excludedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) !== -1)){
+				isValid = false;
+				this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Country_Key");
 			}
+			
+			if(isValid &&
+			  (this._allowedTypes != undefined && this._allowedTypes.length > 0 && this._allowedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) === -1) || 
+			  (this._excludedTypes != undefined && this._excludedTypes.length > 0 && this._excludedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) !== -1)){
+				isValid = false;
+				this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Type_Key");
+			}
+		}else{
+			isValid = false;
+			this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_IncorrectNumber_Key");
 		}
 
 		return isValid;

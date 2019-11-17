@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="CheckPhoneNumberControl" version="1.0.0" display-name-key="CheckPhoneNumberControl_Display_Key" description-key="CheckPhoneNumberControl_Desc_Key" control-type="standard">
+  <control namespace="BeBeControls" constructor="CheckPhoneNumberControl" version="1.1.0" display-name-key="CheckPhoneNumberControl_Display_Key" description-key="CheckPhoneNumberControl_Desc_Key" control-type="standard">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="SingleLine.Phone" usage="bound" required="true" />
+    
+    <property name="outputFormat" display-name-key="PropertyOutputFormat_Display_Key" description-key="PropertyOutputFormat_Desc_Key" of-type="Enum" usage="input" required="true" default-value="international">
+      <value name="international" display-name-key="PropertyOutputFormat_International_Display_Key" description-key="PropertyOutputFormat_International_Desc_Key">International</value>
+      <value name="national" display-name-key="PropertyOutputFormat_National_Display_Key" description-key="PropertyOutputFormat_National_Desc_Key">National</value>
+      <value name="e164" display-name-key="E164" description-key="PropertyOutputFormat_E164_Desc_Key">E164</value>
+    </property>
 
-    <property name="allowedCC" display-name-key="PropertyAllowedCC_Display_Key" description-key="PropertyAllowedCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="defaultCC" display-name-key="PropertyDefaultCC_Display_Key" description-key="PropertyDefaultCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value=""/>
+    <property name="allowedCC" display-name-key="PropertyAllowedCC_Display_Key" description-key="PropertyAllowedCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value=""/>
+    <property name="excludedCC" display-name-key="PropertyExcludedCC_Display_Key" description-key="PropertyExcludedCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value=""/>
+
+    <property name="allowedType" display-name-key="PropertyAllowedType_Display_Key" description-key="PropertyAllowedType_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value=""/>
+    <property name="excludedType" display-name-key="PropertyExcludedType_Display_Key" description-key="PropertyExcludedType_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value=""/>
+
 
     <resources>
       <code path="index.ts" order="1"/>
       <css path="css/CheckPhoneNumberControl.css" order="1" />
+      <resx path="strings/CheckPhoneNumberControl.1031.resx" version="1.0.0" />
       <resx path="strings/CheckPhoneNumberControl.1033.resx" version="1.0.0" />
       <resx path="strings/CheckPhoneNumberControl.1053.resx" version="1.0.0" />
     </resources>

@@ -7,7 +7,7 @@ The Source you can download here is translated in English, Swedish and German.
 You can download the last release [here](https://github.com/BenediktBergmann/PCF-Controls/releases).
 
 ## Example
-![Configuration](/CheckPhoneNumberControl/Screenshots/Configuration.png)
+![Configuration2](/CheckPhoneNumberControl/Screenshots/Configuration.png)
 ![CorrectSSSN](/CheckPhoneNumberControl/Screenshots/Correct.png)
 ![IncorrectSSSN](/CheckPhoneNumberControl/Screenshots/Incorrect.png)
 

@@ -21,3 +21,10 @@ Allow Coordination number | Decides whether or not the Coordination Number is al
 ## Improvements/New Functions
 - [ ] Check agains Bisnode/Navet/Spar whether the given (and correct) SSSN exists in the system.
 - [ ] Show indicator besides Inputfield.
+- [ ] Add Norwegian SSN as possible input
+- [ ] Add Finnish SSN as possible input
+- [ ] Add Danish SSN as possible input
+- [ ] Show country flag
+- [ ] Add possibility to configure which countries are allowed
+- [ ] Rename to "Nordic SSN Control"
+- [ ] Translate to NO, FI, DNK

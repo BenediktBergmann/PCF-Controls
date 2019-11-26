@@ -18,7 +18,7 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 	//private _errorLabelElement: HTMLLabelElement;
 
 	// Reference to ComponentFramework Context object
-	//private _context: ComponentFramework.Context<IInputs>;
+	private _context: ComponentFramework.Context<IInputs>;
 
 	private _regExYearShort = '[0-9]{2}';
     private _regExYearLong = '((19|20|21)' + this._regExYearShort + ')';
@@ -53,7 +53,7 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 	 */
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{
-		//this._context = context;
+		this._context = context;
 
 		if(context.parameters.allowSSN!.raw == "Yes"){
 			this._allowSSN = true;
@@ -79,7 +79,7 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 
 		this._container = document.createElement("div");
 
-		this._value = context.parameters.valueField.raw == null ? "" : context.parameters.valueField.raw;
+		this._value = context.parameters.valueField.raw == null ? "---" : context.parameters.valueField.raw;
 
 		this._notifyOutputChanged = notifyOutputChanged;
 
@@ -122,6 +122,19 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 		this._value = context.parameters.valueField.raw == null ? "" : context.parameters.valueField.raw;
 		//this._context = context;
 		this._inputElement.setAttribute("value", this._value);
+
+		let readOnly = this._context.mode.isControlDisabled;
+		let masked = false;
+		if (this._context.parameters.valueField.security) {
+			readOnly = readOnly || !this._context.parameters.valueField.security.editable;
+			masked = !this._context.parameters.valueField.security.readable;
+		}
+
+		this._inputElement.readOnly = readOnly;
+		if(masked){
+			this._inputElement.value = "******";
+			this._value = this._inputElement.value;
+		}
 	}
 
 	/** 
@@ -145,7 +158,7 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 	}
 
 	public inputOnChange():void{
-		if(!this.isCorrectSSN(this._inputElement.value)){
+		if(this._inputElement.value != "" && !this.isCorrectSSN(this._inputElement.value)){
 			this._inputElement.classList.add("incorrect");
 			this._errorContainer.classList.add("inputError");
 			this._value = "";

@@ -21,6 +21,16 @@
 	border-color:rgb(102, 102, 102);
 }
 
+.BeBeControls input:read-only:hover{
+    border-width:0;
+    background-color:#e2e2e2;
+}
+
+.BeBeControls input:-moz-read-only:hover{
+    border-width:0;
+    background-color:#e2e2e2;
+}
+
 .BeBeControls input.incorrect {
     color: red;
     font-weight: bold;

@@ -10,12 +10,12 @@
       <value name="e164" display-name-key="E164" description-key="PropertyOutputFormat_E164_Desc_Key">E164</value>
     </property>
 
-    <property name="defaultCC" display-name-key="PropertyDefaultCC_Display_Key" description-key="PropertyDefaultCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value=""/>
-    <property name="allowedCC" display-name-key="PropertyAllowedCC_Display_Key" description-key="PropertyAllowedCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value=""/>
-    <property name="excludedCC" display-name-key="PropertyExcludedCC_Display_Key" description-key="PropertyExcludedCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value=""/>
+    <property name="defaultCC" display-name-key="PropertyDefaultCC_Display_Key" description-key="PropertyDefaultCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="SE" />
+    <property name="allowedCC" display-name-key="PropertyAllowedCC_Display_Key" description-key="PropertyAllowedCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="SE,DE" />
+    <property name="excludedCC" display-name-key="PropertyExcludedCC_Display_Key" description-key="PropertyExcludedCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="" />
 
-    <property name="allowedType" display-name-key="PropertyAllowedType_Display_Key" description-key="PropertyAllowedType_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value=""/>
-    <property name="excludedType" display-name-key="PropertyExcludedType_Display_Key" description-key="PropertyExcludedType_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value=""/>
+    <property name="allowedType" display-name-key="PropertyAllowedType_Display_Key" description-key="PropertyAllowedType_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="mobile" />
+    <property name="excludedType" display-name-key="PropertyExcludedType_Display_Key" description-key="PropertyExcludedType_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="" />
 
 
     <resources>

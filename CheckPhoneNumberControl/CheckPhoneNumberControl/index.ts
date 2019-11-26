@@ -48,7 +48,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._allowedTypes = [];
 		this._excludedTypes = [];
 
-		this._outputFormat = context.parameters.outputFormat.raw;
+		this._outputFormat = context.parameters.outputFormat.raw.toLocaleLowerCase();
 
 		if(context.parameters.defaultCC.raw != null && context.parameters.defaultCC.raw != "" && context.parameters.defaultCC.raw.indexOf(',') == -1){
 			this._defaultCC = context.parameters.defaultCC.raw.trim().toUpperCase();
@@ -76,7 +76,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 
 		this._container = document.createElement("div");
 
-		this._value = context.parameters.valueField.raw == null ? "" : context.parameters.valueField.raw;
+		this._value = context.parameters.valueField.raw == null ? "---" : context.parameters.valueField.raw;
 
 		this._notifyOutputChanged = notifyOutputChanged;
 		this._context = context;
@@ -85,8 +85,8 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 
 		this._inputElement = document.createElement("input");
 		this._inputElement.addEventListener("change", this._inputElementOnChange);
-		this._inputElement.setAttribute("type", "text");
 		this._inputElement.setAttribute("value", this._value);
+		this._inputElement.setAttribute("type", "text");
 
 		var errorIconLabelElement = document.createElement("label");
 		errorIconLabelElement.innerHTML = "";
@@ -117,6 +117,19 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._value = context.parameters.valueField.raw == null ? "" : context.parameters.valueField.raw;
 		//this._context = context;
 		this._inputElement.setAttribute("value", this._value);
+
+		let readOnly = this._context.mode.isControlDisabled;
+		let masked = false;
+		if (this._context.parameters.valueField.security) {
+			readOnly = readOnly || !this._context.parameters.valueField.security.editable;
+			masked = !this._context.parameters.valueField.security.readable;
+		}
+
+		this._inputElement.readOnly = readOnly;
+		if(masked){
+			this._inputElement.value = "******";
+			this._value = this._inputElement.value;
+		}
 	}
 
 	/** 
@@ -140,11 +153,12 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	}
 
 	public inputOnChange():void{
-		if(!this.isCorrectPhoneNumber(this._inputElement.value)){
+		if(this._inputElement.value != "" && !this.isCorrectPhoneNumber(this._inputElement.value)){
 			this._inputElement.classList.add("incorrect");
 			this._errorContainer.classList.add("inputError");
 			this._value = "";
-		}else{
+		}
+		else{
 			this._inputElement.classList.remove("incorrect");
 			this._errorContainer.classList.remove("inputError");
 			var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(this._inputElement.value, this._defaultCC) : PhoneNumber(this._inputElement.value);

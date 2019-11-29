@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="BeBeControls" constructor="HideShowSecureStringControl" version="0.0.1" display-name-key="HideShowSecureStringControl_Display_Key" description-key="HideShowSecureStringControl_Desc_Key" control-type="standard">
+    <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
+    <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
+    
+    <property name="defaultVisibility" display-name-key="PropertyDefaultVisibility_Display_Key" description-key="PropertyDefaultVisibility_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Hide">
+      <value name="hide" display-name-key="PropertyDefaultVisibility_Hide_Display_Key" description-key="PropertyDefaultVisibility_Hide_Desc_Key">Hide</value>
+      <value name="show" display-name-key="PropertyDefaultVisibility_Show_Display_Key" description-key="PropertyDefaultVisibility_Show_Desc_Key">Show</value>
+    </property>
+
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/HideShowSecureStringControl.css" order="1" />
+      <resx path="strings/HideShowSecureStringControl.1031.resx" version="1.0.0" />
+      <resx path="strings/HideShowSecureStringControl.1033.resx" version="1.0.0" />
+      <resx path="strings/HideShowSecureStringControl.1053.resx" version="1.0.0" />
+    </resources>
+  </control>
+</manifest>

@@ -7,6 +7,8 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	private _context: ComponentFramework.Context<IInputs>;
 
 	private _inputElementOnChange: EventListenerOrEventListenerObject;
+	private _inputElementOnFocus: EventListenerOrEventListenerObject;
+	private _inputElementOnFocusOut: EventListenerOrEventListenerObject;
 
 	private _value: string;
 	private _defaultCC: string;
@@ -14,6 +16,8 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	private _excludedCC: string[];
 	private _allowedTypes: string[];
 	private _excludedTypes: string[];
+	private _emptyValue = "---";
+	private _maskValue = "******";
 
 	private _outputFormat: string;
 
@@ -42,6 +46,9 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	 */
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{
+		this._notifyOutputChanged = notifyOutputChanged;
+		this._context = context;
+
 		this._defaultCC = "";
 		this._allowedCC = [];
 		this._excludedCC = [];
@@ -74,19 +81,17 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 			this._excludedTypes = this._excludedTypes.map(el => el.trim().toLowerCase());
 		}
 
+		this._inputElementOnChange = this.inputOnChange.bind(this);
+		this._inputElementOnFocus = this.inputOnFocus.bind(this);
+		this._inputElementOnFocusOut = this.inputOnFocusOut.bind(this);
+
 		this._container = document.createElement("div");
 
-		this._value = context.parameters.valueField.raw == null ? "---" : context.parameters.valueField.raw;
-
-		this._notifyOutputChanged = notifyOutputChanged;
-		this._context = context;
-
-		this._inputElementOnChange = this.inputOnChange.bind(this);
-
 		this._inputElement = document.createElement("input");
-		this._inputElement.addEventListener("change", this._inputElementOnChange);
-		this._inputElement.setAttribute("value", this._value);
 		this._inputElement.setAttribute("type", "text");
+		this._inputElement.addEventListener("change", this._inputElementOnChange);
+		this._inputElement.addEventListener("focus", this._inputElementOnFocus);
+		this._inputElement.addEventListener("focusout", this._inputElementOnFocusOut);
 
 		var errorIconLabelElement = document.createElement("label");
 		errorIconLabelElement.innerHTML = "";
@@ -100,6 +105,9 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._errorContainer.appendChild(errorIconLabelElement);
 		this._errorContainer.appendChild(this._errorLabelElement);
 		
+		//Handle Value before we add the Elements
+		this.handleValue(context.parameters.valueField.raw);
+
 		// appending the HTML elements to the control's HTML container element.
 		this._container.appendChild(this._inputElement);
 		this._container.appendChild(this._errorContainer);
@@ -113,10 +121,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
-		// storing the latest context from the control.
-		this._value = context.parameters.valueField.raw == null ? "" : context.parameters.valueField.raw;
-		//this._context = context;
-		this._inputElement.setAttribute("value", this._value);
+		this.handleValue(context.parameters.valueField.raw);
 
 		let readOnly = this._context.mode.isControlDisabled;
 		let masked = false;
@@ -127,7 +132,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 
 		this._inputElement.readOnly = readOnly;
 		if(masked){
-			this._inputElement.value = "******";
+			this._inputElement.value = this._maskValue;
 			this._value = this._inputElement.value;
 		}
 	}
@@ -150,53 +155,86 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	public destroy(): void
 	{
 		this._inputElement.removeEventListener("change",this._inputElementOnChange);
+		this._inputElement.removeEventListener("focus",this._inputElementOnFocus);
+		this._inputElement.removeEventListener("focusout",this._inputElementOnFocusOut);
 	}
 
 	public inputOnChange():void{
-		if(this._inputElement.value != "" && !this.isCorrectPhoneNumber(this._inputElement.value)){
-			this._inputElement.classList.add("incorrect");
-			this._errorContainer.classList.add("inputError");
-			this._value = "";
-		}
-		else{
+		if(this._inputElement.value === "" || this._inputElement.value === null || this.isCorrectPhoneNumber(this._inputElement.value)){
 			this._inputElement.classList.remove("incorrect");
 			this._errorContainer.classList.remove("inputError");
 			var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(this._inputElement.value, this._defaultCC) : PhoneNumber(this._inputElement.value);
 
-			if(parsedPhoneNumber === undefined){
-				this._value = this._inputElement.value;
+			if(parsedPhoneNumber === undefined || !parsedPhoneNumber.isValid()){
+				this.handleValue(this._inputElement.value);
 			}else {
-				this._value = parsedPhoneNumber.getNumber(this._outputFormat);
-				this._inputElement.value = parsedPhoneNumber.getNumber(this._outputFormat);
+				this.handleValue(parsedPhoneNumber.getNumber(this._outputFormat));
 			}
 			this._notifyOutputChanged();
+		}
+		else{
+			this._inputElement.classList.add("incorrect");
+			this._errorContainer.classList.add("inputError");
+			this._value = "";
 		}
 	}
 
 	private isCorrectPhoneNumber(value: string): boolean{
 		var isValid = false;
-		var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(this._inputElement.value, this._defaultCC) : PhoneNumber(this._inputElement.value);
+		if(value != null && value != "")
+		{
+			var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(this._inputElement.value, this._defaultCC) : PhoneNumber(this._inputElement.value);
 
-		if(parsedPhoneNumber !== undefined && parsedPhoneNumber.isValid()){
-			isValid = true;
-			
-			if((this._allowedCC != undefined && this._allowedCC.length > 0 && this._allowedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) === -1) || 
-			   (this._excludedCC != undefined && this._excludedCC.length > 0 && this._excludedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) !== -1)){
+			if(parsedPhoneNumber !== undefined && parsedPhoneNumber.isValid()){
+				isValid = true;
+				
+				if((this._allowedCC != undefined && this._allowedCC.length > 0 && this._allowedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) === -1) || 
+				   (this._excludedCC != undefined && this._excludedCC.length > 0 && this._excludedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) !== -1)){
+					isValid = false;
+					this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Country_Key");
+				}
+				
+				if(isValid &&
+				  (this._allowedTypes != undefined && this._allowedTypes.length > 0 && this._allowedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) === -1) || 
+				  (this._excludedTypes != undefined && this._excludedTypes.length > 0 && this._excludedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) !== -1)){
+					isValid = false;
+					this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Type_Key");
+				}
+			}else{
 				isValid = false;
-				this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Country_Key");
+				this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_IncorrectNumber_Key");
 			}
-			
-			if(isValid &&
-			  (this._allowedTypes != undefined && this._allowedTypes.length > 0 && this._allowedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) === -1) || 
-			  (this._excludedTypes != undefined && this._excludedTypes.length > 0 && this._excludedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) !== -1)){
-				isValid = false;
-				this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Type_Key");
-			}
-		}else{
-			isValid = false;
-			this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_IncorrectNumber_Key");
 		}
-
 		return isValid;
+	}
+
+	public handleValue(input: string|null): void
+	{
+		if(input === null || input === "")
+		{
+			this._inputElement.value = this._emptyValue;
+			this._value = "";
+		}
+		else
+		{
+			this._value = input;
+			this._inputElement.value = input;
+		}
+	}
+
+	public inputOnFocus():void
+	{
+		if(this._inputElement.value === this._emptyValue)
+		{
+			this._inputElement.value = "";
+		}
+	}
+
+	public inputOnFocusOut():void
+	{
+		if(this._inputElement.value === "")
+		{
+			this._inputElement.value = this._emptyValue;
+		}
 	}
 }

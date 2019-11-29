@@ -3,22 +3,24 @@ import {IInputs, IOutputs} from "./generated/ManifestTypes";
 export class SwedishSSNControl implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
 	private _notifyOutputChanged: () => void;
+	// Reference to ComponentFramework Context object
+	private _context: ComponentFramework.Context<IInputs>;
 
 	private _inputElementOnChange: EventListenerOrEventListenerObject;
+	private _inputElementOnFocus: EventListenerOrEventListenerObject;
+	private _inputElementOnFocusOut: EventListenerOrEventListenerObject;
 
 	private _value: string;
 	private _allowSSN: boolean;
 	private _allowCN: boolean;
+	private _emptyValue = "---";
+	private _maskValue = "******";
 
 	// HTML container
 	private _container: HTMLDivElement;
 	private _inputElement: HTMLInputElement;
 	// label element created as part of this control
 	private _errorContainer: HTMLDivElement;
-	//private _errorLabelElement: HTMLLabelElement;
-
-	// Reference to ComponentFramework Context object
-	private _context: ComponentFramework.Context<IInputs>;
 
 	private _regExYearShort = '[0-9]{2}';
     private _regExYearLong = '((19|20|21)' + this._regExYearShort + ')';
@@ -79,17 +81,17 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 
 		this._container = document.createElement("div");
 
-		this._value = context.parameters.valueField.raw == null ? "---" : context.parameters.valueField.raw;
-
 		this._notifyOutputChanged = notifyOutputChanged;
 
 		this._inputElementOnChange = this.inputOnChange.bind(this);
+		this._inputElementOnFocus = this.inputOnFocus.bind(this);
+		this._inputElementOnFocusOut = this.inputOnFocusOut.bind(this);
 
 		this._inputElement = document.createElement("input");
-		this._inputElement.addEventListener("change", this._inputElementOnChange);
 		this._inputElement.setAttribute("type", "text");
-		this._inputElement.setAttribute("value", this._value);
-
+		this._inputElement.addEventListener("change", this._inputElementOnChange);
+		this._inputElement.addEventListener("focus", this._inputElementOnFocus);
+		this._inputElement.addEventListener("focusout", this._inputElementOnFocusOut);
 
 		var errorIconLabelElement = document.createElement("label");
 		errorIconLabelElement.innerHTML = "";
@@ -99,16 +101,17 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 		errorLabelElement.innerHTML = context.resources.getString("ErrorText_Key");;
 
 		this._errorContainer = document.createElement("div");
-		this._errorContainer.classList.add("SSSNError");
+		this._errorContainer.classList.add("Error");
 		this._errorContainer.appendChild(errorIconLabelElement);
 		this._errorContainer.appendChild(errorLabelElement);
+
+		//Handle Value before we add the Elements
+		this.handleValue(context.parameters.valueField.raw);
 		
 		// appending the HTML elements to the control's HTML container element.
 		this._container.appendChild(this._inputElement);
 		this._container.appendChild(this._errorContainer);
 		container.appendChild(this._container);
-
-		//this.inputOnChange();
 	}
 
 
@@ -118,10 +121,7 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
-		// storing the latest context from the control.
-		this._value = context.parameters.valueField.raw == null ? "" : context.parameters.valueField.raw;
-		//this._context = context;
-		this._inputElement.setAttribute("value", this._value);
+		this.handleValue(context.parameters.valueField.raw);
 
 		let readOnly = this._context.mode.isControlDisabled;
 		let masked = false;
@@ -132,7 +132,7 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 
 		this._inputElement.readOnly = readOnly;
 		if(masked){
-			this._inputElement.value = "******";
+			this._inputElement.value = this._maskValue
 			this._value = this._inputElement.value;
 		}
 	}
@@ -155,18 +155,21 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 	public destroy(): void
 	{
 		this._inputElement.removeEventListener("change",this._inputElementOnChange);
+		this._inputElement.removeEventListener("focus",this._inputElementOnFocus);
+		this._inputElement.removeEventListener("focusout",this._inputElementOnFocusOut);
 	}
 
 	public inputOnChange():void{
-		if(this._inputElement.value != "" && !this.isCorrectSSN(this._inputElement.value)){
+		if(this._inputElement.value === "" || this._inputElement.value === null || this.isCorrectSSN(this._inputElement.value)){
+			this._inputElement.classList.remove("incorrect");
+			this._errorContainer.classList.remove("inputError");
+			this.handleValue(this._inputElement.value);
+			this._notifyOutputChanged();
+		}
+		else{
 			this._inputElement.classList.add("incorrect");
 			this._errorContainer.classList.add("inputError");
 			this._value = "";
-		}else{
-			this._inputElement.classList.remove("incorrect");
-			this._errorContainer.classList.remove("inputError");
-			this._value =this._inputElement.value;
-			this._notifyOutputChanged();
 		}
 	}
 
@@ -217,5 +220,35 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 		}
 
 		return true;
+	}
+
+	public handleValue(input: string|null): void
+	{
+		if(input === null || input === "")
+		{
+			this._inputElement.value = this._emptyValue;
+			this._value = "";
+		}
+		else
+		{
+			this._value = input;
+			this._inputElement.value = input;
+		}
+	}
+
+	public inputOnFocus():void
+	{
+		if(this._inputElement.value === this._emptyValue)
+		{
+			this._inputElement.value = "";
+		}
+	}
+
+	public inputOnFocusOut():void
+	{
+		if(this._inputElement.value === "")
+		{
+			this._inputElement.value = this._emptyValue;
+		}
 	}
 }

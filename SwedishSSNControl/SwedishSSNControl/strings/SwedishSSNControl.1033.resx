@@ -1,97 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-<xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-<xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
-<xsd:element name="root" msdata:IsDataSet="true">
-<xsd:complexType>
-<xsd:choice maxOccurs="unbounded">
-  <xsd:element name="metadata">
-	<xsd:complexType>
-	  <xsd:sequence>
-		<xsd:element name="value" type="xsd:string" minOccurs="0" />
-	  </xsd:sequence>
-	  <xsd:attribute name="name" use="required" type="xsd:string" />
-	  <xsd:attribute name="type" type="xsd:string" />
-	  <xsd:attribute name="mimetype" type="xsd:string" />
-	  <xsd:attribute ref="xml:space" />
-	</xsd:complexType>
-  </xsd:element>
-  <xsd:element name="assembly">
-	<xsd:complexType>
-	  <xsd:attribute name="alias" type="xsd:string" />
-	  <xsd:attribute name="name" type="xsd:string" />
-	</xsd:complexType>
-  </xsd:element>
-  <xsd:element name="data">
-	<xsd:complexType>
-	  <xsd:sequence>
-		<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-		<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-	  </xsd:sequence>
-	  <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-	  <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-	  <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-	  <xsd:attribute ref="xml:space" />
-	</xsd:complexType>
-  </xsd:element>
-  <xsd:element name="resheader">
-	<xsd:complexType>
-	  <xsd:sequence>
-		<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-	  </xsd:sequence>
-	  <xsd:attribute name="name" type="xsd:string" use="required" />
-	</xsd:complexType>
-  </xsd:element>
-</xsd:choice>
-</xsd:complexType>
-</xsd:element>
-</xsd:schema>
-<resheader name="resmimetype">
-<value>text/microsoft-resx</value>
-</resheader>
-<resheader name="version">
-<value>2.0</value>
-</resheader>
-<resheader name="reader">
-<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-</resheader>
-<resheader name="writer">
-<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-</resheader>
-<data name="SwedishSSNControl_Desc_Key" xml:space="preserve">
+ <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SwedishSSNControl_Desc_Key" xml:space="preserve">
     <value>Control that checks whether the input is a Swedish Social Security Number or Swedish Coordination Number.</value>
-    <comment></comment>
   </data>
   <data name="SwedishSSNControl_Display_Key" xml:space="preserve">
     <value>Swedish Social Security Number Control</value>
-    <comment></comment>
   </data>
   <data name="PropertyAllowSSN_Display_Key" xml:space="preserve">
     <value>Allow Social Security number</value>
-    <comment></comment>
   </data>
   <data name="PropertyAllowSSN_Desc_Key" xml:space="preserve">
     <value>If active it allows the entry of a swedish social security number</value>
-    <comment></comment>
   </data>
   <data name="PropertyAllowCN_Display_Key" xml:space="preserve">
     <value>Allow Coordination number</value>
-    <comment></comment>
   </data>
   <data name="PropertyAllowCN_Desc_Key" xml:space="preserve">
     <value>If active it allows the entry of a swedish coordination number</value>
-    <comment></comment>
   </data>
   <data name="PropertyValueField_Display_Key" xml:space="preserve">
     <value>Input Value</value>
-    <comment></comment>
   </data>
   <data name="PropertyValueField_Desc_Key" xml:space="preserve">
     <value>The Input Value</value>
-    <comment></comment>
   </data> 
   <data name="ErrorText_Key" xml:space="preserve">
     <value>Incorrect Social Security Number</value>
-    <comment></comment>
   </data>
 </root>

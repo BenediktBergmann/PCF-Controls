@@ -17,7 +17,7 @@
     text-overflow: ellipsis;
 }
 
-.BeBeControls input:hover{
+.BeBeControls input:hover, .BeBeControls input:focus{
 	border-color:rgb(102, 102, 102);
 }
 
@@ -40,7 +40,7 @@
     border: 2px solid red;
 }
 
-.BeBeControls div.SSSNError{
+.BeBeControls div.Error{
     background-color: rgba(191, 9, 0, 0.075);
     padding: 0.5rem;
     display: inline-flex;
@@ -50,18 +50,18 @@
     display:none;
 }
 
-.BeBeControls div.SSSNError.inputError{
+.BeBeControls div.Error.inputError{
     display: inline-flex;
 }
 
-.BeBeControls div.SSSNError label{
+.BeBeControls div.Error label{
     line-height: 2rem;
     color: rgb(191, 9, 0);
     font-weight: 600;
     font-size: 1rem;
 }
 
-.BeBeControls div.SSSNError label.icon{
+.BeBeControls .icon{
     font-family: "Dyn CRM Symbol", "Segoe MDL2 Assets";
     margin-right: 10px;
 }

@@ -17,7 +17,7 @@
     text-overflow: ellipsis;
 }
 
-.BeBeControls input:hover{
+.BeBeControls input:hover, .BeBeControls input:focus{
 	border-color:rgb(102, 102, 102);
 }
 

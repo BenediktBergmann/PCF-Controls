@@ -1,0 +1,53 @@
+@import "https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css";
+
+.BeBeControls div.container{
+    width: 100%;
+    position: relative;
+}
+
+.BeBeControls input{
+	width: 100%;
+    float:none;
+    outline: none !important;
+    line-height: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid transparent;
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    padding-right: calc(2.5em);
+}
+
+.BeBeControls #inputField:hover, .BeBeControls #inputField:focus, .BeBeControls #inputField.highlight{
+	border-color:rgb(102, 102, 102);
+}
+
+.BeBeControls #inputField:read-only:hover{
+    border-width:0;
+    background-color:#e2e2e2;
+}
+
+.BeBeControls #inputField:-moz-read-only:hover{
+    border-width:0;
+    background-color:#e2e2e2;
+}
+
+.BeBeControls #iconElement{
+    width: 1.5em;
+    left: calc(100% - (2.5em + 1px));
+    position: absolute;
+    cursor: pointer;
+    padding: 0.5em;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    line-height: 1.5em;
+}
+
+/*Styling the span when hovering over the input*/
+.BeBeControls #iconElement:hover, .BeBeControls #iconElement:focus, .BeBeControls #inputField:hover ~ #iconElement, .BeBeControls #inputField:focus ~ #iconElement{
+	background-color:rgb(216, 216, 216);
+}

@@ -15,3 +15,8 @@ Control to check whether the given input is a valid phone number.
 Control to hide or show a scure string.
 
 [Read more.](HideShowSecureStringControl)
+
+## Format JSON Control
+Control to format a given JSON.
+
+[Read more.](FormatJSONControl)

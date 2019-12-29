@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+ <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="FormatJSONControl_Display_Key" xml:space="preserve">
+    <value>Format JSON Control</value>
+  </data>
+  <data name="FormatJSONControl_Desc_Key" xml:space="preserve">
+    <value>"Control" um einen Text als JSON zu formatieren.</value>
+  </data>
+  <data name="PropertyValueField_Display_Key" xml:space="preserve">
+    <value>Eingabewert</value>
+  </data>
+  <data name="PropertyValueField_Desc_Key" xml:space="preserve">
+    <value>Eingabewert</value>
+  </data>
+  <data name="PropertyRowstextArea_Display_Key" xml:space="preserve">
+    <value>Zeilen "TextArea"</value>
+  </data> 
+  <data name="PropertyRowstextArea_Desc_Key" xml:space="preserve">
+    <value>Anzahl der Zeilen für die angezeigte TextArea</value>
+  </data> 
+  <data name="PropertyShowSyntaxHighlighting_Display_Key" xml:space="preserve">
+    <value>"Syntax Highlighting" anzeigen.</value>
+  </data> 
+  <data name="PropertyShowSyntaxHighlighting_Desc_Key" xml:space="preserve">
+    <value>Wenn aktiviert, zeigt das Control Syntax Highlighting an. Dies ändert das "Control" zu "read-only".</value>
+  </data> 
+  <data name="PropertyShowSyntaxHighlighting_False_Display_Key" xml:space="preserve">
+    <value>Nein</value>
+  </data> 
+  <data name="PropertyShowSyntaxHighlighting_False_Desc_Key" xml:space="preserve">
+    <value></value>
+  </data> 
+  <data name="PropertyShowSyntaxHighlighting_True_Display_Key" xml:space="preserve">
+    <value>Ja</value>
+  </data> 
+  <data name="PropertyShowSyntaxHighlighting_True_Desc_Key" xml:space="preserve">
+    <value></value>
+  </data> 
+  <data name="ErrorText_Key" xml:space="preserve">
+    <value>Die Eingabe ist kein korrektes JSON.</value>
+  </data>
+</root>

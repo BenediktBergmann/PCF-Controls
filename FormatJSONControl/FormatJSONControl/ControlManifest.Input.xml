@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="BeBeControls" constructor="FormatJSONControl" version="1.0.0" display-name-key="FormatJSONControl_Display_Key" description-key="FormatJSONControl_Desc_Key" control-type="standard">
+    <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
+    <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="Multiple" usage="bound" required="true" />
+    
+    <property name="rowsTextArea" display-name-key="PropertyRowstextArea_Display_Key" description-key="PropertyRowstextArea_Desc_Key" of-type="Whole.None" usage="input" required="true" default-value="5" />
+
+    <property name="showSyntaxHighlighting" display-name-key="PropertyShowSyntaxHighlighting_Display_Key" description-key="PropertyShowSyntaxHighlighting_Desc_Key" of-type="Enum" usage="input" required="true" default-value="False">
+      <value name="false" display-name-key="PropertyShowSyntaxHighlighting_False_Display_Key" description-key="PropertyShowSyntaxHighlighting_False_Desc_Key">False</value>
+      <value name="true" display-name-key="PropertyShowSyntaxHighlighting_True_Display_Key" description-key="PropertyShowSyntaxHighlighting_True_Desc_Key">True</value>
+    </property>
+
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/FormatJSONControl.css" order="1" />
+      <resx path="strings/FormatJSONControl.1031.resx" version="1.0.0" />
+      <resx path="strings/FormatJSONControl.1033.resx" version="1.0.0" />
+      <resx path="strings/FormatJSONControl.1053.resx" version="1.0.0" />
+    </resources>
+  </control>
+</manifest>

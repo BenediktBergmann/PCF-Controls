@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="SwedishSSNControl" version="0.0.2" display-name-key="SwedishSSNControl_Display_Key" description-key="SwedishSSNControl_Desc_Key" control-type="standard">
+  <control namespace="BeBeControls" constructor="SwedishSSNControl" version="1.4.0" display-name-key="SwedishSSNControl_Display_Key" description-key="SwedishSSNControl_Desc_Key" control-type="standard">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
 

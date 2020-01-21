@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="FormatJSONControl" version="1.0.0" display-name-key="FormatJSONControl_Display_Key" description-key="FormatJSONControl_Desc_Key" control-type="standard">
+  <control namespace="BeBeControls" constructor="FormatJSONControl" version="1.4.0" display-name-key="FormatJSONControl_Display_Key" description-key="FormatJSONControl_Desc_Key" control-type="standard">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="Multiple" usage="bound" required="true" />
     

@@ -9,12 +9,12 @@
     "start": "pcf-scripts start"
   },
   "dependencies": {
-    "@types/node": "^10.17.13",
+    "@types/node": "^10.17.20",
     "@types/powerapps-component-framework": "^1.2.0",
-    "awesome-phonenumber": "^2.24.0"
+    "awesome-phonenumber": "^2.30.0"
   },
   "devDependencies": {
-    "pcf-scripts": "^1.1.6",
-    "pcf-start": "^1.1.6"
+    "pcf-scripts": "^1.2.6",
+    "pcf-start": "^1.2.6"
   }
 }

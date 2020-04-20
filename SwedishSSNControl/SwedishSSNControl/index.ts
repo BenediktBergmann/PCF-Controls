@@ -98,7 +98,7 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 		errorIconLabelElement.classList.add("icon");
 
 		var errorLabelElement = document.createElement("label");
-		errorLabelElement.innerHTML = context.resources.getString("ErrorText_Key");;
+		errorLabelElement.innerHTML = context.resources.getString("ErrorText_Key");
 
 		this._errorContainer = document.createElement("div");
 		this._errorContainer.classList.add("Error");

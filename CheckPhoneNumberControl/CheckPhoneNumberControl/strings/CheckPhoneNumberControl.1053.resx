@@ -71,10 +71,10 @@
     <value>Ingångsvärdet</value>
   </data> 
   <data name="PropertyNumberValidField_Display_Key" xml:space="preserve">
-    <value>Number valid field</value>
+    <value>Nummer valid fält</value>
   </data>
   <data name="PropertyNumberValidField_Desc_Key" xml:space="preserve">
-    <value>This field will show if the number is valid or not. Can be used to prevent form submission</value>
+    <value>Fältet visas om nummer är rätt eller inte. Kan blir använd för att förhindra att spara.</value>
   </data>
   <data name="PropertyDefaultCC_Display_Key" xml:space="preserve">
     <value>Standardlandskod</value>

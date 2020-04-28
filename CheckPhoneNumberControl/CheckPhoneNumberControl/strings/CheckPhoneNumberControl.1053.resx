@@ -128,7 +128,7 @@
     <value>Kommaseparerad lista över uteslutna nummertyper. Här hittar du en lista över möjliga värden: https://www.npmjs.com/package/awesome-phonenumber#phone-number-types</value>
   </data>
   <data name="ErrorText_IncorrectNumber_Key" xml:space="preserve">
-    <value>Felaktigt telefon Nummer</value>
+    <value>Felaktigt telefonnummer</value>
   </data>
   <data name="ErrorText_Unallowed_Country_Key" xml:space="preserve">
     <value>Telefonnummer för ett land som inte är tillåtet.</value>

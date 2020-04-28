@@ -70,6 +70,12 @@
   <data name="PropertyValueField_Desc_Key" xml:space="preserve">
     <value>The Input Value</value>
   </data>
+  <data name="PropertyNumberValidField_Display_Key" xml:space="preserve">
+    <value>Number valid field</value>
+  </data>
+  <data name="PropertyNumberValidField_Desc_Key" xml:space="preserve">
+    <value>This field will show if the number is valid or not. Can be used to prevent form submission</value>
+  </data>
   <data name="PropertyDefaultCC_Display_Key" xml:space="preserve">
     <value>Default Country Code</value>
   </data>

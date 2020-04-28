@@ -5,6 +5,7 @@
 // Define IInputs and IOutputs Type. They should match with ControlManifest.
 export interface IInputs {
     valueField: ComponentFramework.PropertyTypes.StringProperty;
+    numberValid: ComponentFramework.PropertyTypes.TwoOptionsProperty;
     outputFormat: ComponentFramework.PropertyTypes.EnumProperty<"International" | "National" | "E164">;
     defaultCC: ComponentFramework.PropertyTypes.StringProperty;
     allowedCC: ComponentFramework.PropertyTypes.StringProperty;
@@ -14,4 +15,5 @@ export interface IInputs {
 }
 export interface IOutputs {
     valueField?: string;
+    numberValid?: boolean;
 }

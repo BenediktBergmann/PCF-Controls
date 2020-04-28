@@ -18,6 +18,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	private _excludedTypes: string[];
 	private _emptyValue = "---";
 	private _maskValue = "******";
+	private _numberValidReturnValue = false;
 
 	private _outputFormat: string;
 
@@ -144,7 +145,8 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	public getOutputs(): IOutputs
 	{
 		return {
-			valueField: this._value
+			valueField: this._value,
+			numberValid : this._numberValidReturnValue
 		};
 	}
 
@@ -170,13 +172,15 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 			}else {
 				this.handleValue(parsedPhoneNumber.getNumber(this._outputFormat));
 			}
-			this._notifyOutputChanged();
+			this._numberValidReturnValue = true;
 		}
 		else{
 			this._inputElement.classList.add("incorrect");
 			this._errorContainer.classList.add("inputError");
-			this._value = "";
+			this._value = this._inputElement.value;
+			this._numberValidReturnValue = false;
 		}
+		this._notifyOutputChanged();
 	}
 
 	private isCorrectPhoneNumber(value: string): boolean{

@@ -70,6 +70,12 @@
   <data name="PropertyValueField_Desc_Key" xml:space="preserve">
     <value>Ingångsvärdet</value>
   </data> 
+  <data name="PropertyNumberValidField_Display_Key" xml:space="preserve">
+    <value>Nummer valid fält</value>
+  </data>
+  <data name="PropertyNumberValidField_Desc_Key" xml:space="preserve">
+    <value>Fältet visas om nummer är rätt eller inte. Kan blir använd för att förhindra att spara.</value>
+  </data>
   <data name="PropertyDefaultCC_Display_Key" xml:space="preserve">
     <value>Standardlandskod</value>
   </data>
@@ -122,7 +128,7 @@
     <value>Kommaseparerad lista över uteslutna nummertyper. Här hittar du en lista över möjliga värden: https://www.npmjs.com/package/awesome-phonenumber#phone-number-types</value>
   </data>
   <data name="ErrorText_IncorrectNumber_Key" xml:space="preserve">
-    <value>Felaktigt telefon Nummer</value>
+    <value>Felaktigt telefonnummer</value>
   </data>
   <data name="ErrorText_Unallowed_Country_Key" xml:space="preserve">
     <value>Telefonnummer för ett land som inte är tillåtet.</value>

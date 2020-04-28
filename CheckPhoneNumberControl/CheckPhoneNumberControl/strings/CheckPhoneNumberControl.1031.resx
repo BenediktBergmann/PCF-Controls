@@ -76,9 +76,6 @@
   <data name="PropertyNumberValidField_Desc_Key" xml:space="preserve">
     <value>In dieses Feld wird gespeichert ob die Nummer valide ist oder nicht. Kann dafür verwendet werden um die Form Submition zu verhindern</value>
   </data>
-  <data name="PropertyNumberValidField_Desc_Key" xml:space="preserve">
-    <value>Reports wether the number is valid</value>
-  </data>
   <data name="PropertyDefaultCC_Desc_Key" xml:space="preserve">
     <value>Der zu überprüfende Standard-Ländercode. Muss ein ISO 3166 (Alpha 2) Ländercode sein. Eine Liste der möglichen Werte findenst du hier: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
   </data>

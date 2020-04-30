@@ -1,0 +1,30 @@
+@import "https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css";
+
+div.BeBeControls div.container.iconPresent{
+    position: relative;
+}
+
+div.BeBeControls div.container.iconPresent input#inputField{
+    padding-right: calc(2.5em);
+}
+
+div.BeBeControls div.container.iconPresent span#iconElement{
+    width: 1.5em;
+    left: calc(100% - (2.5em + 1px));
+    position: absolute;
+    cursor: pointer;
+    padding: 0.5em;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+/*Styling the span when hovering over the input*/
+div.BeBeControls div.container.iconPresent span#iconElement:hover,
+div.BeBeControls div.container.iconPresent span#iconElement:focus,
+div.BeBeControls div.container.iconPresent input#inputField:hover ~ span#iconElement,
+div.BeBeControls div.container.iconPresent input#inputField:focus ~ span#iconElement{
+	background-color:rgb(216, 216, 216);
+}

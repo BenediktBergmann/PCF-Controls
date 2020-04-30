@@ -86,13 +86,13 @@
     <value>Nein</value>
   </data> 
   <data name="PropertyShowSyntaxHighlighting_False_Desc_Key" xml:space="preserve">
-    <value></value>
+    <value>Zeigt Control ohne Syntax Highlighting an.</value>
   </data> 
   <data name="PropertyShowSyntaxHighlighting_True_Display_Key" xml:space="preserve">
     <value>Ja</value>
   </data> 
   <data name="PropertyShowSyntaxHighlighting_True_Desc_Key" xml:space="preserve">
-    <value></value>
+    <value>Zeigt das Control mit Syntax Highlighting an. Dies ändert das "Control" zu "read-only".</value>
   </data> 
   <data name="ErrorText_Key" xml:space="preserve">
     <value>Die Eingabe ist kein korrektes JSON.</value>

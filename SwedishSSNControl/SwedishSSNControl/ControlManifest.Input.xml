@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="SwedishSSNControl" version="1.4.0" display-name-key="SwedishSSNControl_Display_Key" description-key="SwedishSSNControl_Desc_Key" control-type="standard">
+  <control namespace="BeBeControls" constructor="SwedishSSNControl" version="1.5.1" display-name-key="SwedishSSNControl_Display_Key" description-key="SwedishSSNControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
 
     <property name="allowSSN" display-name-key="PropertyAllowSSN_Display_Key" description-key="PropertyAllowSSN_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Yes">
-      <value name="YES" display-name-key="YES" description-key="To_Yes">Yes</value>
-      <value name="NO" display-name-key="NO" description-key="To_No">No</value>
+      <value name="YES" display-name-key="Yes" description-key="Yes">Yes</value>
+      <value name="NO" display-name-key="No" description-key="No">No</value>
     </property>
 
     <property name="allowCN" display-name-key="PropertyAllowCN_Display_Key" description-key="PropertyAllowCN_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Yes">
-      <value name="YES" display-name-key="YES" description-key="To_Yes">Yes</value> 
-      <value name="NO" display-name-key="NO" description-key="To_No">No</value>  
+      <value name="YES" display-name-key="Yes" description-key="Yes">Yes</value> 
+      <value name="NO" display-name-key="No" description-key="No">No</value>  
     </property>
 
     <resources>
       <code path="index.ts" order="1"/>
-      <css path="css/SwedishSSNControl.css" order="1" />
+      <css path="../../globalStyle.css" order="1" />
+      <css path="css/SwedishSSNControl.css" order="2" />
       <resx path="strings/SwedishSSNControl.1033.resx" version="1.0.0" />
       <resx path="strings/SwedishSSNControl.1053.resx" version="1.0.0" />
     </resources>

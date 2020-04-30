@@ -80,6 +80,8 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 		}
 
 		this._container = document.createElement("div");
+		this._container.classList.add("container");
+		this._container.classList.add("swedishSSNControl");
 
 		this._notifyOutputChanged = notifyOutputChanged;
 
@@ -89,6 +91,7 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 
 		this._inputElement = document.createElement("input");
 		this._inputElement.setAttribute("type", "text");
+		this._inputElement.setAttribute("id", "inputField");
 		this._inputElement.addEventListener("change", this._inputElementOnChange);
 		this._inputElement.addEventListener("focus", this._inputElementOnFocus);
 		this._inputElement.addEventListener("focusout", this._inputElementOnFocusOut);

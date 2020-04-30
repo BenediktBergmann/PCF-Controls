@@ -1,0 +1,72 @@
+div.BeBeControls div.container{
+    width: 100%;
+}
+
+div.BeBeControls div.container input#inputField,
+div.BeBeControls div.container textarea{
+	width: 100%;
+    float:none;
+    outline: none !important;
+    line-height: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid transparent;
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+}
+
+div.BeBeControls div.container input#inputField:hover,
+div.BeBeControls div.container input#inputField:focus,
+div.BeBeControls div.container input#inputField.highlight,
+div.BeBeControls div.container textarea:hover{
+    border-color:rgb(102, 102, 102);
+    font-weight:normal;
+}
+
+div.BeBeControls div.container input#inputField:read-only:hover,
+div.BeBeControls div.container textarea:read-only:hover,
+div.BeBeControls div.container input#inputField:-moz-read-only:hover,
+div.BeBeControls div.container textarea:-moz-read-only:hover{
+    border-width:0;
+    background-color:#e2e2e2;
+}
+
+div.BeBeControls div.container input#inputField.incorrect,
+div.BeBeControls div.container textarea.incorrect {
+    color: red;
+    font-weight: bold;
+}
+
+div.BeBeControls div.container input#inputField.incorrect:hover,
+div.BeBeControls div.container textarea.incorrect:hover {
+    border: 2px solid red;
+}
+
+div.BeBeControls div.container div.Error{
+    background-color: rgba(191, 9, 0, 0.075);
+    padding: 0.5rem;
+    display: inline-flex;
+    word-break: normal;
+    white-space: normal;
+    font-family: 'SegoeUI-Semibold', 'Segoe UI Semibold', 'Segoe UI Regular', 'Segoe UI';
+    display:none;
+}
+
+div.BeBeControls div.container div.Error.inputError{
+    display: inline-flex;
+}
+
+div.BeBeControls div.container div.Error label{
+    line-height: 2rem;
+    color: rgb(191, 9, 0);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+div.BeBeControls div.container div.Error label.icon{
+    font-family: "Dyn CRM Symbol", "Segoe MDL2 Assets";
+    margin-right: 10px;
+}

@@ -12,6 +12,7 @@ export interface IInputs {
     excludedCC: ComponentFramework.PropertyTypes.StringProperty;
     allowedType: ComponentFramework.PropertyTypes.StringProperty;
     excludedType: ComponentFramework.PropertyTypes.StringProperty;
+    showButton: ComponentFramework.PropertyTypes.EnumProperty<"Yes" | "No">;
 }
 export interface IOutputs {
     valueField?: string;

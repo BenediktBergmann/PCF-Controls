@@ -90,7 +90,6 @@
   </data>
   <data name="PropertyExcludedCC_Display_Key" xml:space="preserve">
     <value>Excluded Country Codes</value>
-    
   </data>
   <data name="PropertyExcludedCC_Desc_Key" xml:space="preserve">
     <value>A comma separated list of excluded Country Codes. ISO 3166 (alpha 2) country codes needs to be used. You can find a list of possible values here: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
@@ -136,5 +135,11 @@
   </data>
   <data name="ErrorText_Unallowed_Type_Key" xml:space="preserve">
     <value>Telephone number of a type that is not allowed.</value>
+  </data>
+  <data name="PropertyShowButton_Display_Key" xml:space="preserve">
+    <value>Show quick create button</value>
+  </data>
+  <data name="PropertyShowButton_Desc_Key" xml:space="preserve">
+    <value>If active it shows a button to open the call quick create form</value>
   </data>
 </root>

@@ -1,5 +1,6 @@
 # PCF-Controls
-Controls using the PowerApps Component Framework
+Controls using the PowerApps Component Framework.
+All controls use global css files to share the styling. Those are located in the root folder
 
 ## Swedish SSN Control
 Control to check whether the given input is a valid swedish social security number.

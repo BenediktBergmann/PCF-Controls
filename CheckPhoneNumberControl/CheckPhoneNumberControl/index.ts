@@ -1,6 +1,8 @@
 import {IInputs, IOutputs} from "./generated/ManifestTypes";
 var PhoneNumber = require( 'awesome-phonenumber' );
 
+declare var Xrm: any;
+
 export class CheckPhoneNumberControl implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
 	private _notifyOutputChanged: () => void;
@@ -9,6 +11,10 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	private _inputElementOnChange: EventListenerOrEventListenerObject;
 	private _inputElementOnFocus: EventListenerOrEventListenerObject;
 	private _inputElementOnFocusOut: EventListenerOrEventListenerObject;
+
+	private _iconElementOnMouseenter: EventListenerOrEventListenerObject;
+	private _iconElementOnMouseleave: EventListenerOrEventListenerObject;
+	private _iconElementOnClick: EventListenerOrEventListenerObject;
 
 	private _value: string;
 	private _defaultCC: string;
@@ -25,6 +31,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	// HTML container
 	private _container: HTMLDivElement;
 	private _inputElement: HTMLInputElement;
+	private _iconElement: HTMLSpanElement;
 	// label element created as part of this control
 	private _errorContainer: HTMLDivElement;
 	private _errorLabelElement: HTMLLabelElement;
@@ -82,17 +89,40 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 			this._excludedTypes = this._excludedTypes.map(el => el.trim().toLowerCase());
 		}
 
+		let showButton = false;
+
+		if(context.parameters.showButton!.raw == "Yes" && typeof Xrm !== 'undefined'){
+			showButton = true;
+		}
+
 		this._inputElementOnChange = this.inputOnChange.bind(this);
 		this._inputElementOnFocus = this.inputOnFocus.bind(this);
 		this._inputElementOnFocusOut = this.inputOnFocusOut.bind(this);
+		this._iconElementOnMouseenter = this.inputAddHighlightClass.bind(this);
+		this._iconElementOnMouseleave = this.inputRemoveHighlightClass.bind(this);
+		this._iconElementOnClick = this.openQuickCreateForm.bind(this);
 
 		this._container = document.createElement("div");
+		this._container.classList.add("container");
+		this._container.classList.add("checkPhoneNumberControl");
 
 		this._inputElement = document.createElement("input");
+		this._inputElement.setAttribute("id", "inputField");
 		this._inputElement.setAttribute("type", "text");
 		this._inputElement.addEventListener("change", this._inputElementOnChange);
 		this._inputElement.addEventListener("focus", this._inputElementOnFocus);
 		this._inputElement.addEventListener("focusout", this._inputElementOnFocusOut);
+
+		if(showButton){
+			this._container.classList.add("iconPresent");
+
+			this._iconElement = document.createElement("span");
+			this._iconElement.setAttribute("id", "iconElement");
+			this._iconElement.classList.add("ms-Icon");
+			this._iconElement.addEventListener("click", this._iconElementOnClick);
+			this._iconElement.addEventListener("mouseenter", this._iconElementOnMouseenter);
+			this._iconElement.addEventListener("mouseleave", this._iconElementOnMouseleave);
+		}
 
 		var errorIconLabelElement = document.createElement("label");
 		errorIconLabelElement.innerHTML = "";
@@ -111,6 +141,9 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 
 		// appending the HTML elements to the control's HTML container element.
 		this._container.appendChild(this._inputElement);
+		if(showButton){
+			this._container.appendChild(this._iconElement);
+		}
 		this._container.appendChild(this._errorContainer);
 		container.appendChild(this._container);
 	}
@@ -240,5 +273,40 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		{
 			this._inputElement.value = this._emptyValue;
 		}
+	}
+
+	public inputAddHighlightClass():void
+	{
+		this._inputElement.classList.add("highlight");
+	}
+
+	public inputRemoveHighlightClass():void
+	{
+		this._inputElement.classList.remove("highlight");
+	}
+
+	private openQuickCreateForm(): void
+	{
+		let entityId = (<any>this._context.mode).contextInfo.entityId;
+		let entityTypeName = (<any>this._context.mode).contextInfo.entityTypeName;
+		let entityRecordName = (<any>this._context.mode).contextInfo.entityRecordName;
+
+		let entityReference = {
+			entityType: entityTypeName,
+			id: entityId,
+			name: entityRecordName
+		}
+
+		let entityOptions = {
+			entityName: "phonecall",
+			useQuickCreateForm: true,
+			createFromEntity: entityReference
+		};
+
+		let formParameters = {
+			to: [ entityReference ]
+		};		
+		
+		(<any>Xrm).Navigation.openForm(entityOptions, formParameters);
 	}
 }

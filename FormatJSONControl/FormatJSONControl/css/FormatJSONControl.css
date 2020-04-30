@@ -1,74 +1,12 @@
-.BeBeControls div {
-	width: 100%;
-}
+/* 
+See CSS files in repos root folder
+globalStyle.css
+iconStyle.css
+*/
 
-.BeBeControls textarea{
-	width: 100%;
-    float:none;
-    outline: none !important;
-    line-height: 2.5rem;
-    height: 2.5rem;
-    border: 1px solid transparent;
-    padding: 0 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    color: rgb(0, 0, 0);
-    box-sizing: border-box;
-    text-overflow: ellipsis;
-}
-
-.BeBeControls div.highlighted {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
-.BeBeControls div.highlighted .string { color: green; }
-.BeBeControls div.highlighted .number { color: darkorange; }
-.BeBeControls div.highlighted .boolean { color: blue; }
-.BeBeControls div.highlighted .null { color: magenta; }
-.BeBeControls div.highlighted .key { color: red; }
-
-.BeBeControls textarea:hover{
-	border-color:rgb(102, 102, 102);
-}
-
-.BeBeControls textarea:read-only:hover{
-    border-width:0;
-    background-color:#e2e2e2;
-}
-
-.BeBeControls textarea:-moz-read-only:hover{
-    border-width:0;
-    background-color:#e2e2e2;
-}
-
-.BeBeControls textarea.incorrect {
-    color: red;
-    font-weight: bold;
-}
-
-.BeBeControls textarea.incorrect:hover {
-    border: 2px solid red;
-}
-
-.BeBeControls div.Error{
-    background-color: rgba(191, 9, 0, 0.075);
-    padding: 0.5rem;
-    display: inline-flex;
-    word-break: normal;
-    white-space: normal;
-    font-family: 'SegoeUI-Semibold', 'Segoe UI Semibold', 'Segoe UI Regular', 'Segoe UI';
-    display:none;
-}
-
-.BeBeControls div.Error.inputError{
-    display: inline-flex;
-}
-
-.BeBeControls div.Error label{
-    line-height: 2rem;
-    color: rgb(191, 9, 0);
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.BeBeControls .icon{
-    font-family: "Dyn CRM Symbol", "Segoe MDL2 Assets";
-    margin-right: 10px;
-}
+div.BeBeControls div.formatJsonControl div.highlighted {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+div.BeBeControls div.formatJsonControl div.highlighted .string { color: green; }
+div.BeBeControls div.formatJsonControl div.highlighted .number { color: darkorange; }
+div.BeBeControls div.formatJsonControl div.highlighted .boolean { color: blue; }
+div.BeBeControls div.formatJsonControl div.highlighted .null { color: magenta; }
+div.BeBeControls div.formatJsonControl div.highlighted .key { color: red; }

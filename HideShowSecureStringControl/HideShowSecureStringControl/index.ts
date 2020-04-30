@@ -60,6 +60,8 @@ export class HideShowSecureStringControl implements ComponentFramework.StandardC
 		// Create HTML
 		this._container = document.createElement("div");
 		this._container.classList.add("container");
+		this._container.classList.add("hideShowSecureStringControl");
+		this._container.classList.add("iconPresent");
 
 		this._inputElement = document.createElement("input");
 		this._inputElement.setAttribute("type", (this._inputShown)? "text" : "password");
@@ -70,6 +72,8 @@ export class HideShowSecureStringControl implements ComponentFramework.StandardC
 
 		this._iconElement = document.createElement("span");
 		this._iconElement.setAttribute("id", "iconElement");
+		this._iconElement.classList.add("ms-Icon");
+		this._iconElement.classList.add("noOutline");
 		this._iconElement.addEventListener("click", this._iconElementOnClick);
 		this._iconElement.addEventListener("mouseenter", this._iconElementOnMouseenter);
 		this._iconElement.addEventListener("mouseleave", this._iconElementOnMouseleave);
@@ -140,7 +144,15 @@ export class HideShowSecureStringControl implements ComponentFramework.StandardC
 		this._inputShown = !this._inputShown;
 		this.handleValue(this._value);
 		this._inputElement.setAttribute("type", (this._inputShown)? "text" : "password");
-		this._iconElement.innerHTML = (this._inputShown)? "<i class=\"ms-Icon ms-Icon--Hide3\" aria-hidden=\"true\" aria-label=\"Hide\"></i>" : "<i class=\"ms-Icon ms-Icon--View\" aria-hidden=\"true\" aria-label=\"Show\"></i>";
+		
+		if(!this._inputShown){
+			this._iconElement.classList.add("hide");
+			this._iconElement.classList.remove("view");
+		} else {
+			this._iconElement.classList.add("view");
+			this._iconElement.classList.remove("hide");
+		}
+		//this._iconElement.innerHTML = (this._inputShown)? "<i class=\"ms-Icon ms-Icon--Hide3\" aria-hidden=\"true\" aria-label=\"Hide\"></i>" : "<i class=\"ms-Icon ms-Icon--View\" aria-hidden=\"true\" aria-label=\"Show\"></i>";
 	}
 
 	public inputOnChange():void

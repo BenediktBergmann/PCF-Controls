@@ -136,4 +136,10 @@
   <data name="ErrorText_Unallowed_Type_Key" xml:space="preserve">
     <value>Telefonnummer av en typ som inte är tillåtet.</value>
   </data>
+  <data name="PropertyShowButton_Display_Key" xml:space="preserve">
+    <value>Visa "quick create" knapp</value>
+  </data>
+  <data name="PropertyShowButton_Desc_Key" xml:space="preserve">
+    <value>Om den är aktiv visas en knapp för att öppna samtalets snabbformulär</value>
+  </data>
 </root>

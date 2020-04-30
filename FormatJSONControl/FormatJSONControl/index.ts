@@ -54,7 +54,7 @@ export class FormatJSONControl implements ComponentFramework.StandardControl<IIn
 
 		this._context.parameters.valueField
 
-		if(context.parameters.showSyntaxHighlighting.raw.toLocaleLowerCase() == "true"){
+		if(context.parameters.showSyntaxHighlighting.raw.toLocaleLowerCase() == "yes"){
 			this._syntaxHighlighting = true;
 		}
 
@@ -63,6 +63,8 @@ export class FormatJSONControl implements ComponentFramework.StandardControl<IIn
 		this._textAreaElementOnFocusOut = this.textAreaOnFocusOut.bind(this);
 
 		this._container = document.createElement("div");
+		this._container.classList.add("container");
+		this._container.classList.add("formatJsonControl");
 
 		//Creating both to track changes.
 		this._textAreaElement = document.createElement("textarea");
@@ -160,7 +162,6 @@ export class FormatJSONControl implements ComponentFramework.StandardControl<IIn
 			this._textAreaElement.classList.add("incorrect");
 			this._highlightedElement.classList.add("incorrect");
 			this._errorContainer.classList.add("inputError");
-			//this._value = "";
 		}
 		else {
 			this._textAreaElement.classList.remove("incorrect");

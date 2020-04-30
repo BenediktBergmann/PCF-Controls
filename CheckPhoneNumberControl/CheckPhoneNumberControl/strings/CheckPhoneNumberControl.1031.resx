@@ -133,4 +133,10 @@
   <data name="ErrorText_Unallowed_Type_Key" xml:space="preserve">
     <value>Telefonnummer eines Types, der nicht erlaubt ist.</value>
   </data>
+  <data name="PropertyShowButton_Display_Key" xml:space="preserve">
+    <value>"Quick create" knopf</value>
+  </data>
+  <data name="PropertyShowButton_Desc_Key" xml:space="preserve">
+    <value>Wenn aktiviert, wird ein knopf zum öffnen des "quick create" formular für telefonnat angezeigt.</value>
+  </data>
 </root>

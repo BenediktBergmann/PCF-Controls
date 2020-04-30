@@ -14,6 +14,7 @@ You can download the last release [here](https://github.com/BenediktBergmann/PCF
 ## Configuration
 Configuration | Description | Required
 ------------ | ------------- | -------------
+number Valid | Related true/false field that indicates whether the entered number is valid. Can be used to prevent saving the form if not valid |
 Format | The Format the phone number should be transformed to. International (+46 70 712 34 56), National (070-712 34 56) or E164 (+46707123456) | X
 Default CC | The Default country code. |
 Allowed CC | Comma separated list of allowed country codes. | 

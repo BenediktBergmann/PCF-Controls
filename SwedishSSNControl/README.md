@@ -15,6 +15,7 @@ You can download the last release [here](https://github.com/BenediktBergmann/PCF
 ## Configuration
 Configuration | Description | Required
 ------------ | ------------- | -------------
+Input Valid | Related true/false field that indicates whether the entered input is valid. Can be used to prevent saving the form if not valid |
 Allow Social Security number | Decides whether or not the Social Security Number is allowed as an input | X
 Allow Coordination number | Decides whether or not the Coordination Number is allowed as an input | X
 

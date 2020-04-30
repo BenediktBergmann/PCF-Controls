@@ -3,6 +3,7 @@
   <control namespace="BeBeControls" constructor="SwedishSSNControl" version="1.5.1" display-name-key="SwedishSSNControl_Display_Key" description-key="SwedishSSNControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
+    <property name="inputValid" display-name-key="PropertyInputValidField_Display_Key" description-key="PropertyInputValidField_Desc_Key" of-type="TwoOptions" usage="bound" required="false" />
 
     <property name="allowSSN" display-name-key="PropertyAllowSSN_Display_Key" description-key="PropertyAllowSSN_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Yes">
       <value name="YES" display-name-key="Yes" description-key="Yes">Yes</value>

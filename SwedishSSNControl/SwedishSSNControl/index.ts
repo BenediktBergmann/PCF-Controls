@@ -15,6 +15,7 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 	private _allowCN: boolean;
 	private _emptyValue = "---";
 	private _maskValue = "******";
+	private _inputValidReturnValue = false;
 
 	// HTML container
 	private _container: HTMLDivElement;
@@ -147,7 +148,8 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 	public getOutputs(): IOutputs
 	{
 		return {
-			valueField: this._value
+			valueField: this._value,
+			inputValid : this._inputValidReturnValue
 		};
 	}
 
@@ -167,12 +169,14 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 			this._inputElement.classList.remove("incorrect");
 			this._errorContainer.classList.remove("inputError");
 			this.handleValue(this._inputElement.value);
+			this._inputValidReturnValue = true;
 			this._notifyOutputChanged();
 		}
 		else{
 			this._inputElement.classList.add("incorrect");
 			this._errorContainer.classList.add("inputError");
 			this._value = "";
+			this._inputValidReturnValue = false;
 		}
 	}
 

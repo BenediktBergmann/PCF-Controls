@@ -64,6 +64,18 @@
   <data name="SwedishSSNControl_Display_Key" xml:space="preserve">
     <value>Swedish Social Security Number Control</value>
   </data>
+  <data name="PropertyValueField_Display_Key" xml:space="preserve">
+    <value>Input Value</value>
+  </data>
+  <data name="PropertyValueField_Desc_Key" xml:space="preserve">
+    <value>The Input Value</value>
+  </data>
+  <data name="PropertyInputValidField_Display_Key" xml:space="preserve">
+    <value>Input valid field</value>
+  </data>
+  <data name="PropertyInputValidField_Desc_Key" xml:space="preserve">
+    <value>This field will show if the input is valid or not. Can be used to prevent form submission</value>
+  </data>
   <data name="PropertyAllowSSN_Display_Key" xml:space="preserve">
     <value>Allow Social Security number</value>
   </data>

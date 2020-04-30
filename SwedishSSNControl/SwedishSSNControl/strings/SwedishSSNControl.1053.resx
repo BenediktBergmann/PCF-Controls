@@ -64,6 +64,12 @@
   <data name="SwedishSSNControl_Display_Key" xml:space="preserve">
     <value>Swedish personnummer Control</value>
   </data>
+    <data name="PropertyInputValidField_Display_Key" xml:space="preserve">
+    <value>Ingångsvärdet valid fält</value>
+  </data>
+  <data name="PropertyInputValidField_Desc_Key" xml:space="preserve">
+    <value>Fältet visas om ingångsvärdet är rätt eller inte. Kan blir använd för att förhindra att spara.</value>
+  </data>
   <data name="PropertyAllowSSN_Display_Key" xml:space="preserve">
     <value>Tillåt personnummer</value>
   </data> 

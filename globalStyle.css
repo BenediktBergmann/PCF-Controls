@@ -21,27 +21,33 @@ div.BeBeControls div.container textarea{
 div.BeBeControls div.container input#inputField:hover,
 div.BeBeControls div.container input#inputField:focus,
 div.BeBeControls div.container input#inputField.highlight,
-div.BeBeControls div.container textarea:hover{
+div.BeBeControls div.container textarea:hover,
+div.BeBeControls div.container textarea:focus{
     border-color:rgb(102, 102, 102);
     font-weight:normal;
 }
 
-div.BeBeControls div.container input#inputField:read-only:hover,
-div.BeBeControls div.container textarea:read-only:hover,
-div.BeBeControls div.container input#inputField:-moz-read-only:hover,
-div.BeBeControls div.container textarea:-moz-read-only:hover{
-    border-width:0;
+div.BeBeControls div.container.readOnly input#inputField:hover,
+div.BeBeControls div.container.readOnly textarea:hover{
+    border: 1px solid transparent;
     background-color:#e2e2e2;
+    font-weight:600;
+    cursor:default;
+}
+
+div.BeBeControls div.container.readOnly input#inputField:focus,
+div.BeBeControls div.container.readOnly textarea:focus,
+div.BeBeControls div.container.readOnly input#inputField.highlight,
+div.BeBeControls div.container.readOnly textarea.highlight{
+    border: 1px solid transparent;
+    font-weight:600;
+    cursor:default;
 }
 
 div.BeBeControls div.container input#inputField.incorrect,
 div.BeBeControls div.container textarea.incorrect {
     color: red;
     font-weight: bold;
-}
-
-div.BeBeControls div.container input#inputField.incorrect:hover,
-div.BeBeControls div.container textarea.incorrect:hover {
     border: 2px solid red;
 }
 

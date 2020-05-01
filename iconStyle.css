@@ -11,14 +11,21 @@ div.BeBeControls div.container.iconPresent input#inputField{
 div.BeBeControls div.container.iconPresent span#iconElement{
     width: 1.5em;
     left: calc(100% - (2.5em + 1px));
+    height: calc(1.5em - 2px);
     position: absolute;
     cursor: pointer;
     padding: 0.5em;
     top: 1px;
     right: 1px;
-    bottom: 1px;
     line-height: 1.5em;
     text-align: center;
+}
+
+div.BeBeControls div.container.iconPresent.readOnly span#iconElement{
+    left: calc(100% - (2.5em));
+    height: 1.5em;
+    top: 0px;
+    right: 0px;
 }
 
 /*Styling the span when hovering over the input*/
@@ -27,4 +34,21 @@ div.BeBeControls div.container.iconPresent span#iconElement:focus,
 div.BeBeControls div.container.iconPresent input#inputField:hover ~ span#iconElement,
 div.BeBeControls div.container.iconPresent input#inputField:focus ~ span#iconElement{
 	background-color:rgb(216, 216, 216);
+}
+
+div.BeBeControls div.container.iconPresent span#iconElement.inputError:hover,
+div.BeBeControls div.container.iconPresent span#iconElement.inputError:focus,
+div.BeBeControls div.container.iconPresent input#inputField:hover ~ span#iconElement.inputError,
+div.BeBeControls div.container.iconPresent input#inputField:focus ~ span#iconElement.inputError{
+	left: calc(100% - (2.5em + 2px));
+    height: calc(1.5em - 4px);
+    top: 2px;
+    right: 2px;
+}
+
+div.BeBeControls div.container.iconPresent.readOnly span#iconElement:hover,
+div.BeBeControls div.container.iconPresent.readOnly span#iconElement:focus,
+div.BeBeControls div.container.iconPresent.readOnly input#inputField:hover ~ span#iconElement,
+div.BeBeControls div.container.iconPresent.readOnly input#inputField:focus ~ span#iconElement{
+	background-color:transparent;
 }

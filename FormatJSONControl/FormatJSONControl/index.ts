@@ -64,7 +64,6 @@ export class FormatJSONControl implements ComponentFramework.StandardControl<IIn
 
 		this._container = document.createElement("div");
 		this._container.classList.add("container");
-		this._container.classList.add("formatJsonControl");
 
 		//Creating both to track changes.
 		this._textAreaElement = document.createElement("textarea");
@@ -128,6 +127,12 @@ export class FormatJSONControl implements ComponentFramework.StandardControl<IIn
 		}
 
 		this._textAreaElement.readOnly = readOnly;
+		if(readOnly){
+			this._container.classList.add("readOnly");
+		}else{
+			this._container.classList.remove("readOnly");
+		}
+
 		if(masked){
 			this._textAreaElement.value = this._maskValue;
 			this._highlightedElement.innerHTML = this._maskValue;

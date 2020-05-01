@@ -4,6 +4,6 @@ globalStyle.css
 iconStyle.css
 */
 
-.BeBeControls .checkPhoneNumberControl #iconElement::before{
+.BeBeControls.CheckPhoneNumberControl div.container #iconElement::before{
     content: '\E717';
 }

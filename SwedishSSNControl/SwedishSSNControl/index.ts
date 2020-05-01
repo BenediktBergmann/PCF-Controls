@@ -82,7 +82,6 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 
 		this._container = document.createElement("div");
 		this._container.classList.add("container");
-		this._container.classList.add("swedishSSNControl");
 
 		this._notifyOutputChanged = notifyOutputChanged;
 
@@ -135,6 +134,12 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 		}
 
 		this._inputElement.readOnly = readOnly;
+		if(readOnly){
+			this._container.classList.add("readOnly");
+		}else{
+			this._container.classList.remove("readOnly");
+		}
+
 		if(masked){
 			this._inputElement.value = this._maskValue
 			this._value = this._inputElement.value;
@@ -168,16 +173,17 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 		if(this._inputElement.value === "" || this._inputElement.value === null || this.isCorrectSSN(this._inputElement.value)){
 			this._inputElement.classList.remove("incorrect");
 			this._errorContainer.classList.remove("inputError");
-			this.handleValue(this._inputElement.value);
 			this._inputValidReturnValue = true;
-			this._notifyOutputChanged();
 		}
 		else{
 			this._inputElement.classList.add("incorrect");
 			this._errorContainer.classList.add("inputError");
-			this._value = "";
 			this._inputValidReturnValue = false;
 		}
+		
+		this.handleValue(this._inputElement.value);
+		
+		this._notifyOutputChanged();
 	}
 
 	private isCorrectSSN(value: string): boolean{

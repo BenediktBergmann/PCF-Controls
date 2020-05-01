@@ -4,9 +4,9 @@ globalStyle.css
 iconStyle.css
 */
 
-div.BeBeControls div.formatJsonControl div.highlighted {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
-div.BeBeControls div.formatJsonControl div.highlighted .string { color: green; }
-div.BeBeControls div.formatJsonControl div.highlighted .number { color: darkorange; }
-div.BeBeControls div.formatJsonControl div.highlighted .boolean { color: blue; }
-div.BeBeControls div.formatJsonControl div.highlighted .null { color: magenta; }
-div.BeBeControls div.formatJsonControl div.highlighted .key { color: red; }
+div.BeBeControls.FormatJsonControl div.container div.highlighted {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+div.BeBeControls.FormatJsonControl div.container div.highlighted .string { color: green; }
+div.BeBeControls.FormatJsonControl div.container div.highlighted .number { color: darkorange; }
+div.BeBeControls.FormatJsonControl div.container div.highlighted .boolean { color: blue; }
+div.BeBeControls.FormatJsonControl div.container div.highlighted .null { color: magenta; }
+div.BeBeControls.FormatJsonControl div.container div.highlighted .key { color: red; }

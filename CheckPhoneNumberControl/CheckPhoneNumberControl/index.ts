@@ -41,7 +41,6 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	 */
 	constructor()
 	{
-
 	}
 
 	/**
@@ -104,7 +103,6 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 
 		this._container = document.createElement("div");
 		this._container.classList.add("container");
-		this._container.classList.add("checkPhoneNumberControl");
 
 		this._inputElement = document.createElement("input");
 		this._inputElement.setAttribute("id", "inputField");
@@ -165,6 +163,12 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		}
 
 		this._inputElement.readOnly = readOnly;
+		if(readOnly){
+			this._container.classList.add("readOnly");
+		}else{
+			this._container.classList.remove("readOnly");
+		}
+
 		if(masked){
 			this._inputElement.value = this._maskValue;
 			this._value = this._inputElement.value;
@@ -198,6 +202,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		if(this._inputElement.value === "" || this._inputElement.value === null || this.isCorrectPhoneNumber(this._inputElement.value)){
 			this._inputElement.classList.remove("incorrect");
 			this._errorContainer.classList.remove("inputError");
+			this._iconElement.classList.remove("inputError");
 			var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(this._inputElement.value, this._defaultCC) : PhoneNumber(this._inputElement.value);
 
 			if(parsedPhoneNumber === undefined || !parsedPhoneNumber.isValid()){
@@ -210,6 +215,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		else{
 			this._inputElement.classList.add("incorrect");
 			this._errorContainer.classList.add("inputError");
+			this._iconElement.classList.add("inputError");
 			this._value = this._inputElement.value;
 			this._numberValidReturnValue = false;
 		}

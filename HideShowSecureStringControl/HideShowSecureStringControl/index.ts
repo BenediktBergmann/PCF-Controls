@@ -60,7 +60,6 @@ export class HideShowSecureStringControl implements ComponentFramework.StandardC
 		// Create HTML
 		this._container = document.createElement("div");
 		this._container.classList.add("container");
-		this._container.classList.add("hideShowSecureStringControl");
 		this._container.classList.add("iconPresent");
 
 		this._inputElement = document.createElement("input");
@@ -108,6 +107,12 @@ export class HideShowSecureStringControl implements ComponentFramework.StandardC
 		}
 
 		this._inputElement.readOnly = readOnly;
+		if(readOnly){
+			this._container.classList.add("readOnly");
+		}else{
+			this._container.classList.remove("readOnly");
+		}
+
 		if(masked){
 			this._inputElement.value = this._maskValue;
 			this._value = this._inputElement.value;

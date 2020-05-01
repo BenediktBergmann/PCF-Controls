@@ -4,10 +4,10 @@ globalStyle.css
 iconStyle.css
 */
 
-.BeBeControls .hideShowSecureStringControl #iconElement.hide::before{
+div.BeBeControls.HideShowSecureStringControl div.container #iconElement.hide::before{
     content: '\F6AC';
 }
 
-.BeBeControls .hideShowSecureStringControl #iconElement.view::before{
+div.BeBeControls.HideShowSecureStringControl div.container #iconElement.view::before{
     content: '\E890';
 }

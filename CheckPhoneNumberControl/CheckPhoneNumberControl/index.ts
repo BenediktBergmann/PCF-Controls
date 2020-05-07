@@ -25,6 +25,8 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	private _emptyValue = "---";
 	private _maskValue = "******";
 	private _numberValidReturnValue = false;
+	private _openQuickCreate = false;
+	private _clickToCall = "";
 
 	private _outputFormat: string;
 
@@ -88,10 +90,20 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 			this._excludedTypes = this._excludedTypes.map(el => el.trim().toLowerCase());
 		}
 
+		this._clickToCall = context.parameters.clickToCallType.raw;
+
+		if(this._clickToCall === "custom" && context.parameters.customClickToCallType.raw != null && context.parameters.customClickToCallType.raw != ""){
+			this._clickToCall = context.parameters.customClickToCallType.raw;
+		}
+
 		let showButton = false;
 
-		if(context.parameters.showButton!.raw == "Yes" && typeof Xrm !== 'undefined'){
+		if(context.parameters.showButton!.raw == "Yes"){
 			showButton = true;
+		}
+
+		if(context.parameters.openQuickCreate!.raw == "Yes"){
+			this._openQuickCreate = true;
 		}
 
 		this._inputElementOnChange = this.inputOnChange.bind(this);
@@ -99,7 +111,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._inputElementOnFocusOut = this.inputOnFocusOut.bind(this);
 		this._iconElementOnMouseenter = this.inputAddHighlightClass.bind(this);
 		this._iconElementOnMouseleave = this.inputRemoveHighlightClass.bind(this);
-		this._iconElementOnClick = this.openQuickCreateForm.bind(this);
+		this._iconElementOnClick = this.handleButtonClick.bind(this);
 
 		this._container = document.createElement("div");
 		this._container.classList.add("container");
@@ -181,10 +193,16 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	 */
 	public getOutputs(): IOutputs
 	{
-		return {
-			valueField: this._value,
-			numberValid : this._numberValidReturnValue
-		};
+		if(this._numberValidReturnValue){
+			return {
+				valueField: this._value,
+				numberValid : this._numberValidReturnValue
+			};
+		} else{
+			return {
+				numberValid : this._numberValidReturnValue
+			};
+		}
 	}
 
 	/** 
@@ -196,6 +214,10 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._inputElement.removeEventListener("change",this._inputElementOnChange);
 		this._inputElement.removeEventListener("focus",this._inputElementOnFocus);
 		this._inputElement.removeEventListener("focusout",this._inputElementOnFocusOut);
+		
+		this._iconElement.removeEventListener("click", this._iconElementOnClick);
+		this._iconElement.removeEventListener("mouseenter", this._iconElementOnMouseenter);
+		this._iconElement.removeEventListener("mouseleave", this._iconElementOnMouseleave);
 	}
 
 	public inputOnChange():void{
@@ -207,10 +229,11 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 
 			if(parsedPhoneNumber === undefined || !parsedPhoneNumber.isValid()){
 				this.handleValue(this._inputElement.value);
+				this._numberValidReturnValue = false;
 			}else {
 				this.handleValue(parsedPhoneNumber.getNumber(this._outputFormat));
+				this._numberValidReturnValue = true;
 			}
-			this._numberValidReturnValue = true;
 		}
 		else{
 			this._inputElement.classList.add("incorrect");
@@ -291,28 +314,38 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._inputElement.classList.remove("highlight");
 	}
 
-	private openQuickCreateForm(): void
-	{
-		let entityId = (<any>this._context.mode).contextInfo.entityId;
-		let entityTypeName = (<any>this._context.mode).contextInfo.entityTypeName;
-		let entityRecordName = (<any>this._context.mode).contextInfo.entityRecordName;
-
-		let entityReference = {
-			entityType: entityTypeName,
-			id: entityId,
-			name: entityRecordName
+	private handleButtonClick(): void {
+		if(this._clickToCall !== "custom" && this._clickToCall !== "none"){
+			window.open(this._clickToCall + ":" + this._value.replace(/\s/g, ""), '_blank');
 		}
 
-		let entityOptions = {
-			entityName: "phonecall",
-			useQuickCreateForm: true,
-			createFromEntity: entityReference
-		};
+		this.openQuickCreateForm();
+	}
 
-		let formParameters = {
-			to: [ entityReference ]
-		};		
-		
-		(<any>Xrm).Navigation.openForm(entityOptions, formParameters);
+	private openQuickCreateForm(): void
+	{
+		if(this._openQuickCreate && typeof Xrm !== 'undefined'){
+			let entityId = (<any>this._context.mode).contextInfo.entityId;
+			let entityTypeName = (<any>this._context.mode).contextInfo.entityTypeName;
+			let entityRecordName = (<any>this._context.mode).contextInfo.entityRecordName;
+
+			let entityReference = {
+				entityType: entityTypeName,
+				id: entityId,
+				name: entityRecordName
+			}
+
+			let entityOptions = {
+				entityName: "phonecall",
+				useQuickCreateForm: true,
+				createFromEntity: entityReference
+			};
+
+			let formParameters = {
+				to: [ entityReference ]
+			};		
+			
+			(<any>Xrm).Navigation.openForm(entityOptions, formParameters);
+		}
 	}
 }

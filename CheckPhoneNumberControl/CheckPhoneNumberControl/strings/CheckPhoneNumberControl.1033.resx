@@ -137,9 +137,27 @@
     <value>Telephone number of a type that is not allowed.</value>
   </data>
   <data name="PropertyShowButton_Display_Key" xml:space="preserve">
-    <value>Show quick create button</value>
+    <value>Show button</value>
   </data>
   <data name="PropertyShowButton_Desc_Key" xml:space="preserve">
-    <value>If active it shows a button to open the call quick create form</value>
+    <value>If active it shows a button to handle "click to call"</value>
+  </data>
+  <data name="PropertyOpenQuickCreate_Display_Key" xml:space="preserve">
+    <value>Open "Quick Create" form</value>
+  </data>
+  <data name="PropertyOpenQuickCreate_Desc_Key" xml:space="preserve">
+    <value>If active the button will open the quick create </value>
+  </data>
+  <data name="PropertyClickToCallType_Display_Key" xml:space="preserve">
+    <value>Click to call provider</value>
+  </data>
+  <data name="PropertyClickToCallType_Desc_Key" xml:space="preserve">
+    <value>"Click to call" provider that should be used.</value>
+  </data>
+  <data name="PropertyCustomClickToCallType_Display_Key" xml:space="preserve">
+    <value>Custom Click to call provider</value>
+  </data>
+  <data name="PropertyCustomClickToCallType_Desc_Key" xml:space="preserve">
+    <value>Provide a custom "click to call" provider. Does only work when you choose "custom" as a provider</value>
   </data>
 </root>

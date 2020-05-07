@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="CheckPhoneNumberControl" version="1.5.1" display-name-key="CheckPhoneNumberControl_Display_Key" description-key="CheckPhoneNumberControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
+  <control namespace="BeBeControls" constructor="CheckPhoneNumberControl" version="1.5.2" display-name-key="CheckPhoneNumberControl_Display_Key" description-key="CheckPhoneNumberControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="SingleLine.Phone" usage="bound" required="true" />
     <property name="numberValid" display-name-key="PropertyNumberValidField_Display_Key" description-key="PropertyNumberValidField_Desc_Key" of-type="TwoOptions" usage="bound" required="false" />
@@ -19,8 +19,23 @@
     <property name="excludedType" display-name-key="PropertyExcludedType_Display_Key" description-key="PropertyExcludedType_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="" />
 
     <property name="showButton" display-name-key="PropertyShowButton_Display_Key" description-key="PropertyShowButton_Desc_Key" of-type="Enum" usage="input" required="true" default-value="No">
-      <value name="YES" display-name-key="Yes" description-key="Yes">Yes</value> 
-      <value name="NO" display-name-key="No" description-key="No">No</value>  
+      <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
+      <value name="No" display-name-key="No" description-key="No">No</value>  
+    </property>
+
+    <property name="clickToCallType" display-name-key="PropertyClickToCallType_Display_Key" description-key="PropertyClickToCallType_Desc_Key" of-type="Enum" usage="input" required="true" default-value="None">
+      <value name="None" display-name-key="None" description-key="None">None</value> 
+      <value name="tel" display-name-key="tel" description-key="tel">tel</value>   
+      <value name="teams" display-name-key="teams" description-key="teams">teams</value>   
+      <value name="skype" display-name-key="skype" description-key="skype">skype</value>   
+      <value name="custom" display-name-key="custom" description-key="custom">custom</value>
+    </property>
+    
+    <property name="customClickToCallType" display-name-key="PropertyCustomClickToCallType_Display_Key" description-key="PropertyCustomClickToCallType_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="" />
+
+    <property name="openQuickCreate" display-name-key="PropertyOpenQuickCreate_Display_Key" description-key="PropertyOpenQuickCreate_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Yes">
+      <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
+      <value name="No" display-name-key="No" description-key="No">No</value>  
     </property>
 
     <resources>

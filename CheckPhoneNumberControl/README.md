@@ -21,7 +21,10 @@ Allowed CC | Comma separated list of allowed country codes. |
 Excluded CC | Comma separated list of excluded country codes. | 
 Allowed Type | Comma separated list of allowed number types. |
 Excluded Type | Comma separated list of excluded number types. |
-Show Button | Yes or No field. Defines whether the "phone call quick create" button should be shown. Button only works in MDAs |
+Show Button | Yes or No field. Defines whether a button should be shown. |
+Click to Call Type | DropDown with different choices of types that should be used when the button is clicked. |
+Custom Click to Call Type | Yes or No field. Defines whether a button should be shown. |
+Open Quick Create | Yes or No field. Defines whether the button should open the "Quick create" form. Does only work in MDAs. |
 
 ### Possible Country Codes
 ISO 3166 (alpha 2) country codes needs to be used. You can find a list of possible values here: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes

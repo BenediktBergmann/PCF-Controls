@@ -13,6 +13,9 @@ export interface IInputs {
     allowedType: ComponentFramework.PropertyTypes.StringProperty;
     excludedType: ComponentFramework.PropertyTypes.StringProperty;
     showButton: ComponentFramework.PropertyTypes.EnumProperty<"Yes" | "No">;
+    clickToCallType: ComponentFramework.PropertyTypes.EnumProperty<"None" | "tel" | "teams" | "skype" | "custom">;
+    customClickToCallType: ComponentFramework.PropertyTypes.StringProperty;
+    openQuickCreate: ComponentFramework.PropertyTypes.EnumProperty<"Yes" | "No">;
 }
 export interface IOutputs {
     valueField?: string;

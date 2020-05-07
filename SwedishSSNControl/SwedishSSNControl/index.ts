@@ -152,10 +152,16 @@ export class SwedishSSNControl implements ComponentFramework.StandardControl<IIn
 	 */
 	public getOutputs(): IOutputs
 	{
-		return {
-			valueField: this._value,
-			inputValid : this._inputValidReturnValue
-		};
+		if(this._inputValidReturnValue){
+			return {
+				valueField: this._value,
+				inputValid : this._inputValidReturnValue
+			};
+		} else{
+			return {
+				inputValid : this._inputValidReturnValue
+			};
+		}
 	}
 
 	/** 

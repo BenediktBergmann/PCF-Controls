@@ -134,9 +134,27 @@
     <value>Telefonnummer eines Types, der nicht erlaubt ist.</value>
   </data>
   <data name="PropertyShowButton_Display_Key" xml:space="preserve">
-    <value>"Quick create" knopf</value>
+    <value>Knopf zeigen</value>
   </data>
   <data name="PropertyShowButton_Desc_Key" xml:space="preserve">
-    <value>Wenn aktiviert, wird ein knopf zum öffnen des "quick create" formular für telefonnat angezeigt.</value>
+    <value>Wenn aktiviert, wird ein knopf zum hantieren von "click to call".</value>
+  </data>
+  <data name="PropertyOpenQuickCreate_Display_Key" xml:space="preserve">
+    <value>"Quick Create" formular öffnen</value>
+  </data>
+  <data name="PropertyOpenQuickCreate_Desc_Key" xml:space="preserve">
+    <value>Wenn aktiviert, wird beim knopfdruck das "Quick create" formular geöffnet.</value>
+  </data>
+  <data name="PropertyClickToCallType_Display_Key" xml:space="preserve">
+    <value>Click to call provider</value>
+  </data>
+  <data name="PropertyClickToCallType_Desc_Key" xml:space="preserve">
+    <value>"Click to call" provider der verwendet werden soll.</value>
+  </data>
+  <data name="PropertyCustomClickToCallType_Display_Key" xml:space="preserve">
+    <value>Custom Click to call provider</value>
+  </data>
+  <data name="PropertyCustomClickToCallType_Desc_Key" xml:space="preserve">
+    <value>Eingabe eines eigenen "click to call" provider. Funktioniert nur wenn der provider "custom" ist.</value>
   </data>
 </root>

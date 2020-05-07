@@ -137,9 +137,28 @@
     <value>Telefonnummer av en typ som inte är tillåtet.</value>
   </data>
   <data name="PropertyShowButton_Display_Key" xml:space="preserve">
-    <value>Visa "quick create" knapp</value>
+    <value>Visa knapp</value>
   </data>
   <data name="PropertyShowButton_Desc_Key" xml:space="preserve">
-    <value>Om den är aktiv visas en knapp för att öppna samtalets snabbformulär</value>
+    <value>Om den är aktiv visas en knapp för att hantera "click to call"</value>
+  </data>
+  <data name="PropertyOpenQuickCreate_Display_Key" xml:space="preserve">
+    <value>Öppna "Quick Create" formulär</value>
+  </data>
+  <data name="PropertyOpenQuickCreate_Desc_Key" xml:space="preserve">
+    <value>Om det är aktiv öppna knapp "Quick create" formulär.</value>
+  </data>
+  
+  <data name="PropertyClickToCallType_Display_Key" xml:space="preserve">
+    <value>Click to call provider</value>
+  </data>
+  <data name="PropertyClickToCallType_Desc_Key" xml:space="preserve">
+    <value>"Click to call" provider som ska användas.</value>
+  </data>
+  <data name="PropertyCustomClickToCallType_Display_Key" xml:space="preserve">
+    <value>Egen Click to call provider</value>
+  </data>
+  <data name="PropertyCustomClickToCallType_Desc_Key" xml:space="preserve">
+    <value>Ange en egen "click to call" provider. Fungera enbart om du välja "custom" som provider.</value>
   </data>
 </root>

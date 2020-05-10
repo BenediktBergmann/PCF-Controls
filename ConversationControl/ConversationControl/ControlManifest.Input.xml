@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="BeBeControls" constructor="ConversationControl" version="1.7.0" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
+    <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
+    <!-- 
+      For the additional configuration (which show the commandbar) to work we have to change the file node_modules/pcf-scripts/ManifestSchema.json.
+      Change the "additionalProperties" to "true".
+
+      Reference: https://powerusers.microsoft.com/t5/PowerApps-Component-Framework/PCF-controls-for-specific-subgrid-columns/m-p/304895#M440
+      Could get unsupported in the future
+    -->
+    <data-set name="dataSetGrid" display-name-key="Dataset_Display_Key" cds-data-set-options="displayCommandBar:true;displayViewSelector:false;displayQuickFind:false"></data-set>
+
+    <!-- Column variables -->
+    <property name="TextColumn" display-name-key="TextColumn_Display_Key" description-key="TextColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="SenderColumn" display-name-key="SenderColumn_Display_Key" description-key="SenderColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="DateColumn" display-name-key="DateColumn_Display_Key" description-key="DateColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="ReadColumn" display-name-key="ReadColumn_Display_Key" description-key="ReadColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="PublishedColumn" display-name-key="PublishedColumn_Display_Key" description-key="PublishedColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="HasAttachmentsColumn" display-name-key="HasAttachmentsColumn_Display_Key" description-key="HasAttachmentsColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+
+    <property name="CustomerIdentifier" display-name-key="CustomerIdentifier_Display_Key" description-key="CustomerIdentifier_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="MaxHeight" display-name-key="MaxHeight_Display_Key" description-key="MaxHeight_Desc_Key" of-type="Whole.None" usage="input" required="true" default-value="300" />
+
+    <!-- Colour variables -->
+    <property name="SentMessageBgColor" display-name-key="SentMessageBgColor_Display_Key" description-key="SentMessageBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageNotPublishedBgColor" display-name-key="SentMessageNotPublishedBgColor_Display_Key" description-key="SentMessageNotPublishedBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageTextColor" display-name-key="SentMessageTextColor_Display_Key" description-key="SentMessageTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageMetadataTextColor" display-name-key="SentMessageMetadataTextColor_Display_Key" description-key="SentMessageMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageReadCheckmarkColor" display-name-key="SentMessageReadCheckmarkColor_Display_Key" description-key="SentMessageReadCheckmarkColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="ReceivedMessageBgColor" display-name-key="ReceivedMessageBgColor_Display_Key" description-key="ReceivedMessageBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="ReceivedMessageTextColor" display-name-key="ReceivedMessageTextColor_Display_Key" description-key="ReceivedMessageTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="ReceivedMessageMetadataTextColor" display-name-key="ReceivedMessageMetadataTextColor_Display_Key" description-key="ReceivedMessageMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" />
+
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/ConversationControl.css" order="1" />
+      <resx path="strings/ConversationControl.1031.resx" version="1.0.0" />
+      <resx path="strings/ConversationControl.1033.resx" version="1.0.0" />
+      <resx path="strings/ConversationControl.1053.resx" version="1.0.0" />
+    </resources>
+  </control>
+</manifest>

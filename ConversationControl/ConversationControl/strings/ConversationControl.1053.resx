@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+ <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ConversationControl_Display_Key" xml:space="preserve">
+    <value>Conversation Control</value>
+  </data>
+  <data name="ConversationControl_Desc_Key" xml:space="preserve">
+    <value>Kontroll för att visa en subGrid av poster som en konversation.</value>
+  </data>
+  <data name="Dataset_Display_Key" xml:space="preserve">
+    <value>DataSet</value>
+  </data>
+  <data name="TextColumn_Display_Key" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="TextColumn_Desc_Key" xml:space="preserve">
+    <value>Namn på vykolumnen (fältnamn) som innehåller texten som ska visas i meddelandet.</value>
+  </data>
+  <data name="SenderColumn_Display_Key" xml:space="preserve">
+    <value>Avsändar</value>
+  </data>
+  <data name="SenderColumn_Desc_Key" xml:space="preserve">
+    <value>Namn på vykolumnen (fältnamn) som identifieras avsändare.</value>
+  </data>
+  <data name="DateColumn_Display_Key" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="DateColumn_Desc_Key" xml:space="preserve">
+    <value>Namn på vykolumnen (fältnamn) som innehåller datuminformationen som ska visas i meddelandet.</value>
+  </data>
+  <data name="ReadColumn_Display_Key" xml:space="preserve">
+    <value>Läst</value>
+  </data>
+  <data name="ReadColumn_Desc_Key" xml:space="preserve">
+    <value>Namn på vykolumnen (fältnamn) som innehåller informationen om meddelandet har lästs av kunden. Kan vara två alternativ eller datum.</value>
+  </data>
+  <data name="PublishedColumn_Display_Key" xml:space="preserve">
+    <value>Publicerad</value>
+  </data>
+  <data name="PublishedColumn_Desc_Key" xml:space="preserve">
+    <value>Namn på visningskolumnen (fältnamn) som innehåller informationen om meddelandet publicerades till kunden. Kan vara två alternativ eller datum.</value>
+  </data>
+  <data name="HasAttachmentsColumn_Display_Key" xml:space="preserve">
+    <value>Har bilagor</value>
+  </data>
+  <data name="HasAttachmentsColumn_Desc_Key" xml:space="preserve">
+    <value>Namn på vykolumnen (fältnamn) som innehåller informationen om meddelandet har bilagor.</value>
+  </data>
+  <data name="CustomerIdentifier_Display_Key" xml:space="preserve">
+    <value>Kundidentifierare</value>
+  </data>
+  <data name="CustomerIdentifier_Desc_Key" xml:space="preserve">
+    <value>Id för OptionSet-värdet som identifierar avsändaren som kund. Kan vara en kommaseparerad lista med flera värden.</value>
+  </data>
+  <data name="MaxHeight_Display_Key" xml:space="preserve">
+    <value>Maximal höjd</value>
+  </data>
+  <data name="MaxHeight_Desc_Key" xml:space="preserve">
+    <value>Definierar den maximala höjden som kontrollen (inre konversationsbehållare) ska ha</value>
+  </data>
+  <data name="SentMessageBgColor_Display_Key" xml:space="preserve">
+    <value>Bakgrundsfärg för skickat meddelande</value>
+  </data>
+  <data name="SentMessageBgColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som ett skickat meddelande ska ha. Måste vara ett giltigt css-värde.</value>
+  </data>
+  <data name="SentMessageNotPublishedBgColor_Display_Key" xml:space="preserve">
+    <value>Bakgrundsfärg för ej publicerad skickat meddelande</value>
+  </data>
+  <data name="SentMessageNotPublishedBgColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som ett skickat meddelande som ännu inte publicerats borde ha. Måste vara ett giltigt css-värde.</value>
+  </data>
+  <data name="SentMessageTextColor_Display_Key" xml:space="preserve">
+    <value>Textfärg för skickad meddelanden</value>
+  </data>
+  <data name="SentMessageTextColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som texten på ett skickat meddelande ska ha. Måste vara ett giltigt css-värde.</value>
+  </data>
+  <data name="ReceivedMessageBgColor_Display_Key" xml:space="preserve">
+    <value>Bakgrundsfärg för mottaget meddelande</value>
+  </data>
+  <data name="ReceivedMessageBgColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som ett mottaget meddelande ska ha. Måste vara ett giltigt css-värde.</value>
+  </data>
+  <data name="SentMessageMetadataTextColor_Display_Key" xml:space="preserve">
+    <value>Textfärg för skickad meddelanden metadata</value>
+  </data>
+  <data name="SentMessageMetadataTextColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som metadata på ett skickat meddelande ska ha. Måste vara ett giltigt css-värde.</value>
+  </data>
+  <data name="ReceivedMessageTextColor_Display_Key" xml:space="preserve">
+    <value>Textfärg för mottaget meddelanden</value>
+  </data>
+  <data name="ReceivedMessageTextColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som texten på ett mottagen meddelande ska ha. Måste vara ett giltigt css-värde.</value>
+  </data>
+  <data name="ReceivedMessageMetadataTextColor_Display_Key" xml:space="preserve">
+    <value>Textfärg för mottaget meddelanden metadata</value>
+  </data>
+  <data name="ReceivedMessageMetadataTextColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som metadata på ett mottagen meddelande ska ha. Måste vara ett giltigt css-värde.</value>
+  </data>
+  <data name="SentMessageReadCheckmarkColor_Display_Key" xml:space="preserve">
+    <value>Skickat meddelande läst "checkmark" färg</value>
+  </data>
+  <data name="SentMessageReadCheckmarkColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som markeringarna för ett skickat meddelande ska ha om meddelandet lästes av kunden. Måste vara ett giltigt css-värde.</value>
+  </data>
+</root>

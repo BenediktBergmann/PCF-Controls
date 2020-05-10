@@ -1,0 +1,68 @@
+@import "https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css";
+
+div.BeBeControls div.conversation {
+    z-index: 0;
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+div.BeBeControls div.conversation .message {
+    clear: both;
+    line-height: 18px;
+    font-size: 15px;
+    padding: 8px;
+    position: relative;
+    margin: 8px 0;
+    max-width: 85%;
+    word-wrap: break-word;
+    z-index: -1;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+div.BeBeControls div.conversation .message:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    bottom:5px;
+}
+
+div.BeBeControls div.conversation .message.received {
+    float: left;
+    left:10px;
+}
+  
+div.BeBeControls div.conversation .message.received:after {
+    border-width: 10px 10px 0px 0px;
+    left: -10px;
+}
+  
+div.BeBeControls div.conversation .message.sent {
+    float: right;
+    right: 10px;
+}
+  
+div.BeBeControls div.conversation .message.sent:after {
+    border-width: 10px 0px 0px 10px;
+    right: -10px;
+}
+
+div.BeBeControls div.conversation .message .metadata {
+    display: inline-block;
+    float: right;
+    padding: 0 0 0 7px;
+    position: relative;
+    bottom: -4px;
+    font-size: small;
+}
+
+div.BeBeControls div.conversation .message.received .metadata {
+    padding: 0 0 0 16px;
+}
+
+div.BeBeControls div.conversation .message.sent .metadata .checkmarks :first-child{
+    margin-right:-9px;
+}

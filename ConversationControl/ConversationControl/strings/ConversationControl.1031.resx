@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+ <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+              <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ConversationControl_Display_Key" xml:space="preserve">
+    <value>Conversation Control</value>
+  </data>
+  <data name="ConversationControl_Desc_Key" xml:space="preserve">
+    <value>Control zum Anzeigen eines SubGrid von Datensätzen als Konversation.</value>
+  </data>
+  <data name="Dataset_Display_Key" xml:space="preserve">
+    <value>DataSet</value>
+  </data>
+  <data name="TextColumn_Display_Key" xml:space="preserve">
+    <value>Texts</value>
+  </data>
+  <data name="TextColumn_Desc_Key" xml:space="preserve">
+    <value>Name der Spalte (Feldname), die den Text enthält, der in der Nachricht angezeigt werden soll</value>
+  </data>
+  <data name="SenderColumn_Display_Key" xml:space="preserve">
+    <value>Absender</value>
+  </data>
+  <data name="SenderColumn_Desc_Key" xml:space="preserve">
+    <value>Name der Spalte (Feldname), die den Absender identifiziert.</value>
+  </data>
+  <data name="DateColumn_Display_Key" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="DateColumn_Desc_Key" xml:space="preserve">
+    <value>Name der Spalte (Feldname), die die Datumsinformationen enthält, die in der Nachricht angezeigt werden sollen.</value>
+  </data>
+  <data name="ReadColumn_Display_Key" xml:space="preserve">
+    <value>Gelesen</value>
+  </data>
+  <data name="ReadColumn_Desc_Key" xml:space="preserve">
+    <value>Name der Spalte (Feldname), die die Information enthält, ob die Nachricht vom Kunden gelesen wurde. Kann zwei Optionen oder ein Datum sein.</value>
+  </data>
+  <data name="PublishedColumn_Display_Key" xml:space="preserve">
+    <value>Veröffentlicht</value>
+  </data>
+  <data name="PublishedColumn_Desc_Key" xml:space="preserve">
+    <value>Name der Sspalte (Feldname), die die Information enthält, ob die Nachricht für den Kunden veröffentlicht wurde. Kann zwei Optionen oder ein Datum sein.</value>
+  </data>
+  <data name="HasAttachmentsColumn_Display_Key" xml:space="preserve">
+    <value>Hat Anhänge</value>
+  </data>
+  <data name="HasAttachmentsColumn_Desc_Key" xml:space="preserve">
+    <value>Name der Spalte (Feldname), die die Information enthält, ob die Nachricht Anhänge enthält.</value>
+  </data>
+  <data name="CustomerIdentifier_Display_Key" xml:space="preserve">
+    <value>Kunden "Identifier"</value>
+  </data>
+  <data name="CustomerIdentifier_Desc_Key" xml:space="preserve">
+    <value>Die ID des OptionSet-Werts, der den Absender als Kunden identifiziert. Kann eine durch Kommas getrennte Liste mehrerer Werte sein.</value>
+  </data>
+  <data name="MaxHeight_Display_Key" xml:space="preserve">
+    <value>Maximale Höhe</value>
+  </data>
+  <data name="MaxHeight_Desc_Key" xml:space="preserve">
+    <value>Definiert die maximale Höhe, die das Steuerelement (innerer Konversationscontainer) haben soll.</value>
+  </data>
+  <data name="SentMessageBgColor_Display_Key" xml:space="preserve">
+    <value>Hintergrundfarbe für gesendete Nachrichten</value>
+  </data>
+  <data name="SentMessageBgColor_Desc_Key" xml:space="preserve">
+    <value>Die Farbe, die eine gesendete Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
+  </data>
+  <data name="SentMessageNotPublishedBgColor_Display_Key" xml:space="preserve">
+    <value>Hintergrundfarbe für gesendete, nicht veröffentlichte Nachrichten</value>
+  </data>
+  <data name="SentMessageNotPublishedBgColor_Desc_Key" xml:space="preserve">
+    <value>Die Farbe doe eine gesendeten Nachricht, die noch nicht veröffentlicht wurde, haben sollte. Muss ein gültiger CSS-Wert sein.</value>
+  </data>
+  <data name="SentMessageTextColor_Display_Key" xml:space="preserve">
+    <value>Textfarbe der gesendeten Nachrichten</value>
+  </data>
+  <data name="SentMessageTextColor_Desc_Key" xml:space="preserve">
+    <value>Die Farbe, die der Text einer gesendeten Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
+  </data>
+  <data name="ReceivedMessageBgColor_Display_Key" xml:space="preserve">
+    <value>Hintergrundfarbe der empfangene Nachrichten</value>
+  </data>
+  <data name="ReceivedMessageBgColor_Desc_Key" xml:space="preserve">
+    <value>Die Farbe, die eine empfangene Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
+  </data>
+  <data name="SentMessageMetadataTextColor_Display_Key" xml:space="preserve">
+    <value>Textfarbe für metadaten von gesendeten Nachrichte</value>
+  </data>
+  <data name="SentMessageMetadataTextColor_Desc_Key" xml:space="preserve">
+    <value>Die Farbe, die die Metadaten einer gesendeten Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
+  </data>
+  <data name="ReceivedMessageTextColor_Display_Key" xml:space="preserve">
+    <value>Textfarbe der empfangenen Nachrichten</value>
+  </data>
+  <data name="ReceivedMessageTextColor_Desc_Key" xml:space="preserve">
+    <value>Die Farbe, die der Text einer empfangenen Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
+  </data>
+  <data name="ReceivedMessageMetadataTextColor_Display_Key" xml:space="preserve">
+    <value>Textfarbe für metadaten von empfangenen Nachrichte</value>
+  </data>
+  <data name="ReceivedMessageMetadataTextColor_Desc_Key" xml:space="preserve">
+    <value>Die Farbe, die die metadaten einer empfangenen Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
+  </data>
+  <data name="SentMessageReadCheckmarkColor_Display_Key" xml:space="preserve">
+    <value>Farbe der "checkmarks" einer gelesenen Nachricht</value>
+  </data>
+  <data name="SentMessageReadCheckmarkColor_Desc_Key" xml:space="preserve">
+    <value>Die Farbe, die die Häkchen einer gesendeten Nachricht haben sollten, wenn die Nachricht vom Kunden gelesen wurde. Muss ein gültiger CSS-Wert sein.</value>
+  </data>
+</root>

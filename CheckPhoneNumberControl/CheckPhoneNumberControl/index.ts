@@ -70,7 +70,6 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 			this._defaultCC = context.parameters.defaultCC.raw.trim().toUpperCase();
 		}
 
-		debugger;
 		if(context.parameters.allowedCC.raw != null && context.parameters.allowedCC.raw != ""){
 			this._allowedCC = context.parameters.allowedCC.raw.split(',');
 			this._allowedCC = this._allowedCC.map(el => el.trim().toUpperCase());

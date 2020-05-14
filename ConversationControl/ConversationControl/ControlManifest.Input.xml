@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="ConversationControl" version="1.7.0" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
+  <control namespace="BeBeControls" constructor="ConversationControl" version="1.8.0" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
     <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
     <!-- 
       For the additional configuration (which show the commandbar) to work we have to change the file node_modules/pcf-scripts/ManifestSchema.json.
@@ -21,13 +21,23 @@
 
     <property name="CustomerIdentifier" display-name-key="CustomerIdentifier_Display_Key" description-key="CustomerIdentifier_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
     <property name="MaxHeight" display-name-key="MaxHeight_Display_Key" description-key="MaxHeight_Desc_Key" of-type="Whole.None" usage="input" required="true" default-value="300" />
+    <property name="OpenInModal" display-name-key="PropertyOpenInModal_Display_Key" description-key="PropertyOpenInModal_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Yes">
+      <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
+      <value name="No" display-name-key="No" description-key="No">No</value>  
+    </property>
+    <property name="openInNewWindow" display-name-key="PropertyopenInNewWindow_Display_Key" description-key="PropertyopenInNewWindow_Desc_Key" of-type="Enum" usage="input" required="true" default-value="No">
+      <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
+      <value name="No" display-name-key="No" description-key="No">No</value>  
+    </property>
 
     <!-- Colour variables -->
     <property name="SentMessageBgColor" display-name-key="SentMessageBgColor_Display_Key" description-key="SentMessageBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="SentMessageNotPublishedBgColor" display-name-key="SentMessageNotPublishedBgColor_Display_Key" description-key="SentMessageNotPublishedBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="SentMessageTextColor" display-name-key="SentMessageTextColor_Display_Key" description-key="SentMessageTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="SentMessageMetadataTextColor" display-name-key="SentMessageMetadataTextColor_Display_Key" description-key="SentMessageMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="SentMessageReadCheckmarkColor" display-name-key="SentMessageReadCheckmarkColor_Display_Key" description-key="SentMessageReadCheckmarkColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageNotPublishedBgColor" display-name-key="SentMessageNotPublishedBgColor_Display_Key" description-key="SentMessageNotPublishedBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageNotPublishedTextColor" display-name-key="SentMessageNotPublishedTextColor_Display_Key" description-key="SentMessageNotPublishedTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageNotPublishedMetaDataTextColor" display-name-key="SentMessageNotPublishedMetaDataTextColor_Display_Key" description-key="SentMessageNotPublishedMetaDataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="ReceivedMessageBgColor" display-name-key="ReceivedMessageBgColor_Display_Key" description-key="ReceivedMessageBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="ReceivedMessageTextColor" display-name-key="ReceivedMessageTextColor_Display_Key" description-key="ReceivedMessageTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="ReceivedMessageMetadataTextColor" display-name-key="ReceivedMessageMetadataTextColor_Display_Key" description-key="ReceivedMessageMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" />

@@ -9,6 +9,11 @@ const enum senderEnum {
 
 const RowRecordId: string = "rowRecId";
 
+declare var Xrm: any;
+
+const DataSetControl_LoadMoreButton_Hidden_Style =
+  "DataSetControl_LoadMoreButton_Hidden_Style";
+
 export class ConversationControl implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
 	private _notifyOutputChanged: () => void;
@@ -22,9 +27,13 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	private _publishedColumn: string;
 	private _hasAttachmentColumn: string;
 	private _customerIdentifyers: string[];
+	private _openInModal: boolean;
+	private _openInNewWindow: boolean;
 
 	// HTML container
 	private _conversation: HTMLDivElement;
+	// Button element created as part of this control
+	private _loadPageButton: HTMLButtonElement;
 
 	/**
 	 * Empty constructor.
@@ -63,6 +72,16 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		this._hasAttachmentColumn = context.parameters.HasAttachmentsColumn.raw? context.parameters.HasAttachmentsColumn.raw : "";
 		this._customerIdentifyers = context.parameters.CustomerIdentifier.raw? context.parameters.CustomerIdentifier.raw.split(',') : [];
 
+		this._openInModal = false;
+		if(context.parameters.OpenInModal!.raw == "Yes"){
+			this._openInModal = true;
+		}
+
+		this._openInNewWindow = false;
+		if(context.parameters.openInNewWindow!.raw == "Yes"){
+			this._openInNewWindow = true;
+		}
+
 		this._conversation = document.createElement("div");
 		this._conversation.classList.add("conversation");
 
@@ -71,18 +90,37 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		this._conversation.setAttribute("id", randomId);
 
 		let messageSentBgColor = context.parameters.SentMessageBgColor.raw? context.parameters.SentMessageBgColor.raw : "#e1ffc7";
-		let messageSentUnpublishedBgColor = context.parameters.SentMessageNotPublishedBgColor.raw? context.parameters.SentMessageNotPublishedBgColor.raw : "#f1ffe4";
 		let messageSentTextColor = context.parameters.SentMessageTextColor.raw? context.parameters.SentMessageTextColor.raw : "#000000";
 		let messageSentMetadataTextColor = context.parameters.SentMessageMetadataTextColor.raw? context.parameters.SentMessageMetadataTextColor.raw : "#888888";
-		let messageSentReadCheckmarkColor = context.parameters.SentMessageReadCheckmarkColor.raw? context.parameters.SentMessageReadCheckmarkColor.raw : "4fc3f7";
+		let messageSentReadCheckmarkColor = context.parameters.SentMessageReadCheckmarkColor.raw? context.parameters.SentMessageReadCheckmarkColor.raw : "#4fc3f7";
+		let messageSentUnpublishedBgColor = context.parameters.SentMessageNotPublishedBgColor.raw? context.parameters.SentMessageNotPublishedBgColor.raw : "#f1ffe4";
+		let messageSentUnpublishedTextColor = context.parameters.SentMessageNotPublishedTextColor.raw? context.parameters.SentMessageNotPublishedTextColor.raw : "#000000";
+		let messageSentUnpublishedMetadataTextColor = context.parameters.SentMessageNotPublishedMetaDataTextColor.raw? context.parameters.SentMessageNotPublishedMetaDataTextColor.raw : "#888888";
 		let messageReceivedBgColor = context.parameters.ReceivedMessageBgColor.raw? context.parameters.ReceivedMessageBgColor.raw : "#eeeeee";
 		let messageReceivedTextColor = context.parameters.ReceivedMessageTextColor.raw? context.parameters.ReceivedMessageTextColor.raw : "#000000";
 		let messageReceivedMetadataTextColor = context.parameters.ReceivedMessageMetadataTextColor.raw? context.parameters.ReceivedMessageMetadataTextColor.raw : "#888888";
 		let maxHeight = context.parameters.MaxHeight.raw? context.parameters.MaxHeight.raw : 300;
 
-		container.appendChild(this.generateCustomStyle(randomId, maxHeight, messageSentBgColor, messageSentUnpublishedBgColor, messageSentTextColor, messageSentMetadataTextColor, messageSentReadCheckmarkColor, messageReceivedBgColor, messageReceivedTextColor, messageReceivedMetadataTextColor));
+		container.appendChild(this.generateCustomStyle(randomId, maxHeight, messageSentBgColor, messageSentTextColor, messageSentMetadataTextColor, messageSentReadCheckmarkColor, messageSentUnpublishedBgColor, messageSentUnpublishedTextColor, messageSentUnpublishedMetadataTextColor, messageReceivedBgColor, messageReceivedTextColor, messageReceivedMetadataTextColor));
 
 		container.appendChild(this._conversation);
+
+		// Create data table container div.
+		this._loadPageButton = document.createElement("button");
+		this._loadPageButton.setAttribute("type", "button");
+		this._loadPageButton.innerText = context.resources.getString(
+		  "LoadMore_ButtonLabel"
+		);
+		this._loadPageButton.classList.add(
+		  DataSetControl_LoadMoreButton_Hidden_Style
+		);
+		this._loadPageButton.classList.add("DataSetControl_LoadMoreButton_Style");
+		this._loadPageButton.addEventListener(
+		  "click",
+		  this.onLoadMoreButtonClick.bind(this)
+		);
+		
+		container.appendChild(this._loadPageButton);
 	}
 
 
@@ -93,12 +131,10 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
 		this._context = context;
+		this.toggleLoadMoreButtonWhenNeeded(context.parameters.dataSetGrid);
 		if(!context.parameters.dataSetGrid.loading){
-				
-			// Get sorted columns on View
-			let columnsOnView = this.getSortedColumnsOnView(context);
 
-			if (!columnsOnView || columnsOnView.length === 0) {
+			if (!context.parameters.dataSetGrid.columns || !context.parameters.dataSetGrid.columns.some(function(columnItem: DataSetInterfaces.Column) { return columnItem.order >= 0})) {
 				return;
 			}
 
@@ -121,7 +157,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	 */
 	public destroy(): void
 	{
-		// Add code to cleanup control if necessary
+		this._loadPageButton.removeEventListener("click",this.onLoadMoreButtonClick);
 	}
 
 	/**
@@ -135,37 +171,32 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		);
 		if (rowRecordId) {
 			let entityLogicalName = this._context.parameters.dataSetGrid.getTargetEntityType();
-			let entityFormOptions = {
-				entityName: entityLogicalName,
-				entityId: rowRecordId
-			};
-			this._context.navigation.openForm(entityFormOptions);
-		}
-	}
 
-	/**
-	 * Get sorted columns on view
-	 * @param context 
-	 * @return sorted columns object on View
-	 */
-	private getSortedColumnsOnView(context: ComponentFramework.Context<IInputs>): DataSetInterfaces.Column[]
-	{
-		if (!context.parameters.dataSetGrid.columns) {
-			return [];
+			if(this._openInModal && typeof Xrm !== 'undefined'){
+				let pageInput = {
+					pageType: "entityrecord",
+					entityName: entityLogicalName,
+					formType: 2,
+					entityId: rowRecordId
+				};
+	
+				let navigationOptions = {
+					target: 2,
+					position: 1,
+					width: {value: 50, unit:"%"}
+				};		
+				
+				(<any>Xrm).Navigation.navigateTo(pageInput, navigationOptions);
+			}
+			else{
+				let entityFormOptions = {
+					entityName: entityLogicalName,
+					entityId: rowRecordId,
+					openInNewWindow: this._openInNewWindow
+				};
+				this._context.navigation.openForm(entityFormOptions);
+			}
 		}
-		
-		let columns = context.parameters.dataSetGrid.columns
-			.filter(function (columnItem:DataSetInterfaces.Column) { 
-				// some column are supplementary and their order is not > 0
-				return columnItem.order >= 0 }
-			);
-		
-		// Sort those columns so that they will be rendered in order
-		columns.sort(function (a:DataSetInterfaces.Column, b: DataSetInterfaces.Column) {
-			return a.order - b.order;
-		});
-		
-		return columns;
 	}
 
 	private createConversation(messages: DataSet){
@@ -193,11 +224,23 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 				  (this._publishedColumn !== "" && messages.records[currentRecordId].getValue(this._publishedColumn) !== null)){
 					published = true;
 				}
-				debugger;
 
 				this.generateMessage(recordId, text, sender, published, date, read, hasAttachment);
 			}
 		}
+		else {
+			let documentIcon = document.createElement("i");
+			documentIcon.classList.add("ms-Icon");
+			documentIcon.classList.add("ms-Icon--TextDocument");
+
+			let noRecordLabel: HTMLDivElement = document.createElement("div");
+			noRecordLabel.innerHTML = this._context.resources.getString(
+			  "No_Record_Found"
+			);
+			this._conversation.appendChild(documentIcon);
+			this._conversation.appendChild(noRecordLabel);
+			this._conversation.classList.add("no-records");
+		  }
 	}
 
 	private clearContainer(){
@@ -273,18 +316,22 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		this._conversation.appendChild(messageContainer);
 	}
 
-	private generateCustomStyle(controlId: string, maxHeight: number, messageSentBgColor: string, messageSentUnpublishedBgColor: string, messageSentColor: string, messageSentMetadataColor: string, messageSentReadCheckmarkColor: string, messageReceivedBgColor: string, messageReceivedColor: string, messageReceivedMetadataColor: string) : HTMLStyleElement{
+	private generateCustomStyle(controlId: string, maxHeight: number, messageSentBgColor: string, messageSentTextColor: string, messageSentMetadataTextColor: string, messageSentReadCheckmarkColor: string, messageSentUnpublishedBgColor: string, messageSentUnpublishedTextColor: string, messageSentUnpublishedMetadataTextColor:string, messageReceivedBgColor: string, messageReceivedTextColor: string, messageReceivedMetadataTextColor: string) : HTMLStyleElement{
 		let style = document.createElement("style");
 
 		style.innerHTML = "div.BeBeControls div#" + controlId + ".conversation { max-height: " + maxHeight + "px; }";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent { color: " + messageSentColor + "; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published { color: " + messageSentTextColor + "; }";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent .metadata { color: " + messageSentMetadataColor +"; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published .metadata { color: " + messageSentMetadataTextColor +"; }";
 
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published { background: " + messageSentBgColor + "; }";
 
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published:after { border-color: transparent transparent transparent " + messageSentBgColor + "; }";
+
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished { color: " + messageSentUnpublishedTextColor + "; }";
+
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished .metadata { color: " + messageSentUnpublishedMetadataTextColor +"; }";
 
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished { background: " + messageSentUnpublishedBgColor + "; }";
 
@@ -292,9 +339,9 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.read .metadata .checkmarks{ color:" + messageSentReadCheckmarkColor + "; }";
 		
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.received { background: " + messageReceivedBgColor + "; color: " + messageReceivedColor +"; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.received { background: " + messageReceivedBgColor + "; color: " + messageReceivedTextColor +"; }";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.received .metadata { color: " + messageReceivedMetadataColor +"; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.received .metadata { color: " + messageReceivedMetadataTextColor +"; }";
 		
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.received:after { border-color: transparent " + messageReceivedBgColor + " transparent transparent; }";
 
@@ -310,4 +357,38 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		}
 		return result;
 	 }
+
+	  /**
+	 * 'LoadMore' Button Event handler when load more button clicks
+	 * @param event
+	 */
+	private onLoadMoreButtonClick(event: Event): void {
+		this._context.parameters.dataSetGrid.paging.loadNextPage();
+		this.toggleLoadMoreButtonWhenNeeded(this._context.parameters.dataSetGrid);
+	}
+
+	 /**
+	 * Toggle 'LoadMore' button when needed
+	 */
+	private toggleLoadMoreButtonWhenNeeded(gridParam: DataSet): void {
+		if (
+			gridParam.paging.hasNextPage &&
+			this._loadPageButton.classList.contains(
+				DataSetControl_LoadMoreButton_Hidden_Style
+			)
+		) {
+			this._loadPageButton.classList.remove(
+				DataSetControl_LoadMoreButton_Hidden_Style
+			);
+		} else if (
+			!gridParam.paging.hasNextPage &&
+			!this._loadPageButton.classList.contains(
+				DataSetControl_LoadMoreButton_Hidden_Style
+			)
+		) {
+			this._loadPageButton.classList.add(
+				DataSetControl_LoadMoreButton_Hidden_Style
+			);
+		}
+	}
 }

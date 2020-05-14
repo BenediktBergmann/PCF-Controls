@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="CheckPhoneNumberControl" version="1.7.0" display-name-key="CheckPhoneNumberControl_Display_Key" description-key="CheckPhoneNumberControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
+  <control namespace="BeBeControls" constructor="CheckPhoneNumberControl" version="1.8.0" display-name-key="CheckPhoneNumberControl_Display_Key" description-key="CheckPhoneNumberControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="SingleLine.Phone" usage="bound" required="true" />
     <property name="numberValid" display-name-key="PropertyNumberValidField_Display_Key" description-key="PropertyNumberValidField_Desc_Key" of-type="TwoOptions" usage="bound" required="false" />
@@ -11,11 +11,11 @@
       <value name="e164" display-name-key="E164" description-key="PropertyOutputFormat_E164_Desc_Key">E164</value>
     </property>
 
-    <property name="defaultCC" display-name-key="PropertyDefaultCC_Display_Key" description-key="PropertyDefaultCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="SE" />
-    <property name="allowedCC" display-name-key="PropertyAllowedCC_Display_Key" description-key="PropertyAllowedCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="SE,DE" />
+    <property name="defaultCC" display-name-key="PropertyDefaultCC_Display_Key" description-key="PropertyDefaultCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="" />
+    <property name="allowedCC" display-name-key="PropertyAllowedCC_Display_Key" description-key="PropertyAllowedCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="" />
     <property name="excludedCC" display-name-key="PropertyExcludedCC_Display_Key" description-key="PropertyExcludedCC_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="" />
 
-    <property name="allowedType" display-name-key="PropertyAllowedType_Display_Key" description-key="PropertyAllowedType_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="mobile" />
+    <property name="allowedType" display-name-key="PropertyAllowedType_Display_Key" description-key="PropertyAllowedType_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="" />
     <property name="excludedType" display-name-key="PropertyExcludedType_Display_Key" description-key="PropertyExcludedType_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" default-value="" />
 
     <property name="showButton" display-name-key="PropertyShowButton_Display_Key" description-key="PropertyShowButton_Desc_Key" of-type="Enum" usage="input" required="true" default-value="No">

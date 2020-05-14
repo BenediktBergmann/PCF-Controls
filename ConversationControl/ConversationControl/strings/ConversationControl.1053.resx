@@ -125,7 +125,7 @@
     <value>Bakgrundsfärg för ej publicerad skickat meddelande</value>
   </data>
   <data name="SentMessageNotPublishedBgColor_Desc_Key" xml:space="preserve">
-    <value>Färgen som ett skickat meddelande som ännu inte publicerats borde ha. Måste vara ett giltigt css-värde.</value>
+    <value>Färgen som ett skickat meddelande som ännu inte är publicerats ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
   <data name="SentMessageTextColor_Display_Key" xml:space="preserve">
     <value>Textfärg för skickad meddelanden</value>
@@ -162,5 +162,35 @@
   </data>
   <data name="SentMessageReadCheckmarkColor_Desc_Key" xml:space="preserve">
     <value>Färgen som markeringarna för ett skickat meddelande ska ha om meddelandet lästes av kunden. Måste vara ett giltigt css-värde.</value>
+  </data>
+  <data name="SentMessageNotPublishedTextColor_Display_Key" xml:space="preserve">
+    <value>Textfärg för ej publicerad skickad meddelanden</value>
+  </data>
+  <data name="SentMessageNotPublishedTextColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som text på ett skickat meddelande som ännu inte är publicerats ska ha. Måste vara ett giltigt css-värde.</value>
+  </data>
+  <data name="SentMessageNotPublishedMetaDataTextColor_Display_Key" xml:space="preserve">
+    <value>Textfärg för ej publicerad skickad meddelanden metadata</value>
+  </data>
+  <data name="SentMessageNotPublishedMetaDataTextColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som metadata på ett skickat meddelande som ännu inte är publicerats ska ha. Måste vara ett giltigt css-värde.</value>
+  </data>
+  <data name="PropertyOpenInModal_Display_Key" xml:space="preserve">
+    <value>Öppna i "Modal"</value>
+  </data>
+  <data name="PropertyOpenInModal_Desc_Key" xml:space="preserve">
+    <value>Konfigurerar om meddelanden ska öppnas i en "modal".</value>
+  </data>
+  <data name="PropertyopenInNewWindow_Display_Key" xml:space="preserve">
+    <value>Öppna i ett nytt fönster</value>
+  </data>
+  <data name="PropertyopenInNewWindow_Desc_Key" xml:space="preserve">
+    <value>Konfigurerar om meddelanden ska öppnas i ett nytt fönster. Fungerar bara om meddelanden inte öppnas i en "modal".</value>
+  </data>
+  <data name="No_Record_Found" xml:space="preserve">
+    <value>Ingen data tillgänglig.</value>
+  </data>
+  <data name="LoadMore_ButtonLabel" xml:space="preserve">
+    <value>Ladda mer</value>
   </data>
 </root>

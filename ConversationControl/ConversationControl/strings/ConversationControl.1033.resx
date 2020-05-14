@@ -163,4 +163,34 @@
   <data name="SentMessageReadCheckmarkColor_Desc_Key" xml:space="preserve">
     <value>The color the checkmarks of a sent message should have if the message was read by the customer. Has to be a valid css value.</value>
   </data>
+  <data name="SentMessageNotPublishedTextColor_Display_Key" xml:space="preserve">
+    <value>Sent and not published message text color</value>
+  </data>
+  <data name="SentMessageNotPublishedTextColor_Desc_Key" xml:space="preserve">
+    <value>The color the text of a sent and not published message should have. Has to be a valid css value.</value>
+  </data>
+  <data name="SentMessageNotPublishedMetaDataTextColor_Display_Key" xml:space="preserve">
+    <value>Sent and not published message metadata color</value>
+  </data>
+  <data name="SentMessageNotPublishedMetaDataTextColor_Desc_Key" xml:space="preserve">
+    <value>The color the metadata of a sent and not published message should have. Has to be a valid css value.</value>
+  </data>
+  <data name="PropertyOpenInModal_Display_Key" xml:space="preserve">
+    <value>Open in Modal</value>
+  </data>
+  <data name="PropertyOpenInModal_Desc_Key" xml:space="preserve">
+    <value>Whether to open the messages in a modal.</value>
+  </data>
+  <data name="PropertyopenInNewWindow_Display_Key" xml:space="preserve">
+    <value>Open in new Window</value>
+  </data>
+  <data name="PropertyopenInNewWindow_Desc_Key" xml:space="preserve">
+    <value>Whether to open the messages in a new window. Does only work if not opening in modal.</value>
+  </data>
+  <data name="No_Record_Found" xml:space="preserve">
+    <value>No data available.</value>
+  </data>
+  <data name="LoadMore_ButtonLabel" xml:space="preserve">
+    <value>Load more</value>
+  </data>
 </root>

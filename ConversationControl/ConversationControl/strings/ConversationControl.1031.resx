@@ -163,4 +163,40 @@
   <data name="SentMessageReadCheckmarkColor_Desc_Key" xml:space="preserve">
     <value>Die Farbe, die die Häkchen einer gesendeten Nachricht haben sollten, wenn die Nachricht vom Kunden gelesen wurde. Muss ein gültiger CSS-Wert sein.</value>
   </data>
+  <data name="SentMessageNotPublishedTextColor_Display_Key" xml:space="preserve">
+    <value>Textfarbe der gesendeten, nicht veröffentlichte Nachrichten</value>
+  </data>
+  <data name="SentMessageNotPublishedTextColor_Desc_Key" xml:space="preserve">
+    <value>Die Farbe, die der Text einer gesendeten Nachricht, die noch nicht veröffentlicht wurde, haben sollte. Muss ein gültiger CSS-Wert sein.</value>
+  </data>
+  <data name="SentMessageNotPublishedMetaDataTextColor_Display_Key" xml:space="preserve">
+    <value>Textfarbe für metadaten von gesendeten, nicht veröffentlichte Nachrichten</value>
+  </data>
+  <data name="SentMessageNotPublishedMetaDataTextColor_Desc_Key" xml:space="preserve">
+    <value>Die Farbe, die die Metadaten einer gesendeten Nachricht, die noch nicht veröffentlicht wurde, haben sollte. Muss ein gültiger CSS-Wert sein.</value>
+  </data>
+  <data name="PropertyOpenInModal_Display_Key" xml:space="preserve">
+    <value>In "Modal" öffnen</value>
+  </data>
+  <data name="PropertyOpenInModal_Desc_Key" xml:space="preserve">
+    <value>Konfiguriert ob Nachrichten in einem "Modal" geöffnet werden sollen.</value>
+  </data>
+  <data name="PropertyopenInNewWindow_Display_Key" xml:space="preserve">
+    <value>In neuem Fenster öffnen</value>
+  </data>
+  <data name="PropertyopenInNewWindow_Desc_Key" xml:space="preserve">
+    <value>Konfiguriert ob Nachrichten in einem neuen Fenster geöffnet werden sollen. Funktioniert nur wenn Nachrichten nicht in einem "Modal" geöffnet werden.</value>
+  </data>
+  <data name="No_Record_Found" xml:space="preserve">
+    <value>Keine Daten verfügbar.</value>
+  </data>
+  <data name="LoadMore_ButtonLabel" xml:space="preserve">
+    <value>Mehr laden</value>
+  </data>
 </root>
+
+
+
+
+
+

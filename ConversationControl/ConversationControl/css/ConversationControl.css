@@ -5,12 +5,30 @@ div.BeBeControls div.conversation {
     position: relative;
     overflow-y: scroll;
     overflow-x: hidden;
+    min-height: 7.5em;
+}
+
+div.BeBeControls div.conversation.no-records{
+    text-align: center;
+    color: #666666;
+    font-size: 0.857143rem;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+div.BeBeControls div.conversation.no-records div{
+    font-size: 16px;
+    font-family: "Segoe UI Regular", SegoeUI, "Segoe UI";
+}
+
+div.BeBeControls div.conversation.no-records i{
+    font-size: 2em;
+    padding-bottom:10px;
 }
 
 div.BeBeControls div.conversation .message {
     clear: both;
-    line-height: 18px;
-    font-size: 15px;
     padding: 8px;
     position: relative;
     margin: 8px 0;
@@ -66,3 +84,17 @@ div.BeBeControls div.conversation .message.received .metadata {
 div.BeBeControls div.conversation .message.sent .metadata .checkmarks :first-child{
     margin-right:-9px;
 }
+
+div.BeBeControls button.DataSetControl_LoadMoreButton_Style {
+    background-color: #e5e5e5;
+    font-size: 1.5rem;
+    font-weight: bold;
+    height: 3.5rem;
+    text-align: center;
+    width: 100%;
+    border: none;
+  }
+  
+  div.BeBeControls button.DataSetControl_LoadMoreButton_Hidden_Style {
+    display: none;
+  }

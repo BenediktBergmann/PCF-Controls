@@ -41,6 +41,7 @@ ReceivedMessageMetadataTextColor | Text color for the metadata of received messa
 - [ ] Add Pagination
 - [ ] Start at the last page
 - [ ] Load next page when reaching top/bottom
+- [ ] If it is the same entity we should scroll to current record
 - [ ] Date separator (inkl. Only showing time on message)
 - [ ] Optional sorting
 - [ ] Style Scrollbar

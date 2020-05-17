@@ -215,16 +215,20 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._inputElement.removeEventListener("focus",this._inputElementOnFocus);
 		this._inputElement.removeEventListener("focusout",this._inputElementOnFocusOut);
 		
-		this._iconElement.removeEventListener("click", this._iconElementOnClick);
-		this._iconElement.removeEventListener("mouseenter", this._iconElementOnMouseenter);
-		this._iconElement.removeEventListener("mouseleave", this._iconElementOnMouseleave);
+		if(typeof this._iconElement !== 'undefined' && this._iconElement !== null){
+			this._iconElement.removeEventListener("click", this._iconElementOnClick);
+			this._iconElement.removeEventListener("mouseenter", this._iconElementOnMouseenter);
+			this._iconElement.removeEventListener("mouseleave", this._iconElementOnMouseleave);
+		}
 	}
 
 	public inputOnChange():void{
 		if(this._inputElement.value === "" || this._inputElement.value === null || this.isCorrectPhoneNumber(this._inputElement.value)){
 			this._inputElement.classList.remove("incorrect");
 			this._errorContainer.classList.remove("inputError");
-			this._iconElement.classList.remove("inputError");
+			if(typeof this._iconElement !== 'undefined' && this._iconElement !== null){
+				this._iconElement.classList.remove("inputError");
+			}
 			var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(this._inputElement.value, this._defaultCC) : PhoneNumber(this._inputElement.value);
 
 			if(parsedPhoneNumber === undefined || !parsedPhoneNumber.isValid()){
@@ -238,7 +242,9 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		else{
 			this._inputElement.classList.add("incorrect");
 			this._errorContainer.classList.add("inputError");
-			this._iconElement.classList.add("inputError");
+			if(typeof this._iconElement !== 'undefined' && this._iconElement !== null){
+				this._iconElement.classList.add("inputError");
+			}
 			this._value = this._inputElement.value;
 			this._numberValidReturnValue = false;
 		}

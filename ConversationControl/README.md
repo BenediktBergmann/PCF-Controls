@@ -32,6 +32,8 @@ ReceivedMessageBgColor | Background color for received messages |  | #eeeeee
 ReceivedMessageTextColor | Text color for received messages |  | #000000
 ReceivedMessageMetadataTextColor | Text color for the metadata of received messages |  | #888888
 
+I wrote a blog post to explain how to configure the control. You can find it [here](https://benediktbergmann.eu/2020/05/23/pcf-use-conversationcontrol/).
+
 ## Improvements/New Functions
 - [X] "No records found" message
 - [X] "Load more" button

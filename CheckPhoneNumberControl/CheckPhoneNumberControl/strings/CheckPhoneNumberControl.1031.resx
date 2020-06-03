@@ -62,7 +62,7 @@
     <value>Check Phone Number Control</value>
   </data>
   <data name="CheckPhoneNumberControl_Desc_Key" xml:space="preserve">
-    <value>Control prüft ob die Eingabe eine korrekte telefonnummer ist. Awesome-phonenumber package wird in diesem PCF Control genutzt. https://www.npm.red/package/awesome-phonenumber</value>
+    <value>Das Control prüft, ob die Eingabe eine korrekte Telefonnummer ist. In diesem PCF-Control wird das awesome-phonenumber package verwendet. https://www.npm.red/package/awesome-phonenumber</value>
   </data>
   <data name="PropertyValueField_Display_Key" xml:space="preserve">
     <value>Eingabe</value>
@@ -74,22 +74,22 @@
     <value>Nummer valide Feld</value>
   </data>
   <data name="PropertyNumberValidField_Desc_Key" xml:space="preserve">
-    <value>In dieses Feld wird gespeichert ob die Nummer valide ist oder nicht. Kann dafür verwendet werden um die Form Submition zu verhindern</value>
+    <value>In dieses Feld wird gespeichert, ob die Nummer valide ist oder nicht. Kann dafür verwendet werden, um das Absenden des Formulars zu verhindern</value>
   </data>
   <data name="PropertyDefaultCC_Desc_Key" xml:space="preserve">
-    <value>Der zu überprüfende Standard-Ländercode. Muss ein ISO 3166 (Alpha 2) Ländercode sein. Eine Liste der möglichen Werte findenst du hier: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
+    <value>Der zu überprüfende Standard-Ländercode. Muss ein ISO 3166 ALPHA-2 Ländercode sein. Eine Liste der möglichen Werte findest du hier: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
   </data>
   <data name="PropertyAllowedCC_Display_Key" xml:space="preserve">
     <value>Zulässige Ländercodes</value>
   </data>
   <data name="PropertyAllowedCC_Desc_Key" xml:space="preserve">
-    <value>Eine durch Kommas getrennte Liste der zulässigen Ländercodes. Es müssen ISO 3166 (Alpha 2) -Ländercodes verwendet werden. Eine Liste der möglichen Werte findest du hier: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
+    <value>Eine durch Komma getrennte Liste der zulässigen Ländercodes. Es müssen ISO 3166 ALPHA-2 Ländercodes verwendet werden. Eine Liste der möglichen Werte findest du hier: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
   </data>
   <data name="PropertyExcludedCC_Display_Key" xml:space="preserve">
     <value>Ausgeschlossene Ländercodes</value>
   </data>
   <data name="PropertyExcludedCC_Desc_Key" xml:space="preserve">
-    <value>Eine durch Kommas getrennte Liste ausgeschlossener Ländercodes. Es müssen ISO 3166 (Alpha 2) -Ländercodes verwendet werden. Eine Liste der möglichen Werte findest du hier: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
+    <value>Eine durch Komma getrennte Liste ausgeschlossener Ländercodes. Es müssen ISO 3166 ALPHA-2 Ländercodes verwendet werden. Eine Liste der möglichen Werte findest du hier: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
   </data>
   <data name="PropertyOutputFormat_Display_Key" xml:space="preserve">
     <value>Ausgabeformat</value>
@@ -113,48 +113,48 @@
     <value>E164 (+46707123456)</value>
   </data>
   <data name="PropertyAllowedType_Display_Key" xml:space="preserve">
-    <value>Zulässige Typen</value>
+    <value>Erlaubte Rufnummerntypen</value>
   </data>
   <data name="PropertyAllowedType_Desc_Key" xml:space="preserve">
-    <value>Kommagetrennte Liste der zulässigen Nummerntypen. Eine Liste der möglichen Werte findest du hier: https://www.npmjs.com/package/awesome-phonenumber#phone-number-types</value>
+    <value>Durch Komma getrennte Liste der erlaubten Rufnummerntypen. Eine Liste der möglichen Werte findest du hier: https://www.npmjs.com/package/awesome-phonenumber#phone-number-types</value>
   </data>
   <data name="PropertyExcludedType_Display_Key" xml:space="preserve">
-    <value>Ausgeschlossene Typen</value>
+    <value>Ausgeschlossene Rufnummerntypen</value>
   </data>
   <data name="PropertyExcludedType_Desc_Key" xml:space="preserve">
-    <value>Kommagetrennte Liste der ausgeschlossenen Nummerntypen. Eine Liste der möglichen Werte findest du hier: https://www.npmjs.com/package/awesome-phonenumber#phone-number-types</value>
+    <value>Durch Komma getrennte Liste der ausgeschlossenen Rufnummerntypen. Eine Liste der möglichen Werte findest du hier: https://www.npmjs.com/package/awesome-phonenumber#phone-number-types</value>
   </data>
   <data name="ErrorText_IncorrectNumber_Key" xml:space="preserve">
-    <value>Falsche Telefonnummer</value>
+    <value>Die angegebene Telefonnummer ist nicht gültig.</value>
   </data>
   <data name="ErrorText_Unallowed_Country_Key" xml:space="preserve">
-    <value>Telefonnummer eines Landes, das nicht erlaubt ist.</value>
+    <value>Die angegebene Ländervorwahl ist nicht erlaubt.</value>
   </data>
   <data name="ErrorText_Unallowed_Type_Key" xml:space="preserve">
-    <value>Telefonnummer eines Types, der nicht erlaubt ist.</value>
+    <value>Der angegebene Rufnummerntyp ist nicht erlaubt.</value>
   </data>
   <data name="PropertyShowButton_Display_Key" xml:space="preserve">
-    <value>Knopf zeigen</value>
+    <value>Button anzeigen</value>
   </data>
   <data name="PropertyShowButton_Desc_Key" xml:space="preserve">
-    <value>Wenn aktiviert, wird ein knopf zum hantieren von "click to call".</value>
+    <value>Wenn aktiviert, wird ein Button zur Verwendung von "click-to-call" angezeigt.</value>
   </data>
   <data name="PropertyOpenQuickCreate_Display_Key" xml:space="preserve">
-    <value>"Quick Create" formular öffnen</value>
+    <value>"Quick Create" Formular öffnen</value>
   </data>
   <data name="PropertyOpenQuickCreate_Desc_Key" xml:space="preserve">
-    <value>Wenn aktiviert, wird beim knopfdruck das "Quick create" formular geöffnet.</value>
+    <value>Wenn aktiviert,öffnet der Button das "Quick create" Formular.</value>
   </data>
   <data name="PropertyClickToCallType_Display_Key" xml:space="preserve">
-    <value>Click to call provider</value>
+    <value>"click-to-call"-Anbieter</value>
   </data>
   <data name="PropertyClickToCallType_Desc_Key" xml:space="preserve">
-    <value>"Click to call" provider der verwendet werden soll.</value>
+    <value>"click-to-call"-Anbieter, der verwendet werden soll.</value>
   </data>
   <data name="PropertyCustomClickToCallType_Display_Key" xml:space="preserve">
-    <value>Custom Click to call provider</value>
+    <value>Benutzerdefinierter "click-to-call"-Anbieter</value>
   </data>
   <data name="PropertyCustomClickToCallType_Desc_Key" xml:space="preserve">
-    <value>Eingabe eines eigenen "click to call" provider. Funktioniert nur wenn der provider "custom" ist.</value>
+    <value>Eingabe eines eigenen "click-to-call"-Anbieters. Funktioniert nur, wenn "benutzerdefiniert" ausgewählt ist.</value>
   </data>
 </root>

@@ -3,8 +3,6 @@
 div.BeBeControls div.conversation {
     z-index: 0;
     position: relative;
-    overflow-y: scroll;
-    overflow-x: hidden;
     min-height: 7.5em;
 }
 

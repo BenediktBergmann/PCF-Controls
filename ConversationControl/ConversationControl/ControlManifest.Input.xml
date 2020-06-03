@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="ConversationControl" version="1.8.0" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
+  <control namespace="BeBeControls" constructor="ConversationControl" version="1.8.12" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
     <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
     <!-- 
       For the additional configuration (which show the commandbar) to work we have to change the file node_modules/pcf-scripts/ManifestSchema.json.
@@ -12,35 +12,50 @@
     <data-set name="dataSetGrid" display-name-key="Dataset_Display_Key" cds-data-set-options="displayCommandBar:true;displayViewSelector:false;displayQuickFind:false"></data-set>
 
     <!-- Column variables -->
-    <property name="TextColumn" display-name-key="TextColumn_Display_Key" description-key="TextColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
-    <property name="SenderColumn" display-name-key="SenderColumn_Display_Key" description-key="SenderColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
-    <property name="DateColumn" display-name-key="DateColumn_Display_Key" description-key="DateColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="ReadColumn" display-name-key="ReadColumn_Display_Key" description-key="ReadColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="PublishedColumn" display-name-key="PublishedColumn_Display_Key" description-key="PublishedColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="HasAttachmentsColumn" display-name-key="HasAttachmentsColumn_Display_Key" description-key="HasAttachmentsColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="TextColumn" display-name-key="Property_TextColumn_Display_Key" description-key="Property_TextColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="SenderColumn" display-name-key="Property_SenderColumn_Display_Key" description-key="Property_SenderColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="CustomerIdentifier" display-name-key="Property_CustomerIdentifier_Display_Key" description-key="Property_CustomerIdentifier_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="DateColumn" display-name-key="Property_DateColumn_Display_Key" description-key="Property_DateColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="ReadColumn" display-name-key="Property_ReadColumn_Display_Key" description-key="Property_ReadColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="PublishedColumn" display-name-key="Property_PublishedColumn_Display_Key" description-key="Property_PublishedColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="HasAttachmentsColumn" display-name-key="Property_HasAttachmentsColumn_Display_Key" description-key="Property_HasAttachmentsColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
 
-    <property name="CustomerIdentifier" display-name-key="CustomerIdentifier_Display_Key" description-key="CustomerIdentifier_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
-    <property name="MaxHeight" display-name-key="MaxHeight_Display_Key" description-key="MaxHeight_Desc_Key" of-type="Whole.None" usage="input" required="true" default-value="300" />
-    <property name="OpenInModal" display-name-key="PropertyOpenInModal_Display_Key" description-key="PropertyOpenInModal_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Yes">
+    <property name="ShowScrollbar" display-name-key="Property_ShowScrollbar_Display_Key" description-key="Property_ShowScrollbar_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Yes">
       <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
       <value name="No" display-name-key="No" description-key="No">No</value>  
     </property>
-    <property name="openInNewWindow" display-name-key="PropertyopenInNewWindow_Display_Key" description-key="PropertyopenInNewWindow_Desc_Key" of-type="Enum" usage="input" required="true" default-value="No">
+    <property name="MaxHeight" display-name-key="Property_MaxHeight_Display_Key" description-key="Property_MaxHeight_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+
+    <property name="OpenStrategy" display-name-key="Property_OpenStrategy_Display_Key" description-key="Property_OpenStrategy_Desc_Key" of-type="Enum" usage="input" required="true" default-value="ModalCenter">
+      <value name="ModalCenter" display-name-key="Property_OpenStrategy_ModalCenter_Display_Key" description-key="Property_OpenStrategy_ModalCenter_Desc_Key">ModalCenter</value>
+      <value name="ModalRight" display-name-key="Property_OpenStrategy_ModalRight_Display_Key" description-key="Property_OpenStrategy_ModalRight_Desc_Key">ModalRight</value>
+      <value name="NewWindow" display-name-key="Property_OpenStrategy_NewWindow_Display_Key" description-key="Property_OpenStrategy_NewWindow_Desc_Key">NewWindow</value>
+      <value name="CurrentTab" display-name-key="Property_OpenStrategy_CurrentTab_Display_Key" description-key="Property_OpenStrategy_CurrentTab_Desc_Key">CurrentTab</value>  
+    </property>
+
+    <property name="ModalWidth" display-name-key="Property_ModalWidth_Display_Key" description-key="Property_ModalWidth_Desc_Key" of-type="Whole.None" usage="input" required="false" default-value="50" />
+
+    <!--<property name="MessageStyle" display-name-key="Property_MessageStyle_Display_Key" description-key="Property_MessageStyle_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Kaizala">
+      <value name="Kaizala" display-name-key="Kaizala" description-key="Kaizala">Kaizala</value> 
+      <value name="WhatsApp" display-name-key="WhatsApp" description-key="WhatsApp">WhatsApp</value>  
+    </property>-->
+
+    <!--<property name="ShowBackgroundImage" display-name-key="Property_ShowBackgroundImage_Display_Key" description-key="Property_ShowBackgroundImage_Desc_Key" of-type="Enum" usage="input" required="true" default-value="No">
       <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
       <value name="No" display-name-key="No" description-key="No">No</value>  
-    </property>
+    </property>-->
 
     <!-- Colour variables -->
-    <property name="SentMessageBgColor" display-name-key="SentMessageBgColor_Display_Key" description-key="SentMessageBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="SentMessageTextColor" display-name-key="SentMessageTextColor_Display_Key" description-key="SentMessageTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="SentMessageMetadataTextColor" display-name-key="SentMessageMetadataTextColor_Display_Key" description-key="SentMessageMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="SentMessageReadCheckmarkColor" display-name-key="SentMessageReadCheckmarkColor_Display_Key" description-key="SentMessageReadCheckmarkColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="SentMessageNotPublishedBgColor" display-name-key="SentMessageNotPublishedBgColor_Display_Key" description-key="SentMessageNotPublishedBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="SentMessageNotPublishedTextColor" display-name-key="SentMessageNotPublishedTextColor_Display_Key" description-key="SentMessageNotPublishedTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="SentMessageNotPublishedMetaDataTextColor" display-name-key="SentMessageNotPublishedMetaDataTextColor_Display_Key" description-key="SentMessageNotPublishedMetaDataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="ReceivedMessageBgColor" display-name-key="ReceivedMessageBgColor_Display_Key" description-key="ReceivedMessageBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="ReceivedMessageTextColor" display-name-key="ReceivedMessageTextColor_Display_Key" description-key="ReceivedMessageTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
-    <property name="ReceivedMessageMetadataTextColor" display-name-key="ReceivedMessageMetadataTextColor_Display_Key" description-key="ReceivedMessageMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" />
+    <property name="SentMessageBgColor" display-name-key="Property_SentMessageBgColor_Display_Key" description-key="Property_SentMessageBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageTextColor" display-name-key="Property_SentMessageTextColor_Display_Key" description-key="Property_SentMessageTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageMetadataTextColor" display-name-key="Property_SentMessageMetadataTextColor_Display_Key" description-key="Property_SentMessageMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageReadCheckmarkColor" display-name-key="Property_SentMessageReadCheckmarkColor_Display_Key" description-key="Property_SentMessageReadCheckmarkColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageNotPublishedBgColor" display-name-key="Property_SentMessageNotPublishedBgColor_Display_Key" description-key="Property_SentMessageNotPublishedBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageNotPublishedTextColor" display-name-key="Property_SentMessageNotPublishedTextColor_Display_Key" description-key="Property_SentMessageNotPublishedTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageNotPublishedMetaDataTextColor" display-name-key="Property_SentMessageNotPublishedMetaDataTextColor_Display_Key" description-key="Property_SentMessageNotPublishedMetaDataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="ReceivedMessageBgColor" display-name-key="Property_ReceivedMessageBgColor_Display_Key" description-key="Property_ReceivedMessageBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="ReceivedMessageTextColor" display-name-key="Property_ReceivedMessageTextColor_Display_Key" description-key="Property_ReceivedMessageTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="ReceivedMessageMetadataTextColor" display-name-key="Property_ReceivedMessageMetadataTextColor_Display_Key" description-key="Property_ReceivedMessageMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" />
 
     <resources>
       <code path="index.ts" order="1"/>

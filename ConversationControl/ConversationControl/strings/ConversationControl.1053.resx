@@ -67,125 +67,155 @@
   <data name="Dataset_Display_Key" xml:space="preserve">
     <value>DataSet</value>
   </data>
-  <data name="TextColumn_Display_Key" xml:space="preserve">
+  <data name="Property_TextColumn_Display_Key" xml:space="preserve">
     <value>Text</value>
   </data>
-  <data name="TextColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_TextColumn_Desc_Key" xml:space="preserve">
     <value>Namn på vykolumnen (fältnamn) som innehåller texten som ska visas i meddelandet.</value>
   </data>
-  <data name="SenderColumn_Display_Key" xml:space="preserve">
+  <data name="Property_SenderColumn_Display_Key" xml:space="preserve">
     <value>Avsändar</value>
   </data>
-  <data name="SenderColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_SenderColumn_Desc_Key" xml:space="preserve">
     <value>Namn på vykolumnen (fältnamn) som identifieras avsändare.</value>
   </data>
-  <data name="DateColumn_Display_Key" xml:space="preserve">
+  <data name="Property_DateColumn_Display_Key" xml:space="preserve">
     <value>Datum</value>
   </data>
-  <data name="DateColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_DateColumn_Desc_Key" xml:space="preserve">
     <value>Namn på vykolumnen (fältnamn) som innehåller datuminformationen som ska visas i meddelandet.</value>
   </data>
-  <data name="ReadColumn_Display_Key" xml:space="preserve">
+  <data name="Property_ReadColumn_Display_Key" xml:space="preserve">
     <value>Läst</value>
   </data>
-  <data name="ReadColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_ReadColumn_Desc_Key" xml:space="preserve">
     <value>Namn på vykolumnen (fältnamn) som innehåller informationen om meddelandet har lästs av kunden. Kan vara två alternativ eller datum.</value>
   </data>
-  <data name="PublishedColumn_Display_Key" xml:space="preserve">
+  <data name="Property_PublishedColumn_Display_Key" xml:space="preserve">
     <value>Publicerad</value>
   </data>
-  <data name="PublishedColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_PublishedColumn_Desc_Key" xml:space="preserve">
     <value>Namn på visningskolumnen (fältnamn) som innehåller informationen om meddelandet publicerades till kunden. Kan vara två alternativ eller datum.</value>
   </data>
-  <data name="HasAttachmentsColumn_Display_Key" xml:space="preserve">
+  <data name="Property_HasAttachmentsColumn_Display_Key" xml:space="preserve">
     <value>Har bilagor</value>
   </data>
-  <data name="HasAttachmentsColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_HasAttachmentsColumn_Desc_Key" xml:space="preserve">
     <value>Namn på vykolumnen (fältnamn) som innehåller informationen om meddelandet har bilagor.</value>
   </data>
-  <data name="CustomerIdentifier_Display_Key" xml:space="preserve">
+  <data name="Property_CustomerIdentifier_Display_Key" xml:space="preserve">
     <value>Kundidentifierare</value>
   </data>
-  <data name="CustomerIdentifier_Desc_Key" xml:space="preserve">
+  <data name="Property_CustomerIdentifier_Desc_Key" xml:space="preserve">
     <value>Id för OptionSet-värdet som identifierar avsändaren som kund. Kan vara en kommaseparerad lista med flera värden.</value>
   </data>
-  <data name="MaxHeight_Display_Key" xml:space="preserve">
+  <data name="Property_MaxHeight_Display_Key" xml:space="preserve">
     <value>Maximal höjd</value>
   </data>
-  <data name="MaxHeight_Desc_Key" xml:space="preserve">
-    <value>Definierar den maximala höjden som kontrollen (inre konversationsbehållare) ska ha</value>
+  <data name="Property_MaxHeight_Desc_Key" xml:space="preserve">
+    <value>Definierar den maximala höjden som kontrollen (inre konversationsbehållare) ska ha. Blir enbart använd när "scrollbar" visas.</value>
   </data>
-  <data name="SentMessageBgColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageBgColor_Display_Key" xml:space="preserve">
     <value>Bakgrundsfärg för skickat meddelande</value>
   </data>
-  <data name="SentMessageBgColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageBgColor_Desc_Key" xml:space="preserve">
     <value>Färgen som ett skickat meddelande ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
-  <data name="SentMessageNotPublishedBgColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedBgColor_Display_Key" xml:space="preserve">
     <value>Bakgrundsfärg för ej publicerad skickat meddelande</value>
   </data>
-  <data name="SentMessageNotPublishedBgColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedBgColor_Desc_Key" xml:space="preserve">
     <value>Färgen som ett skickat meddelande som ännu inte är publicerats ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
-  <data name="SentMessageTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageTextColor_Display_Key" xml:space="preserve">
     <value>Textfärg för skickad meddelanden</value>
   </data>
-  <data name="SentMessageTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageTextColor_Desc_Key" xml:space="preserve">
     <value>Färgen som texten på ett skickat meddelande ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
-  <data name="ReceivedMessageBgColor_Display_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageBgColor_Display_Key" xml:space="preserve">
     <value>Bakgrundsfärg för mottaget meddelande</value>
   </data>
-  <data name="ReceivedMessageBgColor_Desc_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageBgColor_Desc_Key" xml:space="preserve">
     <value>Färgen som ett mottaget meddelande ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
-  <data name="SentMessageMetadataTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageMetadataTextColor_Display_Key" xml:space="preserve">
     <value>Textfärg för skickad meddelanden metadata</value>
   </data>
-  <data name="SentMessageMetadataTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageMetadataTextColor_Desc_Key" xml:space="preserve">
     <value>Färgen som metadata på ett skickat meddelande ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
-  <data name="ReceivedMessageTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageTextColor_Display_Key" xml:space="preserve">
     <value>Textfärg för mottaget meddelanden</value>
   </data>
-  <data name="ReceivedMessageTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageTextColor_Desc_Key" xml:space="preserve">
     <value>Färgen som texten på ett mottagen meddelande ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
-  <data name="ReceivedMessageMetadataTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageMetadataTextColor_Display_Key" xml:space="preserve">
     <value>Textfärg för mottaget meddelanden metadata</value>
   </data>
-  <data name="ReceivedMessageMetadataTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageMetadataTextColor_Desc_Key" xml:space="preserve">
     <value>Färgen som metadata på ett mottagen meddelande ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
-  <data name="SentMessageReadCheckmarkColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageReadCheckmarkColor_Display_Key" xml:space="preserve">
     <value>Skickat meddelande läst "checkmark" färg</value>
   </data>
-  <data name="SentMessageReadCheckmarkColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageReadCheckmarkColor_Desc_Key" xml:space="preserve">
     <value>Färgen som markeringarna för ett skickat meddelande ska ha om meddelandet lästes av kunden. Måste vara ett giltigt css-värde.</value>
   </data>
-  <data name="SentMessageNotPublishedTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedTextColor_Display_Key" xml:space="preserve">
     <value>Textfärg för ej publicerad skickad meddelanden</value>
   </data>
-  <data name="SentMessageNotPublishedTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedTextColor_Desc_Key" xml:space="preserve">
     <value>Färgen som text på ett skickat meddelande som ännu inte är publicerats ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
-  <data name="SentMessageNotPublishedMetaDataTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedMetaDataTextColor_Display_Key" xml:space="preserve">
     <value>Textfärg för ej publicerad skickad meddelanden metadata</value>
   </data>
-  <data name="SentMessageNotPublishedMetaDataTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedMetaDataTextColor_Desc_Key" xml:space="preserve">
     <value>Färgen som metadata på ett skickat meddelande som ännu inte är publicerats ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
-  <data name="PropertyOpenInModal_Display_Key" xml:space="preserve">
-    <value>Öppna i "Modal"</value>
+  <data name="Property_OpenStrategy_Display_Key" xml:space="preserve">
+    <value>Open strategy</value>
   </data>
-  <data name="PropertyOpenInModal_Desc_Key" xml:space="preserve">
-    <value>Konfigurerar om meddelanden ska öppnas i en "modal".</value>
+  <data name="Property_OpenStrategy_Desc_Key" xml:space="preserve">
+    <value>Definierar hur meddelandet ska öppnas.</value>
   </data>
-  <data name="PropertyopenInNewWindow_Display_Key" xml:space="preserve">
-    <value>Öppna i ett nytt fönster</value>
+  <data name="Property_OpenStrategy_ModalCenter_Display_Key" xml:space="preserve">
+    <value>Centrerad modal</value>
   </data>
-  <data name="PropertyopenInNewWindow_Desc_Key" xml:space="preserve">
-    <value>Konfigurerar om meddelanden ska öppnas i ett nytt fönster. Fungerar bara om meddelanden inte öppnas i en "modal".</value>
+  <data name="Property_OpenStrategy_ModalCenter_Desc_Key" xml:space="preserve">
+    <value>Meddelandet öppnas i ett "modal" som är centrerat</value>
+  </data>
+  <data name="Property_OpenStrategy_ModalRight_Display_Key" xml:space="preserve">
+    <value>Höger "Modal"</value>
+  </data>
+  <data name="Property_OpenStrategy_ModalRight_Desc_Key" xml:space="preserve">
+    <value>Meddelandet öppnas i ett modal som är inriktat på höger sida</value>
+  </data>
+  <data name="Property_OpenStrategy_NewWindow_Display_Key" xml:space="preserve">
+    <value>Nytt fönster</value>
+  </data>
+  <data name="Property_OpenStrategy_NewWindow_Desc_Key" xml:space="preserve">
+    <value>Meddelandet öppnas i ett nytt fönster</value>
+  </data>
+  <data name="Property_OpenStrategy_CurrentTab_Display_Key" xml:space="preserve">
+    <value>Aktuell flik</value>
+  </data>
+  <data name="Property_OpenStrategy_CurrentTab_Desc_Key" xml:space="preserve">
+    <value>Meddelandet öppnas i den aktuella fliken</value>
+  </data>
+  <data name="Property_ShowScrollbar_Display_Key" xml:space="preserve">
+    <value>Visa scrollbar</value>
+  </data>
+  <data name="Property_ShowScrollbar_Desc_Key" xml:space="preserve">
+    <value>Definierar om en "Scrollbar" ska visas</value>
+  </data>
+  <data name="Property_ModalWidth_Display_Key" xml:space="preserve">
+    <value>"Modal" bredd</value>
+  </data>
+  <data name="Property_ModalWidth_Desc_Key" xml:space="preserve">
+    <value>Bredden (i %) som "Modal" ska ha.</value>
   </data>
   <data name="No_Record_Found" xml:space="preserve">
     <value>Ingen data tillgänglig.</value>

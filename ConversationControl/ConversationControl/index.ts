@@ -1,23 +1,25 @@
 import {IInputs, IOutputs} from "./generated/ManifestTypes";
+import { senderEnum, openStrategyEnum } from "./helper/enums";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Conversation } from './tsx/Conversation';
 import DataSetInterfaces = ComponentFramework.PropertyHelper.DataSetApi;
-type DataSet = ComponentFramework.PropertyTypes.DataSet;
+import { IMessageProps } from "./tsx/Message";
 
-const enum senderEnum {
-	Customer,
-	User
-}
+type DataSet = ComponentFramework.PropertyTypes.DataSet;
 
 const RowRecordId: string = "rowRecId";
 
 declare var Xrm: any;
 
-const DataSetControl_LoadMoreButton_Hidden_Style =
-  "DataSetControl_LoadMoreButton_Hidden_Style";
+const DataSetControl_LoadMoreButton_Hidden_Style = "DataSetControl_LoadMoreButton_Hidden_Style";
 
 export class ConversationControl implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
-	private _notifyOutputChanged: () => void;
 	private _context: ComponentFramework.Context<IInputs>;
+	private _randomId: string;
+	private _openStrategy: openStrategyEnum;
+	private _modalWidth: number;
 
 	//Column variables
 	private _textColumn: string;
@@ -27,11 +29,10 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	private _publishedColumn: string;
 	private _hasAttachmentColumn: string;
 	private _customerIdentifyers: string[];
-	private _openInModal: boolean;
-	private _openInNewWindow: boolean;
 
 	// HTML container
 	private _conversation: HTMLDivElement;
+
 	// Button element created as part of this control
 	private _loadPageButton: HTMLButtonElement;
 
@@ -53,17 +54,9 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	 */
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{
-		this._notifyOutputChanged = notifyOutputChanged;
 		this._context = context;
+		this._randomId = this.createId(7);
 
-		/*this._textColumn = "description";
-		this._senderColumn = "bebe_sender";
-		this._createDateColumn = "createdon";
-		this._readDateColumn = "bebe_readbycustomer";
-		this._publishDateColumn = "bebe_publishdate";
-		this._hasAttachmentColumn = "bebe_filesattached";
-		this._customerIdentifyers = ["136980000"];
-		*/
 		this._textColumn = context.parameters.TextColumn.raw? context.parameters.TextColumn.raw : "";
 		this._senderColumn = context.parameters.SenderColumn.raw? context.parameters.SenderColumn.raw : "";
 		this._dateColumn = context.parameters.DateColumn.raw? context.parameters.DateColumn.raw : "";
@@ -72,22 +65,21 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		this._hasAttachmentColumn = context.parameters.HasAttachmentsColumn.raw? context.parameters.HasAttachmentsColumn.raw : "";
 		this._customerIdentifyers = context.parameters.CustomerIdentifier.raw? context.parameters.CustomerIdentifier.raw.split(',') : [];
 
-		this._openInModal = false;
-		if(context.parameters.OpenInModal!.raw == "Yes"){
-			this._openInModal = true;
+		let showScrollbar = false;
+		if(context.parameters.ShowScrollbar!.raw == "Yes"){
+			showScrollbar = true;
 		}
 
-		this._openInNewWindow = false;
-		if(context.parameters.openInNewWindow!.raw == "Yes"){
-			this._openInNewWindow = true;
+		this._openStrategy = openStrategyEnum.ModalCenter;
+		if(context.parameters.OpenStrategy!.raw == openStrategyEnum.CurrentTab){
+			this._openStrategy = openStrategyEnum.CurrentTab;
+		} else if(context.parameters.OpenStrategy!.raw == openStrategyEnum.NewWindow){
+			this._openStrategy = openStrategyEnum.NewWindow;
+		} else if(context.parameters.OpenStrategy!.raw == openStrategyEnum.ModalRight){
+			this._openStrategy = openStrategyEnum.ModalRight;
 		}
 
-		this._conversation = document.createElement("div");
-		this._conversation.classList.add("conversation");
-
-		//This will be used to scope the variable colors. To be able to use different colors when the control is used several times on the same page.
-		let randomId = this.createId(8);
-		this._conversation.setAttribute("id", randomId);
+		this._modalWidth = context.parameters.ModalWidth.raw? context.parameters.ModalWidth.raw : 50;
 
 		let messageSentBgColor = context.parameters.SentMessageBgColor.raw? context.parameters.SentMessageBgColor.raw : "#e1ffc7";
 		let messageSentTextColor = context.parameters.SentMessageTextColor.raw? context.parameters.SentMessageTextColor.raw : "#000000";
@@ -99,21 +91,17 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		let messageReceivedBgColor = context.parameters.ReceivedMessageBgColor.raw? context.parameters.ReceivedMessageBgColor.raw : "#eeeeee";
 		let messageReceivedTextColor = context.parameters.ReceivedMessageTextColor.raw? context.parameters.ReceivedMessageTextColor.raw : "#000000";
 		let messageReceivedMetadataTextColor = context.parameters.ReceivedMessageMetadataTextColor.raw? context.parameters.ReceivedMessageMetadataTextColor.raw : "#888888";
-		let maxHeight = context.parameters.MaxHeight.raw? context.parameters.MaxHeight.raw : 300;
+		let maxHeight = context.parameters.MaxHeight.raw? context.parameters.MaxHeight.raw : "";
 
-		container.appendChild(this.generateCustomStyle(randomId, maxHeight, messageSentBgColor, messageSentTextColor, messageSentMetadataTextColor, messageSentReadCheckmarkColor, messageSentUnpublishedBgColor, messageSentUnpublishedTextColor, messageSentUnpublishedMetadataTextColor, messageReceivedBgColor, messageReceivedTextColor, messageReceivedMetadataTextColor));
-
+		container.appendChild(this.generateCustomStyle(this._randomId, showScrollbar, maxHeight, messageSentBgColor, messageSentTextColor, messageSentMetadataTextColor, messageSentReadCheckmarkColor, messageSentUnpublishedBgColor, messageSentUnpublishedTextColor, messageSentUnpublishedMetadataTextColor, messageReceivedBgColor, messageReceivedTextColor, messageReceivedMetadataTextColor));
+		
+		this._conversation = document.createElement("div");
 		container.appendChild(this._conversation);
 
-		// Create data table container div.
 		this._loadPageButton = document.createElement("button");
 		this._loadPageButton.setAttribute("type", "button");
-		this._loadPageButton.innerText = context.resources.getString(
-		  "LoadMore_ButtonLabel"
-		);
-		this._loadPageButton.classList.add(
-		  DataSetControl_LoadMoreButton_Hidden_Style
-		);
+		this._loadPageButton.innerText = context.resources.getString("LoadMore_ButtonLabel");
+		this._loadPageButton.classList.add(DataSetControl_LoadMoreButton_Hidden_Style);
 		this._loadPageButton.classList.add("DataSetControl_LoadMoreButton_Style");
 		this._loadPageButton.addEventListener(
 		  "click",
@@ -138,7 +126,18 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 				return;
 			}
 
-			this.createConversation(context.parameters.dataSetGrid);
+			ReactDOM.render(
+				React.createElement(
+					Conversation,
+					{
+						messages: this.generateMessageArray(context.parameters.dataSetGrid),
+						randomId: this._randomId,
+						noRecordsText: this._context.resources.getString("No_Record_Found"),
+						onClick: this.onMessageClick.bind(this)
+					}
+				),
+				this._conversation
+			);
 		}
 	}
 
@@ -162,45 +161,39 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 
 	/**
    * Row Click Event handler for the associated row when being clicked
-   * @param event
    */
-	private onMessageClick(event: Event): void {
-		
-		let rowRecordId = (event.currentTarget as HTMLDivElement).getAttribute(
-			RowRecordId
-		);
+  	private onMessageClick(rowRecordId: string): void {
 		if (rowRecordId) {
 			let entityLogicalName = this._context.parameters.dataSetGrid.getTargetEntityType();
 
-			if(this._openInModal && typeof Xrm !== 'undefined'){
+			if((this._openStrategy === openStrategyEnum.ModalCenter || this._openStrategy === openStrategyEnum.ModalRight) && typeof Xrm !== 'undefined'){
 				let pageInput = {
 					pageType: "entityrecord",
 					entityName: entityLogicalName,
 					formType: 2,
 					entityId: rowRecordId
 				};
-	
+
 				let navigationOptions = {
 					target: 2,
-					position: 1,
-					width: {value: 50, unit:"%"}
+					position: (this._openStrategy === openStrategyEnum.ModalRight? 2 : 1),
+					width: {value: this._modalWidth, unit:"%"}
 				};		
 				
 				(<any>Xrm).Navigation.navigateTo(pageInput, navigationOptions);
-			}
-			else{
+			} else{
 				let entityFormOptions = {
 					entityName: entityLogicalName,
 					entityId: rowRecordId,
-					openInNewWindow: this._openInNewWindow
+					openInNewWindow: (this._openStrategy === openStrategyEnum.NewWindow)
 				};
 				this._context.navigation.openForm(entityFormOptions);
 			}
 		}
 	}
 
-	private createConversation(messages: DataSet){
-		this.clearContainer();
+	private generateMessageArray(messages: DataSet): IMessageProps[]{
+		let messagesArray: IMessageProps[] = [];
 
 		if(messages.sortedRecordIds.length > 0)
 		{
@@ -208,8 +201,8 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 				let recordId = messages.records[currentRecordId].getRecordId();
 				let text = messages.records[currentRecordId].getFormattedValue(this._textColumn);
 				let sender = (this._customerIdentifyers.includes(messages.records[currentRecordId].getValue(this._senderColumn).toString()))? senderEnum.Customer : senderEnum.User;
-				let date = (typeof this._dateColumn !== 'undefined' && this._dateColumn !== "") ? messages.records[currentRecordId].getFormattedValue(this._dateColumn) : "";
-				let hasAttachment = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && messages.records[currentRecordId].getValue(this._hasAttachmentColumn) === "1")? true : false;
+				let createDate = (typeof this._dateColumn !== 'undefined' && this._dateColumn !== "") ? messages.records[currentRecordId].getFormattedValue(this._dateColumn) : "";
+				let hasAttachments = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && messages.records[currentRecordId].getValue(this._hasAttachmentColumn) === "1")? true : false;
 
 				let read = false;
 				if(typeof this._readColumn === 'undefined' ||
@@ -225,101 +218,21 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 					published = true;
 				}
 
-				this.generateMessage(recordId, text, sender, published, date, read, hasAttachment);
+				messagesArray.push({recordId: recordId, text: text, sender: sender, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments});
 			}
 		}
-		else {
-			let documentIcon = document.createElement("i");
-			documentIcon.classList.add("ms-Icon");
-			documentIcon.classList.add("ms-Icon--TextDocument");
 
-			let noRecordLabel: HTMLDivElement = document.createElement("div");
-			noRecordLabel.innerHTML = this._context.resources.getString(
-			  "No_Record_Found"
-			);
-			this._conversation.appendChild(documentIcon);
-			this._conversation.appendChild(noRecordLabel);
-			this._conversation.classList.add("no-records");
-		  }
+		return messagesArray;
 	}
-
-	private clearContainer(){
-		this._conversation.innerHTML = "";
-	}
-
-	private generateMessage(recordId: string, text: string, sender: senderEnum, published: boolean, createDate: string, read: boolean, hasAttachments: boolean){
-		let messageContainer = document.createElement("div");
-
-		// Set the recordId on the row dom
-        messageContainer.setAttribute(
-			RowRecordId,
-			recordId
-		);
-
-		messageContainer.addEventListener("click", this.onMessageClick.bind(this));
-
-		messageContainer.classList.add("message");
-		if(sender === senderEnum.User){
-			messageContainer.classList.add("sent");
-
-			if(published){
-				messageContainer.classList.add("published");
-
-				if(read){
-					messageContainer.classList.add("read");
-				}
-			}
-			else {
-				messageContainer.classList.add("notPublished");
-			}
-		}
-		else {
-			messageContainer.classList.add("received");
-		}
-
-		let message = document.createElement("p");
-		message.innerHTML = text;
-
-		let metadata = document.createElement("span");
-		metadata.classList.add("metadata");
-		let creatDate = document.createElement("span");
-		creatDate.classList.add("createDate");
-		creatDate.innerHTML = createDate;
-
-		metadata.appendChild(creatDate)
-
-		if(hasAttachments){
-			let attachment = document.createElement("i");
-			attachment.classList.add("ms-Icon");
-			attachment.classList.add("ms-Icon--Attach");
-
-			metadata.appendChild(attachment);
-		}
-
-		if(sender === senderEnum.User && published){
-			let checkmarks = document.createElement("span");
-			checkmarks.classList.add("checkmarks");
-			let firstCheckmark = document.createElement("i");
-			firstCheckmark.classList.add("ms-Icon");
-			firstCheckmark.classList.add("ms-Icon--StatusCircleCheckmark");
-			checkmarks.appendChild(firstCheckmark);
-			let secondCheckmark = document.createElement("i");
-			secondCheckmark.classList.add("ms-Icon");
-			secondCheckmark.classList.add("ms-Icon--StatusCircleCheckmark");
-			checkmarks.appendChild(secondCheckmark);
-
-			metadata.appendChild(checkmarks);
-		}
-
-		messageContainer.appendChild(message);
-		messageContainer.appendChild(metadata);
-		this._conversation.appendChild(messageContainer);
-	}
-
-	private generateCustomStyle(controlId: string, maxHeight: number, messageSentBgColor: string, messageSentTextColor: string, messageSentMetadataTextColor: string, messageSentReadCheckmarkColor: string, messageSentUnpublishedBgColor: string, messageSentUnpublishedTextColor: string, messageSentUnpublishedMetadataTextColor:string, messageReceivedBgColor: string, messageReceivedTextColor: string, messageReceivedMetadataTextColor: string) : HTMLStyleElement{
+	
+	private generateCustomStyle(controlId: string, showScrollbar: boolean, maxHeight: string, messageSentBgColor: string, messageSentTextColor: string, messageSentMetadataTextColor: string, messageSentReadCheckmarkColor: string, messageSentUnpublishedBgColor: string, messageSentUnpublishedTextColor: string, messageSentUnpublishedMetadataTextColor:string, messageReceivedBgColor: string, messageReceivedTextColor: string, messageReceivedMetadataTextColor: string) : HTMLStyleElement{
 		let style = document.createElement("style");
 
-		style.innerHTML = "div.BeBeControls div#" + controlId + ".conversation { max-height: " + maxHeight + "px; }";
+		if(showScrollbar){
+			style.innerHTML = "div.BeBeControls div#" + controlId + ".conversation { overflow-y: scroll; }";
+		} else if(maxHeight && maxHeight !== "" && maxHeight !== null) {
+			style.innerHTML = "div.BeBeControls div#" + controlId + ".conversation { max-height: " + maxHeight + "; }";
+		}
 
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published { color: " + messageSentTextColor + "; }";
 

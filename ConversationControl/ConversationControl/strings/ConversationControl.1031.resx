@@ -67,125 +67,155 @@
   <data name="Dataset_Display_Key" xml:space="preserve">
     <value>DataSet</value>
   </data>
-  <data name="TextColumn_Display_Key" xml:space="preserve">
+  <data name="Property_TextColumn_Display_Key" xml:space="preserve">
     <value>Texts</value>
   </data>
-  <data name="TextColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_TextColumn_Desc_Key" xml:space="preserve">
     <value>Name der Spalte (Feldname), die den Text enthält, der in der Nachricht angezeigt werden soll</value>
   </data>
-  <data name="SenderColumn_Display_Key" xml:space="preserve">
+  <data name="Property_SenderColumn_Display_Key" xml:space="preserve">
     <value>Absender</value>
   </data>
-  <data name="SenderColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_SenderColumn_Desc_Key" xml:space="preserve">
     <value>Name der Spalte (Feldname), die den Absender identifiziert.</value>
   </data>
-  <data name="DateColumn_Display_Key" xml:space="preserve">
+  <data name="Property_DateColumn_Display_Key" xml:space="preserve">
     <value>Datum</value>
   </data>
-  <data name="DateColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_DateColumn_Desc_Key" xml:space="preserve">
     <value>Name der Spalte (Feldname), die die Datumsinformationen enthält, die in der Nachricht angezeigt werden sollen.</value>
   </data>
-  <data name="ReadColumn_Display_Key" xml:space="preserve">
+  <data name="Property_ReadColumn_Display_Key" xml:space="preserve">
     <value>Gelesen</value>
   </data>
-  <data name="ReadColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_ReadColumn_Desc_Key" xml:space="preserve">
     <value>Name der Spalte (Feldname), die die Information enthält, ob die Nachricht vom Kunden gelesen wurde. Kann zwei Optionen oder ein Datum sein.</value>
   </data>
-  <data name="PublishedColumn_Display_Key" xml:space="preserve">
+  <data name="Property_PublishedColumn_Display_Key" xml:space="preserve">
     <value>Veröffentlicht</value>
   </data>
-  <data name="PublishedColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_PublishedColumn_Desc_Key" xml:space="preserve">
     <value>Name der Sspalte (Feldname), die die Information enthält, ob die Nachricht für den Kunden veröffentlicht wurde. Kann zwei Optionen oder ein Datum sein.</value>
   </data>
-  <data name="HasAttachmentsColumn_Display_Key" xml:space="preserve">
+  <data name="Property_HasAttachmentsColumn_Display_Key" xml:space="preserve">
     <value>Hat Anhänge</value>
   </data>
-  <data name="HasAttachmentsColumn_Desc_Key" xml:space="preserve">
+  <data name="Property_HasAttachmentsColumn_Desc_Key" xml:space="preserve">
     <value>Name der Spalte (Feldname), die die Information enthält, ob die Nachricht Anhänge enthält.</value>
   </data>
-  <data name="CustomerIdentifier_Display_Key" xml:space="preserve">
+  <data name="Property_CustomerIdentifier_Display_Key" xml:space="preserve">
     <value>Kunden "Identifier"</value>
   </data>
-  <data name="CustomerIdentifier_Desc_Key" xml:space="preserve">
+  <data name="Property_CustomerIdentifier_Desc_Key" xml:space="preserve">
     <value>Die ID des OptionSet-Werts, der den Absender als Kunden identifiziert. Kann eine durch Kommas getrennte Liste mehrerer Werte sein.</value>
   </data>
-  <data name="MaxHeight_Display_Key" xml:space="preserve">
+  <data name="Property_MaxHeight_Display_Key" xml:space="preserve">
     <value>Maximale Höhe</value>
   </data>
-  <data name="MaxHeight_Desc_Key" xml:space="preserve">
-    <value>Definiert die maximale Höhe, die das Steuerelement (innerer Konversationscontainer) haben soll.</value>
+  <data name="Property_MaxHeight_Desc_Key" xml:space="preserve">
+    <value>Definiert die maximale Höhe, die die Konversation haben soll. Wird nur genutzt wenn der "Scrollbar" angezeigt wird.</value>
   </data>
-  <data name="SentMessageBgColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageBgColor_Display_Key" xml:space="preserve">
     <value>Hintergrundfarbe für gesendete Nachrichten</value>
   </data>
-  <data name="SentMessageBgColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageBgColor_Desc_Key" xml:space="preserve">
     <value>Die Farbe, die eine gesendete Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
   </data>
-  <data name="SentMessageNotPublishedBgColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedBgColor_Display_Key" xml:space="preserve">
     <value>Hintergrundfarbe für gesendete, nicht veröffentlichte Nachrichten</value>
   </data>
-  <data name="SentMessageNotPublishedBgColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedBgColor_Desc_Key" xml:space="preserve">
     <value>Die Farbe doe eine gesendeten Nachricht, die noch nicht veröffentlicht wurde, haben sollte. Muss ein gültiger CSS-Wert sein.</value>
   </data>
-  <data name="SentMessageTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageTextColor_Display_Key" xml:space="preserve">
     <value>Textfarbe der gesendeten Nachrichten</value>
   </data>
-  <data name="SentMessageTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageTextColor_Desc_Key" xml:space="preserve">
     <value>Die Farbe, die der Text einer gesendeten Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
   </data>
-  <data name="ReceivedMessageBgColor_Display_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageBgColor_Display_Key" xml:space="preserve">
     <value>Hintergrundfarbe der empfangene Nachrichten</value>
   </data>
-  <data name="ReceivedMessageBgColor_Desc_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageBgColor_Desc_Key" xml:space="preserve">
     <value>Die Farbe, die eine empfangene Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
   </data>
-  <data name="SentMessageMetadataTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageMetadataTextColor_Display_Key" xml:space="preserve">
     <value>Textfarbe für metadaten von gesendeten Nachrichte</value>
   </data>
-  <data name="SentMessageMetadataTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageMetadataTextColor_Desc_Key" xml:space="preserve">
     <value>Die Farbe, die die Metadaten einer gesendeten Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
   </data>
-  <data name="ReceivedMessageTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageTextColor_Display_Key" xml:space="preserve">
     <value>Textfarbe der empfangenen Nachrichten</value>
   </data>
-  <data name="ReceivedMessageTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageTextColor_Desc_Key" xml:space="preserve">
     <value>Die Farbe, die der Text einer empfangenen Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
   </data>
-  <data name="ReceivedMessageMetadataTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageMetadataTextColor_Display_Key" xml:space="preserve">
     <value>Textfarbe für metadaten von empfangenen Nachrichte</value>
   </data>
-  <data name="ReceivedMessageMetadataTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_ReceivedMessageMetadataTextColor_Desc_Key" xml:space="preserve">
     <value>Die Farbe, die die metadaten einer empfangenen Nachricht haben sollte. Muss ein gültiger CSS-Wert sein.</value>
   </data>
-  <data name="SentMessageReadCheckmarkColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageReadCheckmarkColor_Display_Key" xml:space="preserve">
     <value>Farbe der "checkmarks" einer gelesenen Nachricht</value>
   </data>
-  <data name="SentMessageReadCheckmarkColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageReadCheckmarkColor_Desc_Key" xml:space="preserve">
     <value>Die Farbe, die die Häkchen einer gesendeten Nachricht haben sollten, wenn die Nachricht vom Kunden gelesen wurde. Muss ein gültiger CSS-Wert sein.</value>
   </data>
-  <data name="SentMessageNotPublishedTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedTextColor_Display_Key" xml:space="preserve">
     <value>Textfarbe der gesendeten, nicht veröffentlichte Nachrichten</value>
   </data>
-  <data name="SentMessageNotPublishedTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedTextColor_Desc_Key" xml:space="preserve">
     <value>Die Farbe, die der Text einer gesendeten Nachricht, die noch nicht veröffentlicht wurde, haben sollte. Muss ein gültiger CSS-Wert sein.</value>
   </data>
-  <data name="SentMessageNotPublishedMetaDataTextColor_Display_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedMetaDataTextColor_Display_Key" xml:space="preserve">
     <value>Textfarbe für metadaten von gesendeten, nicht veröffentlichte Nachrichten</value>
   </data>
-  <data name="SentMessageNotPublishedMetaDataTextColor_Desc_Key" xml:space="preserve">
+  <data name="Property_SentMessageNotPublishedMetaDataTextColor_Desc_Key" xml:space="preserve">
     <value>Die Farbe, die die Metadaten einer gesendeten Nachricht, die noch nicht veröffentlicht wurde, haben sollte. Muss ein gültiger CSS-Wert sein.</value>
   </data>
-  <data name="PropertyOpenInModal_Display_Key" xml:space="preserve">
-    <value>In "Modal" öffnen</value>
+  <data name="Property_OpenStrategy_Display_Key" xml:space="preserve">
+    <value>Open Strategy</value>
   </data>
-  <data name="PropertyOpenInModal_Desc_Key" xml:space="preserve">
-    <value>Konfiguriert ob Nachrichten in einem "Modal" geöffnet werden sollen.</value>
+  <data name="Property_OpenStrategy_Desc_Key" xml:space="preserve">
+    <value>Definiert, wie die Nachricht geöffnet werden soll.</value>
   </data>
-  <data name="PropertyopenInNewWindow_Display_Key" xml:space="preserve">
-    <value>In neuem Fenster öffnen</value>
+  <data name="Property_OpenStrategy_ModalCenter_Display_Key" xml:space="preserve">
+    <value>zentriertes "Modal" </value>
   </data>
-  <data name="PropertyopenInNewWindow_Desc_Key" xml:space="preserve">
-    <value>Konfiguriert ob Nachrichten in einem neuen Fenster geöffnet werden sollen. Funktioniert nur wenn Nachrichten nicht in einem "Modal" geöffnet werden.</value>
+  <data name="Property_OpenStrategy_ModalCenter_Desc_Key" xml:space="preserve">
+    <value>Nachricht wird in einem "Modal" geöffnet, dass auf der zentriert angezeigt wird</value>
+  </data>
+  <data name="Property_OpenStrategy_ModalRight_Display_Key" xml:space="preserve">
+    <value>"Modal" rechte Seite</value>
+  </data>
+  <data name="Property_OpenStrategy_ModalRight_Desc_Key" xml:space="preserve">
+    <value>Nachricht wird in einem "Modal" geöffnet, dass auf der rechten Seite angezeigt wird</value>
+  </data>
+  <data name="Property_OpenStrategy_NewWindow_Display_Key" xml:space="preserve">
+    <value>Neues Fenster</value>
+  </data>
+  <data name="Property_OpenStrategy_NewWindow_Desc_Key" xml:space="preserve">
+    <value>Nachricht wird in einem neuen Fenster geöffnet</value>
+  </data>
+  <data name="Property_OpenStrategy_CurrentTab_Display_Key" xml:space="preserve">
+    <value>Aktueller "Tab"</value>
+  </data>
+  <data name="Property_OpenStrategy_CurrentTab_Desc_Key" xml:space="preserve">
+    <value>Nachricht wird im aktuellen tab geöffnet</value>
+  </data>
+  <data name="Property_ShowScrollbar_Display_Key" xml:space="preserve">
+    <value>Scrollbar anzeigen</value>
+  </data>
+  <data name="Property_ShowScrollbar_Desc_Key" xml:space="preserve">
+    <value>Definiert, ob eine "Scrollbar" angezeigt werden soll</value>
+  </data>
+  <data name="Property_ModalWidth_Display_Key" xml:space="preserve">
+    <value>"Modal" breite</value>
+  </data>
+  <data name="Property_ModalWidth_Desc_Key" xml:space="preserve">
+    <value>Die Breite (in %), die das "Modal" haben sollte.</value>
   </data>
   <data name="No_Record_Found" xml:space="preserve">
     <value>Keine Daten verfügbar.</value>

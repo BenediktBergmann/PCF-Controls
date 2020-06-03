@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@types/node": "^10.12.18",
-    "@types/powerapps-component-framework": "^1.2.0"
+    "@types/powerapps-component-framework": "^1.2.0",
+    "@types/react": "^16.9.35",
+    "office-ui-fabric-react": "^7.117.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "pcf-scripts": "^1",

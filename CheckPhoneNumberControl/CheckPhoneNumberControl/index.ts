@@ -26,6 +26,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	private _maskValue = "******";
 	private _numberValidReturnValue = false;
 	private _openQuickCreate = false;
+	//private _fieldIsRequired = false;
 	private _clickToCall = "";
 
 	private _outputFormat: string;
@@ -119,6 +120,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._inputElement = document.createElement("input");
 		this._inputElement.setAttribute("id", "inputField");
 		this._inputElement.setAttribute("type", "text");
+		this._inputElement.value = context.parameters.valueField.raw? context.parameters.valueField.raw : this._emptyValue;
 		this._inputElement.addEventListener("change", this._inputElementOnChange);
 		this._inputElement.addEventListener("focus", this._inputElementOnFocus);
 		this._inputElement.addEventListener("focusout", this._inputElementOnFocusOut);
@@ -147,7 +149,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._errorContainer.appendChild(this._errorLabelElement);
 		
 		//Handle Value before we add the Elements
-		this.handleValue(context.parameters.valueField.raw);
+		this.checkInput(context.parameters.valueField.raw);
 
 		// appending the HTML elements to the control's HTML container element.
 		this._container.appendChild(this._inputElement);
@@ -165,14 +167,21 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
-		this.handleValue(context.parameters.valueField.raw);
+		this._context = context;
+		this.checkInput(context.parameters.valueField.raw);
 
-		let readOnly = this._context.mode.isControlDisabled;
+		let readOnly = context.mode.isControlDisabled;
 		let masked = false;
-		if (this._context.parameters.valueField.security) {
-			readOnly = readOnly || !this._context.parameters.valueField.security.editable;
-			masked = !this._context.parameters.valueField.security.readable;
+		if (context.parameters.valueField.security) {
+			readOnly = readOnly || !context.parameters.valueField.security.editable;
+			masked = !context.parameters.valueField.security.readable;
 		}
+
+		/*debugger;
+		let requiredLevel = context.parameters.valueField.attribute?.RequiredLevel;
+		if(requiredLevel === 1 || requiredLevel === 2){
+			this._fieldIsRequired = true;
+		}*/
 
 		this._inputElement.readOnly = readOnly;
 		if(readOnly){
@@ -223,32 +232,52 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	}
 
 	public inputOnChange():void{
-		if(this._inputElement.value === "" || this._inputElement.value === null || this.isCorrectPhoneNumber(this._inputElement.value)){
-			this._inputElement.classList.remove("incorrect");
-			this._errorContainer.classList.remove("inputError");
-			if(typeof this._iconElement !== 'undefined' && this._iconElement !== null){
-				this._iconElement.classList.remove("inputError");
-			}
-			var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(this._inputElement.value, this._defaultCC) : PhoneNumber(this._inputElement.value);
+		this.checkInput(this._inputElement.value);
+		this._notifyOutputChanged();
+	}
+
+	private checkInput(input: string | null){
+		if(input === "" || input === null){
+			this._inputElement.value = this._emptyValue;
+			this._value = "";
+
+			this.handleErrorMessage(false);
+		}
+		else if(input !== "" && input !== null && this.isCorrectPhoneNumber(input)){
+			this.handleErrorMessage(false);
+			var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(input, this._defaultCC) : PhoneNumber(input);
 
 			if(parsedPhoneNumber === undefined || !parsedPhoneNumber.isValid()){
-				this.handleValue(this._inputElement.value);
+				this._value = input;
 				this._numberValidReturnValue = false;
 			}else {
-				this.handleValue(parsedPhoneNumber.getNumber(this._outputFormat));
+				this._value = parsedPhoneNumber.getNumber(this._outputFormat);
+				this._inputElement.value = this._value;
 				this._numberValidReturnValue = true;
 			}
 		}
 		else{
+			this.handleErrorMessage(true);
+
+			this._value = input !== null? input : "";
+			this._numberValidReturnValue = false;
+		}
+	}
+
+	private handleErrorMessage(add: boolean){
+		if(add){
 			this._inputElement.classList.add("incorrect");
 			this._errorContainer.classList.add("inputError");
 			if(typeof this._iconElement !== 'undefined' && this._iconElement !== null){
 				this._iconElement.classList.add("inputError");
 			}
-			this._value = this._inputElement.value;
-			this._numberValidReturnValue = false;
+		} else {
+			this._inputElement.classList.remove("incorrect");
+			this._errorContainer.classList.remove("inputError");
+			if(typeof this._iconElement !== 'undefined' && this._iconElement !== null){
+				this._iconElement.classList.remove("inputError");
+			}
 		}
-		this._notifyOutputChanged();
 	}
 
 	private isCorrectPhoneNumber(value: string): boolean{
@@ -278,20 +307,6 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 			}
 		}
 		return isValid;
-	}
-
-	public handleValue(input: string|null): void
-	{
-		if(input === null || input === "")
-		{
-			this._inputElement.value = this._emptyValue;
-			this._value = "";
-		}
-		else
-		{
-			this._value = input;
-			this._inputElement.value = input;
-		}
 	}
 
 	public inputOnFocus():void

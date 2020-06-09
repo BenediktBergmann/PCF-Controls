@@ -217,6 +217,15 @@
   <data name="Property_ModalWidth_Desc_Key" xml:space="preserve">
     <value>Bredden (i %) som "Modal" ska ha.</value>
   </data>
+  <data name="Property_ShowEmptyMessages_Display_Key" xml:space="preserve">
+    <value>Visa tomt meddelande</value>
+  </data>
+  <data name="Property_ShowEmptyMessages_Desc_Key" xml:space="preserve">
+    <value>Definierar om tomma meddelanden ska visas.</value>
+  </data>
+    <data name="Wrong_Configuration" xml:space="preserve">
+    <value>Fel konfiguration</value>
+  </data>
   <data name="No_Record_Found" xml:space="preserve">
     <value>Ingen data tillgänglig.</value>
   </data>

@@ -20,6 +20,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	private _randomId: string;
 	private _openStrategy: openStrategyEnum;
 	private _modalWidth: number;
+	private _showEmptyMessages: boolean;
 
 	//Column variables
 	private _textColumn: string;
@@ -68,6 +69,11 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		let showScrollbar = false;
 		if(context.parameters.ShowScrollbar!.raw == "Yes"){
 			showScrollbar = true;
+		}
+
+		this._showEmptyMessages = false;
+		if(context.parameters.ShowEmptyMessages!.raw == "Yes"){
+			this._showEmptyMessages = true;
 		}
 
 		this._openStrategy = openStrategyEnum.ModalCenter;
@@ -133,6 +139,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 						messages: this.generateMessageArray(context.parameters.dataSetGrid),
 						randomId: this._randomId,
 						noRecordsText: this._context.resources.getString("No_Record_Found"),
+						showEmptyMessages: this._showEmptyMessages,
 						onClick: this.onMessageClick.bind(this)
 					}
 				),

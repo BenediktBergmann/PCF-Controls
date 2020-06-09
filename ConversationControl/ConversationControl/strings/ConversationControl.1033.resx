@@ -217,6 +217,15 @@
   <data name="Property_ModalWidth_Desc_Key" xml:space="preserve">
     <value>The width (in %) the Modal should have.</value>
   </data>
+  <data name="Property_ShowEmptyMessages_Display_Key" xml:space="preserve">
+    <value>Show empty messages</value>
+  </data>
+  <data name="Property_ShowEmptyMessages_Desc_Key" xml:space="preserve">
+    <value>Defines whether empty messages should be shown.</value>
+  </data>
+    <data name="Wrong_Configuration" xml:space="preserve">
+    <value>Wrong configuration</value>
+  </data>
   <data name="No_Record_Found" xml:space="preserve">
     <value>No data available.</value>
   </data>

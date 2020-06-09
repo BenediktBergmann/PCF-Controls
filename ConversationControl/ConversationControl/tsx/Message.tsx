@@ -16,15 +16,15 @@ export class Message extends React.Component<IMessageProps> {
     public render() {
         let hasAttachments;
         if(this.props.hasAttachments){
-            <i className="ms-Icon ms-Icon--Attach"></i>
+            hasAttachments = <i className="ms-Icon ms-Icon--Attach"></i>;
         }
 
         let checkMarks;
         if(this.props.sender === senderEnum.User && this.props.published){
-            <span className="checkmarks">
+            checkMarks = <span className="checkmarks">
                 <i className="ms-Icon ms-Icon--StatusCircleCheckmark"></i>
                 <i className="ms-Icon ms-Icon--StatusCircleCheckmark"></i>
-            </span>
+            </span>;
         }
 
         return (

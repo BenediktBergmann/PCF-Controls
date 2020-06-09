@@ -217,6 +217,15 @@
   <data name="Property_ModalWidth_Desc_Key" xml:space="preserve">
     <value>Die Breite (in %), die das "Modal" haben sollte.</value>
   </data>
+  <data name="Property_ShowEmptyMessages_Display_Key" xml:space="preserve">
+    <value>Leere Mitteilungen anzeigen</value>
+  </data>
+  <data name="Property_ShowEmptyMessages_Desc_Key" xml:space="preserve">
+    <value>Definiert ob leere Mitteilungen angezeigt werden sollen.</value>
+  </data>
+    <data name="Wrong_Configuration" xml:space="preserve">
+    <value>Fehler in der Konfiguration</value>
+  </data>
   <data name="No_Record_Found" xml:space="preserve">
     <value>Keine Daten verfügbar.</value>
   </data>

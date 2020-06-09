@@ -253,7 +253,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 										"<entity name='" + this._entityName + "' >" +
 											"<attribute name='regardingobjectid' />" +
 											"<filter>" +
-												"<condition attribute='activityid' operator='eq' value='" + activityId + "' uitype='incident' />" +
+												"<condition attribute='activityid' operator='eq' value='" + activityId + "' />" +
 											"</filter>" +
 										"</entity>" +
 									"</fetch>";
@@ -311,7 +311,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		innerFetchXml += (typeof this._readColumn !== 'undefined' && this._readColumn)?"<attribute name='" + this._readColumn + "' />" : "";
 		innerFetchXml += (typeof this._publishedColumn !== 'undefined' && this._publishedColumn)?"<attribute name='" + this._publishedColumn + "' />" : "";
 		innerFetchXml += 		"<filter>" +
-									"<condition attribute='regardingobjectid' operator='eq' value='" + regardingObjectId + "' uitype='incident' />" +
+									"<condition attribute='regardingobjectid' operator='eq' value='" + regardingObjectId + "' />" +
 								"</filter>";
 		innerFetchXml += (typeof this._dateColumn !== 'undefined' && this._dateColumn)?"<order attribute='" + this._dateColumn + "' />" : "<order attribute='createdon' />";
 		innerFetchXml += "</entity>" +

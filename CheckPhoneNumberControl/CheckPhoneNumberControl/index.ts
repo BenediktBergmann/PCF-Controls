@@ -229,7 +229,6 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	}
 
 	private checkInput(input: string | null){
-		debugger;
 		if(input === "" || input === null){
 			this._inputElement.value = this._emptyValue;
 			this._value = "";

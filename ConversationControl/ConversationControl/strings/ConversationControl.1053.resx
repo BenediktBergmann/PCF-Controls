@@ -217,6 +217,27 @@
   <data name="Property_ModalWidth_Desc_Key" xml:space="preserve">
     <value>Bredden (i %) som "Modal" ska ha.</value>
   </data>
+  <data name="Property_UseSubgridData_Display_Key" xml:space="preserve">
+    <value>Använd subgriddata</value>
+  </data>
+  <data name="Property_UseSubgridData_Desc_Key" xml:space="preserve">
+    <value>Definerar om data från "SubGrid" ska användas.</value>
+  </data>
+  <data name="Property_EntityName_Display_Key" xml:space="preserve">
+    <value>Entitetsnamn</value>
+  </data>
+  <data name="Property_EntityName_Desc_Key" xml:space="preserve">
+    <value>Namnet på den entitet som ska laddas när kontrollen inte ska använda subgriddata. Detta fält krävs när fältet "Använd subgriddata" är "No".</value>
+  </data>
+  <data name="Property_ShowEmptyMessages_Display_Key" xml:space="preserve">
+    <value>Visa tomt meddelande</value>
+  </data>
+  <data name="Property_ShowEmptyMessages_Desc_Key" xml:space="preserve">
+    <value>Definierar om tomma meddelanden ska visas.</value>
+  </data>
+    <data name="Wrong_Configuration" xml:space="preserve">
+    <value>Fel konfiguration</value>
+  </data>
   <data name="No_Record_Found" xml:space="preserve">
     <value>Ingen data tillgänglig.</value>
   </data>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="HideShowSecureStringControl" version="1.9.0" display-name-key="HideShowSecureStringControl_Display_Key" description-key="HideShowSecureStringControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
+  <control namespace="BeBeControls" constructor="HideShowSecureStringControl" version="1.9.1" display-name-key="HideShowSecureStringControl_Display_Key" description-key="HideShowSecureStringControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
     

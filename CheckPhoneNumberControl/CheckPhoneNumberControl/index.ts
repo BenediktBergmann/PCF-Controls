@@ -26,7 +26,6 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	private _maskValue = "******";
 	private _numberValidReturnValue = false;
 	private _openQuickCreate = false;
-	//private _fieldIsRequired = false;
 	private _clickToCall = "";
 
 	private _outputFormat: string;
@@ -177,12 +176,6 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 			masked = !context.parameters.valueField.security.readable;
 		}
 
-		/*debugger;
-		let requiredLevel = context.parameters.valueField.attribute?.RequiredLevel;
-		if(requiredLevel === 1 || requiredLevel === 2){
-			this._fieldIsRequired = true;
-		}*/
-
 		this._inputElement.readOnly = readOnly;
 		if(readOnly){
 			this._container.classList.add("readOnly");
@@ -233,15 +226,17 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 
 	public inputOnChange():void{
 		this.checkInput(this._inputElement.value);
-		this._notifyOutputChanged();
 	}
 
 	private checkInput(input: string | null){
+		debugger;
 		if(input === "" || input === null){
 			this._inputElement.value = this._emptyValue;
 			this._value = "";
+			this._numberValidReturnValue = true;
 
 			this.handleErrorMessage(false);
+			this._notifyOutputChanged();
 		}
 		else if(input !== "" && input !== null && this.isCorrectPhoneNumber(input)){
 			this.handleErrorMessage(false);
@@ -249,19 +244,24 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 
 			if(parsedPhoneNumber === undefined || !parsedPhoneNumber.isValid()){
 				this._value = input;
+				this._inputElement.value = this._value;
 				this._numberValidReturnValue = false;
 			}else {
 				this._value = parsedPhoneNumber.getNumber(this._outputFormat);
 				this._inputElement.value = this._value;
 				this._numberValidReturnValue = true;
 			}
+			this._notifyOutputChanged();
 		}
 		else{
 			this.handleErrorMessage(true);
 
 			this._value = input !== null? input : "";
+			this._inputElement.value = this._value;
 			this._numberValidReturnValue = false;
+			this._notifyOutputChanged();
 		}
+
 	}
 
 	private handleErrorMessage(add: boolean){

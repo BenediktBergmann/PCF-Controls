@@ -5,6 +5,7 @@ import * as ReactDOM from 'react-dom';
 import { Conversation } from './tsx/Conversation';
 import DataSetInterfaces = ComponentFramework.PropertyHelper.DataSetApi;
 import { IMessageProps } from "./tsx/Message";
+import { SpawnSyncOptionsWithBufferEncoding } from "child_process";
 
 type DataSet = ComponentFramework.PropertyTypes.DataSet;
 
@@ -20,6 +21,9 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	private _randomId: string;
 	private _openStrategy: openStrategyEnum;
 	private _modalWidth: number;
+	private _useSubgridData: boolean;
+	private _entityName: string;
+	private _showEmptyMessages: boolean;
 
 	//Column variables
 	private _textColumn: string;
@@ -69,6 +73,17 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		if(context.parameters.ShowScrollbar!.raw == "Yes"){
 			showScrollbar = true;
 		}
+
+		this._showEmptyMessages = false;
+		if(context.parameters.ShowEmptyMessages!.raw == "Yes"){
+			this._showEmptyMessages = true;
+		}
+
+		this._useSubgridData = false;
+		if(context.parameters.UseSubgridData!.raw == "Yes"){
+			this._useSubgridData = true;
+		}
+		this._entityName = context.parameters.EntityName!.raw? context.parameters.EntityName!.raw : "";
 
 		this._openStrategy = openStrategyEnum.ModalCenter;
 		if(context.parameters.OpenStrategy!.raw == openStrategyEnum.CurrentTab){
@@ -126,18 +141,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 				return;
 			}
 
-			ReactDOM.render(
-				React.createElement(
-					Conversation,
-					{
-						messages: this.generateMessageArray(context.parameters.dataSetGrid),
-						randomId: this._randomId,
-						noRecordsText: this._context.resources.getString("No_Record_Found"),
-						onClick: this.onMessageClick.bind(this)
-					}
-				),
-				this._conversation
-			);
+			this.generateConversation(context.parameters.dataSetGrid);
 		}
 	}
 
@@ -191,39 +195,6 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 			}
 		}
 	}
-
-	private generateMessageArray(messages: DataSet): IMessageProps[]{
-		let messagesArray: IMessageProps[] = [];
-
-		if(messages.sortedRecordIds.length > 0)
-		{
-			for(let currentRecordId of messages.sortedRecordIds){
-				let recordId = messages.records[currentRecordId].getRecordId();
-				let text = messages.records[currentRecordId].getFormattedValue(this._textColumn);
-				let sender = (this._customerIdentifyers.includes(messages.records[currentRecordId].getValue(this._senderColumn).toString()))? senderEnum.Customer : senderEnum.User;
-				let createDate = (typeof this._dateColumn !== 'undefined' && this._dateColumn !== "") ? messages.records[currentRecordId].getFormattedValue(this._dateColumn) : "";
-				let hasAttachments = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && messages.records[currentRecordId].getValue(this._hasAttachmentColumn) === "1")? true : false;
-
-				let read = false;
-				if(typeof this._readColumn === 'undefined' ||
-				  this._readColumn === "" || 
-				  (this._readColumn !== "" && messages.records[currentRecordId].getValue(this._readColumn) !== null)){
-					read = true;
-				}
-
-				let published = false;
-				if(typeof this._publishedColumn === 'undefined' ||
-				  this._publishedColumn === "" || 
-				  (this._publishedColumn !== "" && messages.records[currentRecordId].getValue(this._publishedColumn) !== null)){
-					published = true;
-				}
-
-				messagesArray.push({recordId: recordId, text: text, sender: sender, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments});
-			}
-		}
-
-		return messagesArray;
-	}
 	
 	private generateCustomStyle(controlId: string, showScrollbar: boolean, maxHeight: string, messageSentBgColor: string, messageSentTextColor: string, messageSentMetadataTextColor: string, messageSentReadCheckmarkColor: string, messageSentUnpublishedBgColor: string, messageSentUnpublishedTextColor: string, messageSentUnpublishedMetadataTextColor:string, messageReceivedBgColor: string, messageReceivedTextColor: string, messageReceivedMetadataTextColor: string) : HTMLStyleElement{
 		let style = document.createElement("style");
@@ -261,6 +232,184 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		return style;
 	}
 
+	private generateConversation(messages: DataSet){
+		if(this._useSubgridData)
+		{
+			let messagesArray: IMessageProps[] = [];
+
+			for(let currentRecordId of messages.sortedRecordIds){
+				messagesArray.push(this.generateIMessagePropFromEntity(messages.records[currentRecordId]));
+			}
+
+			this.renderConversation(messagesArray);
+		} else if(!this._useSubgridData && this._entityName != ""){
+			let activityId = (<any>this._context.mode).contextInfo.entityId;			
+
+			if(activityId){
+				// store reference to 'this' so it can be used in the callback method
+				var thisRef = this;
+
+				let outerFetchXml = "<fetch version='1.0' output-format='xml-platform' mapping='logical' >" +
+										"<entity name='" + this._entityName + "' >" +
+											"<attribute name='regardingobjectid' />" +
+											"<filter>" +
+												"<condition attribute='activityid' operator='eq' value='" + activityId + "' uitype='incident' />" +
+											"</filter>" +
+										"</entity>" +
+									"</fetch>";
+
+
+				this._context.webAPI
+				.retrieveMultipleRecords(thisRef._entityName, "?fetchXml=" + outerFetchXml)
+				.then(
+					function(response: ComponentFramework.WebApi.RetrieveMultipleResponse) {
+						let regardingObjectId = response.entities[0]['_regardingobjectid_value'];
+
+						thisRef.fetchDataFromWebAPI(regardingObjectId);
+					},
+					function(errorResponse: any) {
+						let messagesArray: IMessageProps[] = [];
+						thisRef.renderConversation(messagesArray);
+					}
+				);
+			} else if(!activityId && typeof Xrm !== 'undefined'){
+				let regardingObjectId = "";
+				let regardingObjectAttribute = (<any>Xrm).Page.getAttribute("regardingobjectid");
+				if(typeof regardingObjectAttribute !== 'undefined' && regardingObjectAttribute !== null){
+					let regardingObjectValue = (<any>Xrm).Page.getAttribute("regardingobjectid").getValue();
+					if(typeof regardingObjectValue !== 'undefined' && regardingObjectValue !== null){
+						regardingObjectId = regardingObjectValue[0]["id"].toString();
+						regardingObjectId = regardingObjectId.substr(1, regardingObjectId.length - 2);
+					}
+				}
+
+				if(regardingObjectId !== ""){
+					this.fetchDataFromWebAPI(regardingObjectId);
+				} else {
+					let messagesArray: IMessageProps[] = [];
+					this.renderConversation(messagesArray);
+				}
+			}else {
+				let messagesArray: IMessageProps[] = [];
+				this.renderConversation(messagesArray);
+			}
+		} else {
+			this.renderConversation([], this._context.resources.getString("Wrong_Configuration"))
+		}
+	}
+
+	private fetchDataFromWebAPI(regardingObjectId: string){
+		//Create FetchXML for sub grid to filter records based on GUID
+		let innerFetchXml = "<fetch version='1.0' output-format='xml-platform' mapping='logical' >" +
+								"<entity name='" + this._entityName + "' >" +
+								"<attribute name='activityid' />" +
+								"<attribute name='" + this._textColumn + "' />" +
+								"<attribute name='" + this._senderColumn + "' />";
+
+		innerFetchXml += (typeof this._dateColumn !== 'undefined' && this._dateColumn)?"<attribute name='" + this._dateColumn + "' />" : "<attribute name='createdon' />";
+		innerFetchXml += (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn)?"<attribute name='" + this._hasAttachmentColumn + "' />" : "";
+		innerFetchXml += (typeof this._readColumn !== 'undefined' && this._readColumn)?"<attribute name='" + this._readColumn + "' />" : "";
+		innerFetchXml += (typeof this._publishedColumn !== 'undefined' && this._publishedColumn)?"<attribute name='" + this._publishedColumn + "' />" : "";
+		innerFetchXml += 		"<filter>" +
+									"<condition attribute='regardingobjectid' operator='eq' value='" + regardingObjectId + "' uitype='incident' />" +
+								"</filter>";
+		innerFetchXml += (typeof this._dateColumn !== 'undefined' && this._dateColumn)?"<order attribute='" + this._dateColumn + "' />" : "<order attribute='createdon' />";
+		innerFetchXml += "</entity>" +
+						"</fetch>";
+
+		let thisRef = this;
+		this._context.webAPI
+		.retrieveMultipleRecords(this._entityName, "?fetchXml=" + innerFetchXml)
+		.then(
+			function(response: ComponentFramework.WebApi.RetrieveMultipleResponse) {
+				let messagesArray: IMessageProps[] = [];
+				for(let entity of response.entities){
+					messagesArray.push(thisRef.generateIMessagePropFromODataEntity(entity));
+				}
+				thisRef.renderConversation(messagesArray);
+			},
+			function(errorResponse: any) {
+				let messagesArray: IMessageProps[] = [];
+				thisRef.renderConversation(messagesArray);
+			}
+		);
+	}
+
+	private renderConversation(messages: IMessageProps[], message:string = ""){
+		ReactDOM.render(
+			React.createElement(
+				Conversation,
+				{
+					messages: messages,
+					randomId: this._randomId,
+					noRecordsText: message !== ""? message : this._context.resources.getString("No_Record_Found"),
+					showEmptyMessages: this._showEmptyMessages,
+					onClick: this.onMessageClick.bind(this)
+				}
+			),
+			this._conversation
+		);
+	}
+
+	private generateIMessagePropFromEntity(rawMessage: DataSetInterfaces.EntityRecord): IMessageProps{
+		let message : IMessageProps;
+
+		let recordId = rawMessage.getRecordId();
+		let text = rawMessage.getFormattedValue(this._textColumn);
+		let sender = (this._customerIdentifyers.includes(rawMessage.getValue(this._senderColumn).toString()))? senderEnum.Customer : senderEnum.User;
+		let createDate = (typeof this._dateColumn !== 'undefined' && this._dateColumn !== "") ? rawMessage.getFormattedValue(this._dateColumn) : "";
+		let hasAttachments = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && rawMessage.getValue(this._hasAttachmentColumn) === "1")? true : false;
+
+		let read = false;
+		if(typeof this._readColumn === 'undefined' ||
+			this._readColumn === "" || 
+			(this._readColumn !== "" && rawMessage.getValue(this._readColumn) !== null)){
+			read = true;
+		}
+
+		let published = false;
+		if(typeof this._publishedColumn === 'undefined' ||
+			this._publishedColumn === "" || 
+			(this._publishedColumn !== "" && rawMessage.getValue(this._publishedColumn) !== null)){
+			published = true;
+		}
+
+		message = {recordId: recordId, text: text, sender: sender, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments};
+
+		return message;
+	}
+
+	private generateIMessagePropFromODataEntity(rawMessage: ComponentFramework.WebApi.Entity): IMessageProps{
+		
+		let oDataFormatedValueSuffix = "@OData.Community.Display.V1.FormattedValue";
+
+		let message : IMessageProps;
+		
+		let recordId = rawMessage['activityid'];
+		let text = rawMessage[this._textColumn];
+		let sender = (this._customerIdentifyers.includes(rawMessage[this._senderColumn].toString()))? senderEnum.Customer : senderEnum.User;
+		let createDate = (typeof this._dateColumn !== 'undefined' && this._dateColumn !== "") ? rawMessage[this._dateColumn + oDataFormatedValueSuffix] : "";
+		let hasAttachments = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && typeof rawMessage[this._hasAttachmentColumn] !== 'undefined' && rawMessage[this._hasAttachmentColumn].toString() === "1")? true : false;
+
+		let read = false;
+		if(typeof this._readColumn === 'undefined' ||
+			this._readColumn === "" || 
+			(this._readColumn !== "" && typeof rawMessage[this._readColumn] !== 'undefined' && rawMessage[this._readColumn] !== null)){
+			read = true;
+		}
+
+		let published = false;
+		if(typeof this._publishedColumn === 'undefined' ||
+			this._publishedColumn === "" || 
+			(this._publishedColumn !== "" && typeof rawMessage[this._publishedColumn] !== 'undefined' && rawMessage[this._publishedColumn] !== null)){
+			published = true;
+		}
+
+		message = {recordId: recordId, text: text, sender: sender, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments};
+
+		return message;
+	}
+
 	private createId(length: number) {
 		let result = '';
 		let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -284,24 +433,32 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	 * Toggle 'LoadMore' button when needed
 	 */
 	private toggleLoadMoreButtonWhenNeeded(gridParam: DataSet): void {
-		if (
-			gridParam.paging.hasNextPage &&
-			this._loadPageButton.classList.contains(
-				DataSetControl_LoadMoreButton_Hidden_Style
-			)
-		) {
-			this._loadPageButton.classList.remove(
-				DataSetControl_LoadMoreButton_Hidden_Style
-			);
-		} else if (
-			!gridParam.paging.hasNextPage &&
-			!this._loadPageButton.classList.contains(
-				DataSetControl_LoadMoreButton_Hidden_Style
-			)
-		) {
-			this._loadPageButton.classList.add(
-				DataSetControl_LoadMoreButton_Hidden_Style
-			);
+		if(this._useSubgridData){
+			if (
+				gridParam.paging.hasNextPage &&
+				this._loadPageButton.classList.contains(
+					DataSetControl_LoadMoreButton_Hidden_Style
+				)
+			) {
+				this._loadPageButton.classList.remove(
+					DataSetControl_LoadMoreButton_Hidden_Style
+				);
+			} else if (
+				!gridParam.paging.hasNextPage &&
+				!this._loadPageButton.classList.contains(
+					DataSetControl_LoadMoreButton_Hidden_Style
+				)
+			) {
+				this._loadPageButton.classList.add(
+					DataSetControl_LoadMoreButton_Hidden_Style
+				);
+			}
+		} else {
+			if(!this._loadPageButton.classList.contains(DataSetControl_LoadMoreButton_Hidden_Style)){
+				this._loadPageButton.classList.add(
+					DataSetControl_LoadMoreButton_Hidden_Style
+				);
+			}
 		}
 	}
 }

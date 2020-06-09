@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="ConversationControl" version="1.8.12" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
+  <control namespace="BeBeControls" constructor="ConversationControl" version="1.8.19" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
     <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
     <!-- 
       For the additional configuration (which show the commandbar) to work we have to change the file node_modules/pcf-scripts/ManifestSchema.json.
@@ -57,6 +57,17 @@
     <property name="ReceivedMessageTextColor" display-name-key="Property_ReceivedMessageTextColor_Display_Key" description-key="Property_ReceivedMessageTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="ReceivedMessageMetadataTextColor" display-name-key="Property_ReceivedMessageMetadataTextColor_Display_Key" description-key="Property_ReceivedMessageMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" />
 
+    <property name="ShowEmptyMessages" display-name-key="Property_ShowEmptyMessages_Display_Key" description-key="Property_ShowEmptyMessages_Desc_Key" of-type="Enum" usage="input" required="true" default-value="No">
+      <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
+      <value name="No" display-name-key="No" description-key="No">No</value>
+    </property>
+
+    <property name="UseSubgridData" display-name-key="Property_UseSubgridData_Display_Key" description-key="Property_UseSubgridData_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Yes">
+      <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
+      <value name="No" display-name-key="No" description-key="No">No</value>  
+    </property>
+    <property name="EntityName" display-name-key="Property_EntityName_Display_Key" description-key="Property_EntityName_Desc_Key" of-type="SingleLine.Text" usage="input" />
+
     <resources>
       <code path="index.ts" order="1"/>
       <css path="css/ConversationControl.css" order="1" />
@@ -64,5 +75,9 @@
       <resx path="strings/ConversationControl.1033.resx" version="1.0.0" />
       <resx path="strings/ConversationControl.1053.resx" version="1.0.0" />
     </resources>
+
+    <feature-usage>
+			<uses-feature name="WebAPI" required="true" />
+		</feature-usage>
   </control>
 </manifest>

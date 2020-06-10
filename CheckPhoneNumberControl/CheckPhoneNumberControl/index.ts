@@ -195,16 +195,10 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	 */
 	public getOutputs(): IOutputs
 	{
-		if(this._numberValidReturnValue){
-			return {
-				valueField: this._value,
-				numberValid : this._numberValidReturnValue
-			};
-		} else{
-			return {
-				numberValid : this._numberValidReturnValue
-			};
-		}
+		return {
+			valueField: this._value,
+			numberValid : this._numberValidReturnValue
+		};
 	}
 
 	/** 

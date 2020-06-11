@@ -344,6 +344,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 					randomId: this._randomId,
 					noRecordsText: message !== ""? message : this._context.resources.getString("No_Record_Found"),
 					showEmptyMessages: this._showEmptyMessages,
+					currentRecordId: (<any>this._context.mode).contextInfo.entityId,
 					onClick: this.onMessageClick.bind(this)
 				}
 			),
@@ -380,7 +381,6 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	}
 
 	private generateIMessagePropFromODataEntity(rawMessage: ComponentFramework.WebApi.Entity): IMessageProps{
-		
 		let oDataFormatedValueSuffix = "@OData.Community.Display.V1.FormattedValue";
 
 		let message : IMessageProps;

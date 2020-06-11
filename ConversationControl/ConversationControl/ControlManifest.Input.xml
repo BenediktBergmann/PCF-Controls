@@ -35,6 +35,11 @@
 
     <property name="ModalWidth" display-name-key="Property_ModalWidth_Display_Key" description-key="Property_ModalWidth_Desc_Key" of-type="Whole.None" usage="input" required="false" default-value="50" />
 
+    <property name="ShowEmptyMessages" display-name-key="Property_ShowEmptyMessages_Display_Key" description-key="Property_ShowEmptyMessages_Desc_Key" of-type="Enum" usage="input" required="true" default-value="No">
+      <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
+      <value name="No" display-name-key="No" description-key="No">No</value>
+    </property>
+
     <!--<property name="MessageStyle" display-name-key="Property_MessageStyle_Display_Key" description-key="Property_MessageStyle_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Kaizala">
       <value name="Kaizala" display-name-key="Kaizala" description-key="Kaizala">Kaizala</value> 
       <value name="WhatsApp" display-name-key="WhatsApp" description-key="WhatsApp">WhatsApp</value>  
@@ -56,11 +61,6 @@
     <property name="ReceivedMessageBgColor" display-name-key="Property_ReceivedMessageBgColor_Display_Key" description-key="Property_ReceivedMessageBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="ReceivedMessageTextColor" display-name-key="Property_ReceivedMessageTextColor_Display_Key" description-key="Property_ReceivedMessageTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="ReceivedMessageMetadataTextColor" display-name-key="Property_ReceivedMessageMetadataTextColor_Display_Key" description-key="Property_ReceivedMessageMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" />
-
-    <property name="ShowEmptyMessages" display-name-key="Property_ShowEmptyMessages_Display_Key" description-key="Property_ShowEmptyMessages_Desc_Key" of-type="Enum" usage="input" required="true" default-value="No">
-      <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
-      <value name="No" display-name-key="No" description-key="No">No</value>
-    </property>
 
     <property name="UseSubgridData" display-name-key="Property_UseSubgridData_Display_Key" description-key="Property_UseSubgridData_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Yes">
       <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 

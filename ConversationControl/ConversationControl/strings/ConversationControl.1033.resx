@@ -217,6 +217,18 @@
   <data name="Property_ModalWidth_Desc_Key" xml:space="preserve">
     <value>The width (in %) the Modal should have.</value>
   </data>
+  <data name="Property_UseSubgridData_Display_Key" xml:space="preserve">
+    <value>Use Subgrid data</value>
+  </data>
+  <data name="Property_UseSubgridData_Desc_Key" xml:space="preserve">
+    <value>Defines whether the control should use the subgrid data</value>
+  </data>
+  <data name="Property_EntityName_Display_Key" xml:space="preserve">
+    <value>Entity name</value>
+  </data>
+  <data name="Property_EntityName_Desc_Key" xml:space="preserve">
+    <value>Name of the entity that should be loaded when the control should not use the subgrid data. This field is required when the "Use Subgrid data" field is "no".</value>
+  </data>
   <data name="Property_ShowEmptyMessages_Display_Key" xml:space="preserve">
     <value>Show empty messages</value>
   </data>

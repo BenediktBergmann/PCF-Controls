@@ -119,10 +119,10 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._inputElement = document.createElement("input");
 		this._inputElement.setAttribute("id", "inputField");
 		this._inputElement.setAttribute("type", "text");
-		this._inputElement.value = context.parameters.valueField.raw? context.parameters.valueField.raw : this._emptyValue;
 		this._inputElement.addEventListener("change", this._inputElementOnChange);
 		this._inputElement.addEventListener("focus", this._inputElementOnFocus);
 		this._inputElement.addEventListener("focusout", this._inputElementOnFocusOut);
+		this._inputElement.value = context.parameters.valueField.raw? context.parameters.valueField.raw : this._emptyValue;
 
 		if(showButton){
 			this._container.classList.add("iconPresent");
@@ -149,6 +149,7 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		
 		//Handle Value before we add the Elements
 		this.checkInput(context.parameters.valueField.raw);
+		this._notifyOutputChanged();
 
 		// appending the HTML elements to the control's HTML container element.
 		this._container.appendChild(this._inputElement);
@@ -184,8 +185,8 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		}
 
 		if(masked){
-			this._inputElement.value = this._maskValue;
 			this._value = this._inputElement.value;
+			this._inputElement.value = this._maskValue;
 		}
 	}
 
@@ -219,7 +220,10 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	}
 
 	public inputOnChange():void{
-		this.checkInput(this._inputElement.value);
+		if(this._inputElement.value !== this._emptyValue){
+			this.checkInput(this._inputElement.value);
+			this._notifyOutputChanged();
+		}
 	}
 
 	private checkInput(input: string | null){
@@ -229,7 +233,6 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 			this._numberValidReturnValue = true;
 
 			this.handleErrorMessage(false);
-			this._notifyOutputChanged();
 		}
 		else if(input !== "" && input !== null && this.isCorrectPhoneNumber(input)){
 			this.handleErrorMessage(false);
@@ -244,7 +247,6 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 				this._inputElement.value = this._value;
 				this._numberValidReturnValue = true;
 			}
-			this._notifyOutputChanged();
 		}
 		else{
 			this.handleErrorMessage(true);
@@ -252,7 +254,6 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 			this._value = input !== null? input : "";
 			this._inputElement.value = this._value;
 			this._numberValidReturnValue = false;
-			this._notifyOutputChanged();
 		}
 
 	}

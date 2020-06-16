@@ -12,7 +12,7 @@ export interface IMessageProps {
     onClick?: (recordId: string) => void
 }
 
-export class Message extends React.Component<IMessageProps> {
+export class Message extends React.PureComponent<IMessageProps> {
     public render() {
         let hasAttachments;
         if(this.props.hasAttachments){

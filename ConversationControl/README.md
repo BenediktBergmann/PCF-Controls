@@ -15,15 +15,16 @@ Configuration | Description | Required | Default value
 ------------ | ------------- | ------------- | -------------
 TextColumn | Name of the field that contains the text that should be shown | X |
 SenderColumn | Name of field that identifies the sender | X |
+CustomerIdentifier | Komma separated list of value ids (values of the optionSet which is configured as "SenderColumn") that identify the sender as the customer | X |
 DateColumn | Name of the field that contains the date that should be shown | |
 ReadColumn | Name of field that identifies whether the sent message was read | |
 PublishedColumn | Name of field to identify whether the sent message was published | |
 HasAttachmentsColumn | Name of field that indicates whether the message contains attachments | |
-CustomerIdentifier | Komma separated list of value ids (values of the optionSet which is configured as "SenderColumn") that identify the sender as the customer | X |
 ShowScrollbar | Defines whether to show a scrollbar beside the control | |
 Maxheight | The maximal height the control (inner conversation container) should have. Has to be a valid css value (for example "300px" or "50%"). Will only be used when a scrollbar should be shown. |  |
 OpenStrategy | Dropdown of different possibilities on how to open messages. | X | Modal Center
 ModalWidth | The procentual width the modal should have | | 50
+ShowEmptyMessages | Defines whether to show empty messages | X | No
 SentMessageBgColor | Background color for sent messages | | #e1ffc7
 SentMessageTextColor | Text color for sent messages | | #000000
 SentMessageMetadataTextColor | Text color for the metadata of sent messages | | #888888
@@ -34,6 +35,8 @@ SentMessageNotPublishedMetadataTextColor | Text color for the metadata of sent m
 ReceivedMessageBgColor | Background color for received messages | | #eeeeee
 ReceivedMessageTextColor | Text color for received messages | | #000000
 ReceivedMessageMetadataTextColor | Text color for the metadata of received messages | | #888888
+UseSubgridData | Defines whether the Control should use the data of the Subgrid or load it seperately. Can be used if the usual Subgrid is not able to provide correct data (for example: On the message form the conversation (all messages related to the case) should be shown). Only works with acitvities at the moment. | X | Yes
+EntityName | Name of the activity entity that should be loaded when the "UseSubgridData" configuration is "No". | | 
 
 I wrote a blog post to explain how to configure the control. You can find it [here](https://benediktbergmann.eu/2020/05/23/pcf-use-conversationcontrol/).
 
@@ -41,6 +44,7 @@ I wrote a blog post to explain how to configure the control. You can find it [he
 - [X] "No records found" message
 - [X] "Load more" button
 - [X] Add configuration to open messages in modal
+- [X] Use React
 - [ ] Read & Published either date or two options
 - [ ] HTML encoding of text
 - [ ] Add Pagination

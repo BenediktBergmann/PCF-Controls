@@ -32,9 +32,9 @@ export class Conversation extends React.Component<IConversationProps> {
         } else {
             return (
                 <div id={this.props.randomId} className="conversation">
-                    {this.props.messages.map(({recordId, text, sender, published, createDate, read, hasAttachments}) => {
+                    {this.props.messages.map(({recordId, text, sender, published, createDate, read, hasAttachments, hasError}) => {
                         if(this.props.showEmptyMessages || (!this.props.showEmptyMessages && text !== "" && text !== null && typeof text !== 'undefined')){
-                            return <Message key={recordId} recordId={recordId} text={text} sender={sender} published={published} createDate={createDate} read={read} hasAttachments={hasAttachments} onClick={this.props.currentRecordId !== recordId? this.props.onClick : undefined} />
+                            return <Message key={recordId} recordId={recordId} text={text} sender={sender} published={published} createDate={createDate} read={read} hasAttachments={hasAttachments} hasError={hasError} onClick={this.props.currentRecordId !== recordId? this.props.onClick : undefined} />
                         }
                     })}
                 </div>

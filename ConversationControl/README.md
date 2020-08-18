@@ -20,6 +20,7 @@ DateColumn | Name of the field that contains the date that should be shown | |
 ReadColumn | Name of field that identifies whether the sent message was read | |
 PublishedColumn | Name of field to identify whether the sent message was published | |
 HasAttachmentsColumn | Name of field that indicates whether the message contains attachments | |
+HasErrorsColumn | Name of field that indicates whether the message has errors | |
 ShowScrollbar | Defines whether to show a scrollbar beside the control | |
 Maxheight | The maximal height the control (inner conversation container) should have. Has to be a valid css value (for example "300px" or "50%"). Will only be used when a scrollbar should be shown. |  |
 OpenStrategy | Dropdown of different possibilities on how to open messages. | X | Modal Center
@@ -29,6 +30,9 @@ SentMessageBgColor | Background color for sent messages | | #e1ffc7
 SentMessageTextColor | Text color for sent messages | | #000000
 SentMessageMetadataTextColor | Text color for the metadata of sent messages | | #888888
 SentMessageReadCheckmarkColor | Color for checkmarks when sent message was read by the customer | | #4fc3f7
+SentMessageHasErrorBgColor | Background color for sent messages with errors | | #960f00
+SentMessageHasErrorTextColor | Text color for sent messages with errors | | #000000
+SentMessageHasErrorMetadataTextColor | Text color for the metadata of sent messages with errors | | #888888
 SentMessageNotPublishedBgColor | Beackground color for sent messages that are not published yet | | #f1ffe4
 SentMessageNotPublishedTextColor | Text color for sent messages that are not published yet | | #000000
 SentMessageNotPublishedMetadataTextColor | Text color for the metadata of sent messages that are not published yet | | #888888

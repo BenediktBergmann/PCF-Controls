@@ -103,6 +103,12 @@
   <data name="Property_HasAttachmentsColumn_Desc_Key" xml:space="preserve">
     <value>Namn på vykolumnen (fältnamn) som innehåller informationen om meddelandet har bilagor.</value>
   </data>
+  <data name="Property_HasErrorColumn_Display_Key" xml:space="preserve">
+    <value>Har fel</value>
+  </data>
+  <data name="Property_HasErrorColumn_Desc_Key" xml:space="preserve">
+    <value>Namn på vykolumnen (fältnamn) som innehåller informationen om meddelandet har fel.</value>
+  </data>
   <data name="Property_CustomerIdentifier_Display_Key" xml:space="preserve">
     <value>Kundidentifierare</value>
   </data>
@@ -121,6 +127,12 @@
   <data name="Property_SentMessageBgColor_Desc_Key" xml:space="preserve">
     <value>Färgen som ett skickat meddelande ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
+  <data name="Property_SentMessageHasErrorBgColor_Display_Key" xml:space="preserve">
+    <value>Bakgrundsfärg för skickat meddelande som har fel</value>
+  </data>
+  <data name="Property_SentMessageHasErrorBgColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som ett skickat meddelande som har fel ska ha. Måste vara ett giltigt css-värde.</value>
+  </data>
   <data name="Property_SentMessageNotPublishedBgColor_Display_Key" xml:space="preserve">
     <value>Bakgrundsfärg för ej publicerad skickat meddelande</value>
   </data>
@@ -133,6 +145,12 @@
   <data name="Property_SentMessageTextColor_Desc_Key" xml:space="preserve">
     <value>Färgen som texten på ett skickat meddelande ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
+  <data name="Property_SentMessageHasErrorTextColor_Display_Key" xml:space="preserve">
+    <value>Textfärg för skickad meddelanden som har fel</value>
+  </data>
+  <data name="Property_SentMessageHasErrorTextColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som texten på ett skickat meddelande som har fel ska ha. Måste vara ett giltigt css-värde.</value>
+  </data>
   <data name="Property_ReceivedMessageBgColor_Display_Key" xml:space="preserve">
     <value>Bakgrundsfärg för mottaget meddelande</value>
   </data>
@@ -144,6 +162,12 @@
   </data>
   <data name="Property_SentMessageMetadataTextColor_Desc_Key" xml:space="preserve">
     <value>Färgen som metadata på ett skickat meddelande ska ha. Måste vara ett giltigt css-värde.</value>
+  </data>
+  <data name="Property_SentMessageHasErrorMetadataTextColor_Display_Key" xml:space="preserve">
+    <value>Textfärg för metadata av skickad meddelanden som har fel</value>
+  </data>
+  <data name="Property_SentMessageHasErrorMetadataTextColor_Desc_Key" xml:space="preserve">
+    <value>Färgen som metadata på ett skickat meddelande som har fel ska ha. Måste vara ett giltigt css-värde.</value>
   </data>
   <data name="Property_ReceivedMessageTextColor_Display_Key" xml:space="preserve">
     <value>Textfärg för mottaget meddelanden</value>

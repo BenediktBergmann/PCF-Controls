@@ -9,6 +9,7 @@ export interface IMessageProps {
     createDate: string,
     read: boolean,
     hasAttachments: boolean,
+    hasError: boolean,
     onClick?: (recordId: string) => void
 }
 
@@ -56,6 +57,10 @@ export class Message extends React.PureComponent<IMessageProps> {
             }
             else {
                 cssClasses.push("notPublished");
+            }
+
+            if(this.props.hasError){
+                cssClasses.push("hasError")
             }
         }
         else {

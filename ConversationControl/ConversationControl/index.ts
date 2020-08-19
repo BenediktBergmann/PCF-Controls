@@ -398,8 +398,8 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		let text = rawMessage[this._textColumn];
 		let sender = (this._customerIdentifyers.includes(rawMessage[this._senderColumn].toString()))? senderEnum.Customer : senderEnum.User;
 		let createDate = (typeof this._dateColumn !== 'undefined' && this._dateColumn !== "") ? rawMessage[this._dateColumn + oDataFormatedValueSuffix] : "";
-		let hasAttachments = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && typeof rawMessage[this._hasAttachmentColumn] !== 'undefined' && rawMessage[this._hasAttachmentColumn].toString() === "1")? true : false;
-		let hasErorr = (typeof this._hasErrorColumn !== 'undefined' && this._hasErrorColumn !== "" && typeof rawMessage[this._hasErrorColumn] !== 'undefined' && rawMessage[this._hasErrorColumn].toString() === "1")? true : false;
+		let hasAttachments = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && typeof rawMessage[this._hasAttachmentColumn] !== 'undefined' && rawMessage[this._hasAttachmentColumn].toString() === "true")? true : false;
+		let hasErorr = (typeof this._hasErrorColumn !== 'undefined' && this._hasErrorColumn !== "" && typeof rawMessage[this._hasErrorColumn] !== 'undefined' && rawMessage[this._hasErrorColumn].toString() === "true")? true : false;
 
 		let read = false;
 		if(typeof this._readColumn === 'undefined' ||

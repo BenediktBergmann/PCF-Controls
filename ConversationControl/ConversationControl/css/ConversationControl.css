@@ -40,7 +40,7 @@ div.BeBeControls div.conversation .message {
 div.BeBeControls div.conversation .message p {
     max-width: 100%;
     overflow-wrap: break-word;
-    white-space:normal;
+    white-space: pre-wrap;
 }
   
 div.BeBeControls div.conversation .message:after {
@@ -73,7 +73,7 @@ div.BeBeControls div.conversation .message.sent:after {
 }
 
 div.BeBeControls div.conversation .message .metadata {
-    display: inline-block;
+    display: block;
     float: right;
     padding: 0 0 0 7px;
     position: relative;

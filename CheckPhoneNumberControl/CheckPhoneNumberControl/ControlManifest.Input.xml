@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="CheckPhoneNumberControl" version="1.9.4" display-name-key="CheckPhoneNumberControl_Display_Key" description-key="CheckPhoneNumberControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
+  <control namespace="BeBeControls" constructor="CheckPhoneNumberControl" version="1.9.6" display-name-key="CheckPhoneNumberControl_Display_Key" description-key="CheckPhoneNumberControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
-    <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type="SingleLine.Phone" usage="bound" required="true" />
+    <type-group name="phone">
+      <type>SingleLine.Phone</type>
+      <type>SingleLine.Text</type>
+    </type-group>
+    <property name="valueField" display-name-key="PropertyValueField_Display_Key" description-key="PropertyValueField_Desc_Key" of-type-group="phone" usage="bound" required="true" />
     <property name="numberValid" display-name-key="PropertyNumberValidField_Display_Key" description-key="PropertyNumberValidField_Desc_Key" of-type="TwoOptions" usage="bound" required="false" />
 
     <property name="outputFormat" display-name-key="PropertyOutputFormat_Display_Key" description-key="PropertyOutputFormat_Desc_Key" of-type="Enum" usage="input" required="true" default-value="International">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="ConversationControl" version="1.9.4" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
+  <control namespace="BeBeControls" constructor="ConversationControl" version="1.10.2" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
 
     <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
     <!-- 
@@ -20,6 +20,7 @@
     <property name="ReadColumn" display-name-key="Property_ReadColumn_Display_Key" description-key="Property_ReadColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="PublishedColumn" display-name-key="Property_PublishedColumn_Display_Key" description-key="Property_PublishedColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="HasAttachmentsColumn" display-name-key="Property_HasAttachmentsColumn_Display_Key" description-key="Property_HasAttachmentsColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="HasErrorColumn" display-name-key="Property_HasErrorColumn_Display_Key" description-key="Property_HasErrorColumn_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
 
     <property name="ShowScrollbar" display-name-key="Property_ShowScrollbar_Display_Key" description-key="Property_ShowScrollbar_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Yes">
       <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
@@ -56,6 +57,9 @@
     <property name="SentMessageTextColor" display-name-key="Property_SentMessageTextColor_Display_Key" description-key="Property_SentMessageTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="SentMessageMetadataTextColor" display-name-key="Property_SentMessageMetadataTextColor_Display_Key" description-key="Property_SentMessageMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="SentMessageReadCheckmarkColor" display-name-key="Property_SentMessageReadCheckmarkColor_Display_Key" description-key="Property_SentMessageReadCheckmarkColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageHasErrorBgColor" display-name-key="Property_SentMessageHasErrorBgColor_Display_Key" description-key="Property_SentMessageHasErrorBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageHasErrorTextColor" display-name-key="Property_SentMessageHasErrorTextColor_Display_Key" description-key="Property_SentMessageHasErrorTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
+    <property name="SentMessageHasErrorMetadataTextColor" display-name-key="Property_SentMessageHasErrorMetadataTextColor_Display_Key" description-key="Property_SentMessageHasErrorMetadataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="SentMessageNotPublishedBgColor" display-name-key="Property_SentMessageNotPublishedBgColor_Display_Key" description-key="Property_SentMessageNotPublishedBgColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="SentMessageNotPublishedTextColor" display-name-key="Property_SentMessageNotPublishedTextColor_Display_Key" description-key="Property_SentMessageNotPublishedTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />
     <property name="SentMessageNotPublishedMetaDataTextColor" display-name-key="Property_SentMessageNotPublishedMetaDataTextColor_Display_Key" description-key="Property_SentMessageNotPublishedMetaDataTextColor_Desc_Key" of-type="SingleLine.Text" usage="input" required="false" />

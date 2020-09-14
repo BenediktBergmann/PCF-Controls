@@ -103,6 +103,12 @@
   <data name="Property_HasAttachmentsColumn_Desc_Key" xml:space="preserve">
     <value>Name of the view column (field name) that holds the information whether the message has attachments.</value>
   </data>
+  <data name="Property_HasErrorColumn_Display_Key" xml:space="preserve">
+    <value>Has errors column</value>
+  </data>
+  <data name="Property_HasErrorColumn_Desc_Key" xml:space="preserve">
+    <value>Name of the view column (field name) that holds the information whether the message has errors.</value>
+  </data>
   <data name="Property_CustomerIdentifier_Display_Key" xml:space="preserve">
     <value>Customer Identifier</value>
   </data>
@@ -121,6 +127,12 @@
   <data name="Property_SentMessageBgColor_Desc_Key" xml:space="preserve">
     <value>The color a sent message should have. Has to be a valid css value.</value>
   </data>
+  <data name="Property_SentMessageHasErrorBgColor_Display_Key" xml:space="preserve">
+    <value>Sent message with error background color</value>
+  </data>
+  <data name="Property_SentMessageHasErrorBgColor_Desc_Key" xml:space="preserve">
+    <value>The color a sent message with errors should have. Has to be a valid css value.</value>
+  </data>
   <data name="Property_SentMessageNotPublishedBgColor_Display_Key" xml:space="preserve">
     <value>Sent message not published background color</value>
   </data>
@@ -133,6 +145,12 @@
   <data name="Property_SentMessageTextColor_Desc_Key" xml:space="preserve">
     <value>The color the text of a sent message should have. Has to be a valid css value.</value>
   </data>
+  <data name="Property_SentMessageHasErrorTextColor_Display_Key" xml:space="preserve">
+    <value>Sent message with error text color</value>
+  </data>
+  <data name="Property_SentMessageHasErrorTextColor_Desc_Key" xml:space="preserve">
+    <value>The color the text of a sent message with error should have. Has to be a valid css value.</value>
+  </data>
   <data name="Property_ReceivedMessageBgColor_Display_Key" xml:space="preserve">
     <value>Received message background color</value>
   </data>
@@ -144,6 +162,12 @@
   </data>
   <data name="Property_SentMessageMetadataTextColor_Desc_Key" xml:space="preserve">
     <value>The color the metadata of a sent message should have. Has to be a valid css value.</value>
+  </data>
+  <data name="Property_SentMessageHasErrorMetadataTextColor_Display_Key" xml:space="preserve">
+    <value>Sent message with error metadata text color</value>
+  </data>
+  <data name="Property_SentMessageHasErrorMetadataTextColor_Desc_Key" xml:space="preserve">
+    <value>The color the metadata of a sent message with error should have. Has to be a valid css value.</value>
   </data>
   <data name="Property_ReceivedMessageTextColor_Display_Key" xml:space="preserve">
     <value>Received message text color</value>

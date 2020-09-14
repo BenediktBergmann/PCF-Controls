@@ -32,6 +32,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	private _readColumn: string;
 	private _publishedColumn: string;
 	private _hasAttachmentColumn: string;
+	private _hasErrorColumn: string;
 	private _customerIdentifyers: string[];
 
 	// HTML container
@@ -67,6 +68,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		this._readColumn = context.parameters.ReadColumn.raw? context.parameters.ReadColumn.raw : "";
 		this._publishedColumn = context.parameters.PublishedColumn.raw? context.parameters.PublishedColumn.raw : "";
 		this._hasAttachmentColumn = context.parameters.HasAttachmentsColumn.raw? context.parameters.HasAttachmentsColumn.raw : "";
+		this._hasErrorColumn = context.parameters.HasErrorColumn.raw? context.parameters.HasErrorColumn.raw : "";
 		this._customerIdentifyers = context.parameters.CustomerIdentifier.raw? context.parameters.CustomerIdentifier.raw.split(',') : [];
 
 		let showScrollbar = false;
@@ -100,6 +102,9 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		let messageSentTextColor = context.parameters.SentMessageTextColor.raw? context.parameters.SentMessageTextColor.raw : "#000000";
 		let messageSentMetadataTextColor = context.parameters.SentMessageMetadataTextColor.raw? context.parameters.SentMessageMetadataTextColor.raw : "#888888";
 		let messageSentReadCheckmarkColor = context.parameters.SentMessageReadCheckmarkColor.raw? context.parameters.SentMessageReadCheckmarkColor.raw : "#4fc3f7";
+		let messageSentHasErrorBgColor = context.parameters.SentMessageHasErrorBgColor.raw? context.parameters.SentMessageHasErrorBgColor.raw : "#960f00";
+		let messageSentHasErrorTextColor = context.parameters.SentMessageHasErrorTextColor.raw? context.parameters.SentMessageHasErrorTextColor.raw : "#000000";
+		let messageSentHasErrorMetadataTextColor = context.parameters.SentMessageHasErrorMetadataTextColor.raw? context.parameters.SentMessageHasErrorMetadataTextColor.raw : "#888888";
 		let messageSentUnpublishedBgColor = context.parameters.SentMessageNotPublishedBgColor.raw? context.parameters.SentMessageNotPublishedBgColor.raw : "#f1ffe4";
 		let messageSentUnpublishedTextColor = context.parameters.SentMessageNotPublishedTextColor.raw? context.parameters.SentMessageNotPublishedTextColor.raw : "#000000";
 		let messageSentUnpublishedMetadataTextColor = context.parameters.SentMessageNotPublishedMetaDataTextColor.raw? context.parameters.SentMessageNotPublishedMetaDataTextColor.raw : "#888888";
@@ -108,7 +113,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		let messageReceivedMetadataTextColor = context.parameters.ReceivedMessageMetadataTextColor.raw? context.parameters.ReceivedMessageMetadataTextColor.raw : "#888888";
 		let maxHeight = context.parameters.MaxHeight.raw? context.parameters.MaxHeight.raw : "";
 
-		container.appendChild(this.generateCustomStyle(this._randomId, showScrollbar, maxHeight, messageSentBgColor, messageSentTextColor, messageSentMetadataTextColor, messageSentReadCheckmarkColor, messageSentUnpublishedBgColor, messageSentUnpublishedTextColor, messageSentUnpublishedMetadataTextColor, messageReceivedBgColor, messageReceivedTextColor, messageReceivedMetadataTextColor));
+		container.appendChild(this.generateCustomStyle(this._randomId, showScrollbar, maxHeight, messageSentBgColor, messageSentTextColor, messageSentMetadataTextColor, messageSentReadCheckmarkColor, messageSentHasErrorBgColor, messageSentHasErrorTextColor, messageSentHasErrorMetadataTextColor, messageSentUnpublishedBgColor, messageSentUnpublishedTextColor, messageSentUnpublishedMetadataTextColor, messageReceivedBgColor, messageReceivedTextColor, messageReceivedMetadataTextColor));
 		
 		this._conversation = document.createElement("div");
 		container.appendChild(this._conversation);
@@ -196,7 +201,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		}
 	}
 	
-	private generateCustomStyle(controlId: string, showScrollbar: boolean, maxHeight: string, messageSentBgColor: string, messageSentTextColor: string, messageSentMetadataTextColor: string, messageSentReadCheckmarkColor: string, messageSentUnpublishedBgColor: string, messageSentUnpublishedTextColor: string, messageSentUnpublishedMetadataTextColor:string, messageReceivedBgColor: string, messageReceivedTextColor: string, messageReceivedMetadataTextColor: string) : HTMLStyleElement{
+	private generateCustomStyle(controlId: string, showScrollbar: boolean, maxHeight: string, messageSentBgColor: string, messageSentTextColor: string, messageSentMetadataTextColor: string, messageSentReadCheckmarkColor: string, messageSentHasErrorBgColor: string, messageSentHasErrorTextColor: string, messageSentHasErrorMetadataTextColor: string, messageSentUnpublishedBgColor: string, messageSentUnpublishedTextColor: string, messageSentUnpublishedMetadataTextColor:string, messageReceivedBgColor: string, messageReceivedTextColor: string, messageReceivedMetadataTextColor: string) : HTMLStyleElement{
 		let style = document.createElement("style");
 		style.innerHTML = "";
 
@@ -207,23 +212,25 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 			}
 		}
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published { color: " + messageSentTextColor + "; }\n";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published { background: " + messageSentBgColor + "; color: " + messageSentTextColor + "; }";
+
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published:after { border-color: transparent transparent transparent " + messageSentBgColor + "; }";
 
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published .metadata { color: " + messageSentMetadataTextColor +"; }\n";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published { background: " + messageSentBgColor + "; }\n";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished { background: " + messageSentUnpublishedBgColor + "; color: " + messageSentUnpublishedTextColor + "; }";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published:after { border-color: transparent transparent transparent " + messageSentBgColor + "; }\n";
-
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished { color: " + messageSentUnpublishedTextColor + "; }\n";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished:after { border-color: transparent transparent transparent " + messageSentUnpublishedBgColor + "; }";
 
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished .metadata { color: " + messageSentUnpublishedMetadataTextColor +"; }\n";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished { background: " + messageSentUnpublishedBgColor + "; }\n";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.read .metadata .checkmarks{ color:" + messageSentReadCheckmarkColor + "; }";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished:after { border-color: transparent transparent transparent " + messageSentUnpublishedBgColor + "; }\n";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.hasError { background: " + messageSentHasErrorBgColor + "; color: " + messageSentHasErrorTextColor + "; }";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.read .metadata .checkmarks{ color:" + messageSentReadCheckmarkColor + "; }\n";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.hasError:after { border-color: transparent transparent transparent " + messageSentHasErrorBgColor + "; }";
+
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.hasError .metadata { color: " + messageSentHasErrorMetadataTextColor +"; }";
 		
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.received { background: " + messageReceivedBgColor + "; color: " + messageReceivedTextColor +"; }\n";
 
@@ -312,6 +319,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		innerFetchXml += (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn)?"<attribute name='" + this._hasAttachmentColumn + "' />" : "";
 		innerFetchXml += (typeof this._readColumn !== 'undefined' && this._readColumn)?"<attribute name='" + this._readColumn + "' />" : "";
 		innerFetchXml += (typeof this._publishedColumn !== 'undefined' && this._publishedColumn)?"<attribute name='" + this._publishedColumn + "' />" : "";
+		innerFetchXml += (typeof this._hasErrorColumn !== 'undefined' && this._hasErrorColumn)?"<attribute name='" + this._hasErrorColumn + "' />" : "";
 		innerFetchXml += 		"<filter>" +
 									"<condition attribute='regardingobjectid' operator='eq' value='" + regardingObjectId + "' />" +
 								"</filter>";
@@ -362,6 +370,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		let sender = (this._customerIdentifyers.includes(rawMessage.getValue(this._senderColumn).toString()))? senderEnum.Customer : senderEnum.User;
 		let createDate = (typeof this._dateColumn !== 'undefined' && this._dateColumn !== "") ? rawMessage.getFormattedValue(this._dateColumn) : "";
 		let hasAttachments = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && rawMessage.getValue(this._hasAttachmentColumn) === "1")? true : false;
+		let hasError = (typeof this._hasErrorColumn !== 'undefined' && this._hasErrorColumn !== "" && rawMessage.getValue(this._hasErrorColumn) === "1")? true : false;
 
 		let read = false;
 		if(typeof this._readColumn === 'undefined' ||
@@ -377,7 +386,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 			published = true;
 		}
 
-		message = {recordId: recordId, text: text, sender: sender, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments};
+		message = {recordId: recordId, text: text, sender: sender, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments, hasError: hasError};
 
 		return message;
 	}
@@ -391,7 +400,8 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		let text = rawMessage[this._textColumn];
 		let sender = (this._customerIdentifyers.includes(rawMessage[this._senderColumn].toString()))? senderEnum.Customer : senderEnum.User;
 		let createDate = (typeof this._dateColumn !== 'undefined' && this._dateColumn !== "") ? rawMessage[this._dateColumn + oDataFormatedValueSuffix] : "";
-		let hasAttachments = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && typeof rawMessage[this._hasAttachmentColumn] !== 'undefined' && rawMessage[this._hasAttachmentColumn].toString() === "1")? true : false;
+		let hasAttachments = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && typeof rawMessage[this._hasAttachmentColumn] !== 'undefined' && rawMessage[this._hasAttachmentColumn].toString() === "true")? true : false;
+		let hasErorr = (typeof this._hasErrorColumn !== 'undefined' && this._hasErrorColumn !== "" && typeof rawMessage[this._hasErrorColumn] !== 'undefined' && rawMessage[this._hasErrorColumn].toString() === "true")? true : false;
 
 		let read = false;
 		if(typeof this._readColumn === 'undefined' ||
@@ -407,7 +417,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 			published = true;
 		}
 
-		message = {recordId: recordId, text: text, sender: sender, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments};
+		message = {recordId: recordId, text: text, sender: sender, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments, hasError: hasErorr};
 
 		return message;
 	}

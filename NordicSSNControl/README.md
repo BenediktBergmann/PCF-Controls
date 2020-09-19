@@ -8,9 +8,9 @@ The Source you can download here is translated in English and Swedish.
 You can download the last release [here](https://github.com/BenediktBergmann/PCF-Controls/releases).
 
 ## Example
-![Configuration](/SwedishSSNControl/Screenshots/Configuration.png)
-![CorrectSSSN](/SwedishSSNControl/Screenshots/Correct.png)
-![IncorrectSSSN](/SwedishSSNControl/Screenshots/Incorrect.png)
+![Configuration](/NordicSSNControl/Screenshots/Configuration.png)
+![CorrectSSSN](/NordicSSNControl/Screenshots/Correct.png)
+![IncorrectSSSN](/NordicSSNControl/Screenshots/Incorrect.png)
 
 ## Configuration
 Configuration | Description | Required | Default

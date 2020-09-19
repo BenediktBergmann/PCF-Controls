@@ -1,0 +1,37 @@
+/* 
+See CSS files in repos root folder
+globalStyle.css
+iconStyle.css
+*/
+
+div.BeBeControls.NordicSSNControl .hide {
+    display:none !important;
+}
+
+div.BeBeControls.NordicSSNControl div.container.iconPresent span#iconElement div{
+    margin-top:-1px;
+    cursor:inherit;
+}
+
+/*!*****************************************************
+
+Freak Flags, Copyright ©2020 Michael P. Cohen. Freak flags is licenced under the MIT licence.  
+
+For complete information visit: www.freakflagsprite.com 
+
+******************************************************/
+
+div.BeBeControls.NordicSSNControl .fflag {
+    background-image:url(../img/flags.png);
+    background-repeat:no-repeat;
+    background-size: 100% 49494%;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
+    box-sizing: content-box;
+}
+div.BeBeControls.NordicSSNControl .fflag-FI {background-position:center 0.2287%}
+div.BeBeControls.NordicSSNControl .fflag-SE {background-position:center 0.4524%}
+
+div.BeBeControls.NordicSSNControl .fflag.ff-sm {width: 18px;height: 11px}

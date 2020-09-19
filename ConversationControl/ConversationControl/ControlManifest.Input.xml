@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="ConversationControl" version="1.10.0" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
+  <control namespace="BeBeControls" constructor="ConversationControl" version="2.1.0" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
 
     <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
     <!-- 

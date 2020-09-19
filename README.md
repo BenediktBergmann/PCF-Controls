@@ -22,8 +22,8 @@ Control to hide or show a scure string.
 
 [Read more.](HideShowSecureStringControl)
 
-## Swedish SSN Control
-Control to check whether the given input is a valid swedish social security number.
+## Nordic SSN Control
+Control to check whether the given input is a valid nordic (swedish or finnish) social security number.
 
-[Read more.](SwedishSSNControl)
+[Read more.](NordicSSNControl)
 

@@ -6,8 +6,9 @@
 export interface IInputs {
     valueField: ComponentFramework.PropertyTypes.StringProperty;
     inputValid: ComponentFramework.PropertyTypes.TwoOptionsProperty;
-    allowSSN: ComponentFramework.PropertyTypes.EnumProperty<"Yes" | "No">;
-    allowCN: ComponentFramework.PropertyTypes.EnumProperty<"Yes" | "No">;
+    allowSwedishSSN: ComponentFramework.PropertyTypes.EnumProperty<"Yes" | "No">;
+    allowSwedishCN: ComponentFramework.PropertyTypes.EnumProperty<"Yes" | "No">;
+    allowFinnishPIC: ComponentFramework.PropertyTypes.EnumProperty<"Yes" | "No">;
 }
 export interface IOutputs {
     valueField?: string;

@@ -203,6 +203,7 @@ export class NordicSSNControl implements ComponentFramework.StandardControl<IInp
 			this._inputValidReturnValue = true;
 
 			this._countryIndicatorElement.classList.add("fflag-SE");
+			this._countryIndicatorElement.classList.remove("fflag-FI");
 			this._countryIndicatorElement.classList.remove("hide");
 		} else if(this._allowSwedishCN && this.isCorrectSwedishCN(this._inputElement.value)){
 			this._inputElement.classList.remove("incorrect");
@@ -210,6 +211,7 @@ export class NordicSSNControl implements ComponentFramework.StandardControl<IInp
 			this._inputValidReturnValue = true;
 
 			this._countryIndicatorElement.classList.add("fflag-SE");
+			this._countryIndicatorElement.classList.remove("fflag-FI");
 			this._countryIndicatorElement.classList.remove("hide");
 		} else if(this._allowFinnishPIC && this.isCorrectFinnishPIC(this._inputElement.value)){
 			this._inputElement.classList.remove("incorrect");
@@ -217,6 +219,7 @@ export class NordicSSNControl implements ComponentFramework.StandardControl<IInp
 			this._inputValidReturnValue = true;
 
 			this._countryIndicatorElement.classList.add("fflag-FI");
+			this._countryIndicatorElement.classList.remove("fflag-SE");
 			this._countryIndicatorElement.classList.remove("hide");
 		}
 		else{

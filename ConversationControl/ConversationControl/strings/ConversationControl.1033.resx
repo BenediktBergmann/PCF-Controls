@@ -259,7 +259,19 @@
   <data name="Property_ShowEmptyMessages_Desc_Key" xml:space="preserve">
     <value>Defines whether empty messages should be shown.</value>
   </data>
-    <data name="Wrong_Configuration" xml:space="preserve">
+  <data name="Property_SortColumn_Display_Key" xml:space="preserve">
+    <value>Sorting coloumn</value>
+  </data>
+  <data name="Property_SortColumn_Desc_Key" xml:space="preserve">
+    <value>The name of the coloumn the konversation should be sorted by. This field is required when the "Use Subgrid data" field is "no".</value>
+  </data>
+  <data name="Property_SortOrder_Display_Key" xml:space="preserve">
+    <value>Sorting order</value>
+  </data>
+  <data name="Property_SortOrder_Desc_Key" xml:space="preserve">
+    <value>Defines how the order of the sorting should be (ascending or descending). This field is required when the "Use Subgrid data" field is "no".</value>
+  </data>
+  <data name="Wrong_Configuration" xml:space="preserve">
     <value>Wrong configuration</value>
   </data>
   <data name="No_Record_Found" xml:space="preserve">

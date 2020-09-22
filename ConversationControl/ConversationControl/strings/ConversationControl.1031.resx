@@ -259,7 +259,19 @@
   <data name="Property_ShowEmptyMessages_Desc_Key" xml:space="preserve">
     <value>Definiert ob leere Mitteilungen angezeigt werden sollen.</value>
   </data>
-    <data name="Wrong_Configuration" xml:space="preserve">
+  <data name="Property_SortColumn_Display_Key" xml:space="preserve">
+    <value>Sortierungsspalte</value>
+  </data>
+  <data name="Property_SortColumn_Desc_Key" xml:space="preserve">
+    <value>Spalte aufgrund dessen die konversation sortiert werden soll.</value>
+  </data>
+  <data name="Property_SortOrder_Display_Key" xml:space="preserve">
+    <value>Absteigend/Aufsteigend</value>
+  </data>
+  <data name="Property_SortOrder_Desc_Key" xml:space="preserve">
+    <value>Definiert ob die konversation absteigend oder aufsteigend sortiert werden soll.</value>
+  </data>
+  <data name="Wrong_Configuration" xml:space="preserve">
     <value>Fehler in der Konfiguration</value>
   </data>
   <data name="No_Record_Found" xml:space="preserve">

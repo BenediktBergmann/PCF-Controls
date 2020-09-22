@@ -23,6 +23,8 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	private _modalWidth: number;
 	private _useSubgridData: boolean;
 	private _entityName: string;
+	private _sortColumn: string;
+	private _sortOrder: string;
 	private _showEmptyMessages: boolean;
 
 	//Column variables
@@ -86,6 +88,8 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 			this._useSubgridData = true;
 		}
 		this._entityName = context.parameters.EntityName!.raw? context.parameters.EntityName!.raw : "";
+		this._sortColumn = context.parameters.SortColumn!.raw? context.parameters.SortColumn!.raw : "";
+		this._sortOrder = context.parameters.SortOrder!.raw? context.parameters.SortOrder!.raw : "";
 
 		this._openStrategy = openStrategyEnum.ModalCenter;
 		if(context.parameters.OpenStrategy!.raw == openStrategyEnum.CurrentTab){
@@ -308,6 +312,15 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	}
 
 	private fetchDataFromWebAPI(regardingObjectId: string){
+		let orderAttribute = "";
+		if(typeof this._sortColumn !== 'undefined' && this._sortColumn){
+			orderAttribute = this._sortColumn;
+		} else if(typeof this._dateColumn !== 'undefined' && this._dateColumn){
+			orderAttribute = this._dateColumn;
+		} else {
+			orderAttribute = 'createdon';
+		}
+
 		//Create FetchXML for sub grid to filter records based on GUID
 		let innerFetchXml = "<fetch version='1.0' output-format='xml-platform' mapping='logical' >" +
 								"<entity name='" + this._entityName + "' >" +
@@ -323,10 +336,9 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		innerFetchXml += 		"<filter>" +
 									"<condition attribute='regardingobjectid' operator='eq' value='" + regardingObjectId + "' />" +
 								"</filter>";
-		innerFetchXml += (typeof this._dateColumn !== 'undefined' && this._dateColumn)?"<order attribute='" + this._dateColumn + "' />" : "<order attribute='createdon' />";
+		innerFetchXml += "<order attribute='" + orderAttribute + "' " + ((this._sortOrder === "DESC")? "descending='true' " : "") + "/>";
 		innerFetchXml += "</entity>" +
 						"</fetch>";
-
 		let thisRef = this;
 		this._context.webAPI
 		.retrieveMultipleRecords(this._entityName, "?fetchXml=" + innerFetchXml)

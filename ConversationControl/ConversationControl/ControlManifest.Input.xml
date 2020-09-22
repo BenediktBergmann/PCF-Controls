@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="ConversationControl" version="2.1.0" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
+  <control namespace="BeBeControls" constructor="ConversationControl" version="2.1.4" display-name-key="ConversationControl_Display_Key" description-key="ConversationControl_Desc_Key" control-type="standard" preview-image="img/preview.png">
 
     <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
     <!-- 
@@ -72,6 +72,11 @@
       <value name="No" display-name-key="No" description-key="No">No</value>  
     </property>
     <property name="EntityName" display-name-key="Property_EntityName_Display_Key" description-key="Property_EntityName_Desc_Key" of-type="SingleLine.Text" usage="input" />
+    <property name="SortColumn" display-name-key="Property_SortColumn_Display_Key" description-key="Property_SortColumn_Desc_Key" of-type="SingleLine.Text" usage="input" />
+    <property name="SortOrder" display-name-key="Property_SortOrder_Display_Key" description-key="Property_SortOrder_Desc_Key" of-type="Enum" usage="input" required="true" default-value="ASC">
+      <value name="ASC" display-name-key="ASC" description-key="ASC">ASC</value> 
+      <value name="DESC" display-name-key="DESC" description-key="DESC">DESC</value>  
+    </property>
 
     <resources>
       <code path="index.ts" order="1"/>

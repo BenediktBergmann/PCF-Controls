@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="BeBeControls" constructor="CheckPhoneNumberControl" version="2.1.0" display-name-key="CheckPhoneNumberControl_Display_Key" description-key="CheckPhoneNumberControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
+  <control namespace="BeBeControls" constructor="CheckPhoneNumberControl" version="2.1.5" display-name-key="CheckPhoneNumberControl_Display_Key" description-key="CheckPhoneNumberControl_Desc_Key" control-type="standard" preview-image="img/preview.gif">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <type-group name="phone">
       <type>SingleLine.Phone</type>

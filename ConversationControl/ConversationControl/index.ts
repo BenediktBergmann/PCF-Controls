@@ -23,6 +23,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	private _modalWidth: number;
 	private _useSubgridData: boolean;
 	private _entityName: string;
+	private _lookupColumn: string;
 	private _sortColumn: string;
 	private _sortOrder: string;
 	private _showEmptyMessages: boolean;
@@ -88,6 +89,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 			this._useSubgridData = true;
 		}
 		this._entityName = context.parameters.EntityName!.raw? context.parameters.EntityName!.raw : "";
+		this._lookupColumn = context.parameters.LookUpColumn!.raw? context.parameters.LookUpColumn!.raw : "";
 		this._sortColumn = context.parameters.SortColumn!.raw? context.parameters.SortColumn!.raw : "";
 		this._sortOrder = context.parameters.SortOrder!.raw? context.parameters.SortOrder!.raw : "";
 
@@ -256,55 +258,74 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 
 			this.renderConversation(messagesArray);
 		} else if(!this._useSubgridData && this._entityName != ""){
-			let activityId = (<any>this._context.mode).contextInfo.entityId;			
-
-			if(activityId){
-				// store reference to 'this' so it can be used in the callback method
-				var thisRef = this;
-
-				let outerFetchXml = "<fetch version='1.0' output-format='xml-platform' mapping='logical' >" +
-										"<entity name='" + this._entityName + "' >" +
-											"<attribute name='regardingobjectid' />" +
-											"<filter>" +
-												"<condition attribute='activityid' operator='eq' value='" + activityId + "' />" +
-											"</filter>" +
-										"</entity>" +
-									"</fetch>";
-
-
-				this._context.webAPI
-				.retrieveMultipleRecords(thisRef._entityName, "?fetchXml=" + outerFetchXml)
-				.then(
-					function(response: ComponentFramework.WebApi.RetrieveMultipleResponse) {
-						let regardingObjectId = response.entities[0]['_regardingobjectid_value'];
-
-						thisRef.fetchDataFromWebAPI(regardingObjectId);
-					},
-					function(errorResponse: any) {
-						let messagesArray: IMessageProps[] = [];
-						thisRef.renderConversation(messagesArray);
-					}
-				);
-			} else if(!activityId && typeof Xrm !== 'undefined'){
-				let regardingObjectId = "";
-				let regardingObjectAttribute = (<any>Xrm).Page.getAttribute("regardingobjectid");
-				if(typeof regardingObjectAttribute !== 'undefined' && regardingObjectAttribute !== null){
-					let regardingObjectValue = (<any>Xrm).Page.getAttribute("regardingobjectid").getValue();
+			if(this._lookupColumn != "" && typeof Xrm !== 'undefined'){
+				let lookupObjectId = "";
+				let lookupObjectAttribute = (<any>Xrm).Page.getAttribute(this._lookupColumn);
+				if(typeof lookupObjectAttribute !== 'undefined' && lookupObjectAttribute !== null){
+					let regardingObjectValue = (<any>Xrm).Page.getAttribute(this._lookupColumn).getValue();
 					if(typeof regardingObjectValue !== 'undefined' && regardingObjectValue !== null){
-						regardingObjectId = regardingObjectValue[0]["id"].toString();
-						regardingObjectId = regardingObjectId.substr(1, regardingObjectId.length - 2);
+						lookupObjectId = regardingObjectValue[0]["id"].toString();
+						lookupObjectId = lookupObjectId.substr(1, lookupObjectId.length - 2);
 					}
 				}
 
-				if(regardingObjectId !== ""){
-					this.fetchDataFromWebAPI(regardingObjectId);
+				if(lookupObjectId !== ""){
+					this.fetchDataFromWebAPI(lookupObjectId);
 				} else {
 					let messagesArray: IMessageProps[] = [];
 					this.renderConversation(messagesArray);
 				}
-			}else {
-				let messagesArray: IMessageProps[] = [];
-				this.renderConversation(messagesArray);
+			} else {
+				let activityId = (<any>this._context.mode).contextInfo.entityId;			
+
+				if(activityId){
+					// store reference to 'this' so it can be used in the callback method
+					var thisRef = this;
+	
+					let outerFetchXml = "<fetch version='1.0' output-format='xml-platform' mapping='logical' >" +
+											"<entity name='" + this._entityName + "' >" +
+												"<attribute name='regardingobjectid' />" +
+												"<filter>" +
+													"<condition attribute='activityid' operator='eq' value='" + activityId + "' />" +
+												"</filter>" +
+											"</entity>" +
+										"</fetch>";
+	
+	
+					this._context.webAPI
+					.retrieveMultipleRecords(thisRef._entityName, "?fetchXml=" + outerFetchXml)
+					.then(
+						function(response: ComponentFramework.WebApi.RetrieveMultipleResponse) {
+							let regardingObjectId = response.entities[0]['_regardingobjectid_value'];
+	
+							thisRef.fetchDataFromWebAPI(regardingObjectId);
+						},
+						function(errorResponse: any) {
+							let messagesArray: IMessageProps[] = [];
+							thisRef.renderConversation(messagesArray);
+						}
+					);
+				} else if(!activityId && typeof Xrm !== 'undefined'){
+					let regardingObjectId = "";
+					let regardingObjectAttribute = (<any>Xrm).Page.getAttribute("regardingobjectid");
+					if(typeof regardingObjectAttribute !== 'undefined' && regardingObjectAttribute !== null){
+						let regardingObjectValue = (<any>Xrm).Page.getAttribute("regardingobjectid").getValue();
+						if(typeof regardingObjectValue !== 'undefined' && regardingObjectValue !== null){
+							regardingObjectId = regardingObjectValue[0]["id"].toString();
+							regardingObjectId = regardingObjectId.substr(1, regardingObjectId.length - 2);
+						}
+					}
+	
+					if(regardingObjectId !== ""){
+						this.fetchDataFromWebAPI(regardingObjectId);
+					} else {
+						let messagesArray: IMessageProps[] = [];
+						this.renderConversation(messagesArray);
+					}
+				}else {
+					let messagesArray: IMessageProps[] = [];
+					this.renderConversation(messagesArray);
+				}
 			}
 		} else {
 			this.renderConversation([], this._context.resources.getString("Wrong_Configuration"))

@@ -95,7 +95,7 @@
     <value>Veröffentlicht</value>
   </data>
   <data name="Property_PublishedColumn_Desc_Key" xml:space="preserve">
-    <value>Name der Sspalte (Feldname), die die Information enthält, ob die Nachricht für den Kunden veröffentlicht wurde. Kann zwei Optionen oder ein Datum sein.</value>
+    <value>Name der Spalte (Feldname), die die Information enthält, ob die Nachricht für den Kunden veröffentlicht wurde. Kann zwei Optionen oder ein Datum sein.</value>
   </data>
   <data name="Property_HasAttachmentsColumn_Display_Key" xml:space="preserve">
     <value>Hat Anhänge</value>
@@ -252,6 +252,12 @@
   </data>
   <data name="Property_EntityName_Desc_Key" xml:space="preserve">
     <value>Name der Entität, die geladen werden soll, wenn das controle nicht die Daten des "Subgrids" verwendet. Dieses Feld ist erforderlich, wenn das Feld "Daten des "Subgrids" verwenden" den wert "No" hat.</value>
+  </data>
+  <data name="Property_LookUpColumn_Display_Key" xml:space="preserve">
+    <value>Lookup Spalte</value>
+  </data>
+  <data name="Property_LookUpColumn_Display_Key" xml:space="preserve">
+    <value>Name der Spalte (feldname), welche ein lookup zur zwischen Tabelle ist. Wird benötigt wenn nicht die Daten des "Subgrids" verwendet werden.</value>
   </data>
   <data name="Property_ShowEmptyMessages_Display_Key" xml:space="preserve">
     <value>Leere Mitteilungen anzeigen</value>

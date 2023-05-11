@@ -115,6 +115,18 @@
   <data name="Property_SenderNameColumn_Desc_Key" xml:space="preserve">
     <value>Name der Spalte (Feldname), die den namen des Absenders enthält.</value>
   </data>
+  <data name="Property_FilterColumn_Display_Key" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Property_FilterColumn_Desc_Key" xml:space="preserve">
+    <value>Name der Spalte (Feldname), die den värd enhält nachdem gefiltert werden soll.</value>
+  </data>
+  <data name="Property_FilterValue_Display_Key" xml:space="preserve">
+    <value>Filter value</value>
+  </data>
+  <data name="Property_FilterValue_Desc_Key" xml:space="preserve">
+    <value>Vergleichswert zum filtern.</value>
+  </data>
   <data name="Property_CustomerIdentifier_Display_Key" xml:space="preserve">
     <value>Kunden "Identifier"</value>
   </data>

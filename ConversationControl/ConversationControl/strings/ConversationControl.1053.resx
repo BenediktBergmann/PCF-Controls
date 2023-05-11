@@ -115,6 +115,18 @@
   <data name="Property_SenderNameColumn_Desc_Key" xml:space="preserve">
     <value>Namn på vykolumnen (fältnamn) som innehåller informationen om avsändarensnamn.</value>
   </data>
+  <data name="Property_FilterColumn_Display_Key" xml:space="preserve">
+    <value>Filtrering</value>
+  </data>
+  <data name="Property_FilterNameColumn_Desc_Key" xml:space="preserve">
+    <value>Namn på vykolumnen (fältnamn) som innehåller värde vi ska filtrerar på.</value>
+  </data>
+  <data name="Property_FilterValue_Display_Key" xml:space="preserve">
+    <value>Filtervärde</value>
+  </data>
+  <data name="Property_FilterValue_Desc_Key" xml:space="preserve">
+    <value>Värde vi ska filtrerar emot.</value>
+  </data>
   <data name="Property_CustomerIdentifier_Display_Key" xml:space="preserve">
     <value>Kundidentifierare</value>
   </data>

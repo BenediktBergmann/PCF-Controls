@@ -109,11 +109,23 @@
   <data name="Property_HasErrorColumn_Desc_Key" xml:space="preserve">
     <value>Name of the view column (field name) that holds the information whether the message has errors.</value>
   </data>
-    <data name="Property_SenderNameColumn_Display_Key" xml:space="preserve">
+  <data name="Property_SenderNameColumn_Display_Key" xml:space="preserve">
     <value>Sender name column</value>
   </data>
   <data name="Property_SenderNameColumn_Desc_Key" xml:space="preserve">
     <value>Name of the view column (field name) that holds the name of the sender.</value>
+  </data>
+  <data name="Property_FilterColumn_Display_Key" xml:space="preserve">
+    <value>Filter column</value>
+  </data>
+  <data name="Property_FilterColumn_Desc_Key" xml:space="preserve">
+    <value>Name of the view column (field name) that holds the value to filter by.</value>
+  </data>
+  <data name="Property_FilterValue_Display_Key" xml:space="preserve">
+    <value>Filter value</value>
+  </data>
+  <data name="Property_FilterValue_Desc_Key" xml:space="preserve">
+    <value>Value to compare to.</value>
   </data>
   <data name="Property_CustomerIdentifier_Display_Key" xml:space="preserve">
     <value>Customer Identifier</value>

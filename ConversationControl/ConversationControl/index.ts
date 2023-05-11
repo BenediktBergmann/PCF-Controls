@@ -37,6 +37,8 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	private _hasAttachmentColumn: string;
 	private _hasErrorColumn: string;
 	private _senderNameColumn: string;
+	private _filterColumn: string;
+	private _filterValue: string;
 	private _customerIdentifyers: string[];
 
 	// HTML container
@@ -74,6 +76,8 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		this._hasAttachmentColumn = context.parameters.HasAttachmentsColumn.raw? context.parameters.HasAttachmentsColumn.raw : "";
 		this._hasErrorColumn = context.parameters.HasErrorColumn.raw? context.parameters.HasErrorColumn.raw : "";
 		this._senderNameColumn = context.parameters.SenderNameColumn.raw? context.parameters.SenderNameColumn.raw : "";
+		this._filterColumn = context.parameters.FilterColumn.raw? context.parameters.FilterColumn.raw : "";
+		this._filterValue = context.parameters.FilterValue.raw? context.parameters.FilterValue.raw : "";
 		this._customerIdentifyers = context.parameters.CustomerIdentifier.raw? context.parameters.CustomerIdentifier.raw.split(',') : [];
 
 		let showScrollbar = false;
@@ -263,7 +267,11 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 			let messagesArray: IMessageProps[] = [];
 
 			for(let currentRecordId of messages.sortedRecordIds){
-				messagesArray.push(this.generateIMessagePropFromEntity(messages.records[currentRecordId]));
+				if(messages.records[currentRecordId].getValue(this._filterColumn)?.toString() == this._filterValue ||
+					this._filterValue == "" || this._filterValue == undefined ||
+					this._filterColumn == "" || this._filterColumn == undefined){
+					messagesArray.push(this.generateIMessagePropFromEntity(messages.records[currentRecordId]));
+				}
 			}
 
 			this.renderConversation(messagesArray);
@@ -366,8 +374,13 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		innerFetchXml += (typeof this._hasErrorColumn !== 'undefined' && this._hasErrorColumn)?"<attribute name='" + this._hasErrorColumn + "' />" : "";
 		innerFetchXml += (typeof this._senderNameColumn !== 'undefined' && this._senderNameColumn)?"<attribute name='" + this._senderNameColumn + "' />" : "";
 		innerFetchXml += 		"<filter>" +
-									"<condition attribute='regardingobjectid' operator='eq' value='" + regardingObjectId + "' />" +
-								"</filter>";
+									"<condition attribute='regardingobjectid' operator='eq' value='" + regardingObjectId + "' />";
+
+		if(typeof this._filterColumn !== 'undefined' && this._filterColumn != "" && this._filterColumn &&
+			typeof this._filterValue !== 'undefined' && this._filterValue != "" && this._filterValue){
+				innerFetchXml += "<condition attribute='" + this._filterColumn + "' operator='eq' value='" + this._filterValue + "' />";
+		}
+		innerFetchXml += 		"</filter>";
 		innerFetchXml += "<order attribute='" + orderAttribute + "' " + ((this._sortOrder === "DESC")? "descending='true' " : "") + "/>";
 		innerFetchXml += "</entity>" +
 						"</fetch>";

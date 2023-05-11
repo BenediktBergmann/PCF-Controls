@@ -103,11 +103,17 @@
   <data name="Property_HasAttachmentsColumn_Desc_Key" xml:space="preserve">
     <value>Name der Spalte (Feldname), die die Information enthält, ob die Nachricht Anhänge enthält.</value>
   </data>
-    <data name="Property_HasErrorColumn_Display_Key" xml:space="preserve">
+  <data name="Property_HasErrorColumn_Display_Key" xml:space="preserve">
     <value>Hat Fehler</value>
   </data>
   <data name="Property_HasErrorColumn_Desc_Key" xml:space="preserve">
     <value>Name der Spalte (Feldname), die die Information enthält, ob die Nachricht Fehler enthält.</value>
+  </data>
+  <data name="Property_SenderNameColumn_Display_Key" xml:space="preserve">
+    <value>Absender</value>
+  </data>
+  <data name="Property_SenderNameColumn_Desc_Key" xml:space="preserve">
+    <value>Name der Spalte (Feldname), die den namen des Absenders enthält.</value>
   </data>
   <data name="Property_CustomerIdentifier_Display_Key" xml:space="preserve">
     <value>Kunden "Identifier"</value>

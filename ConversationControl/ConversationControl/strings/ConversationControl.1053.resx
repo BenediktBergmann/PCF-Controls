@@ -109,6 +109,12 @@
   <data name="Property_HasErrorColumn_Desc_Key" xml:space="preserve">
     <value>Namn på vykolumnen (fältnamn) som innehåller informationen om meddelandet har fel.</value>
   </data>
+  <data name="Property_SenderNameColumn_Display_Key" xml:space="preserve">
+    <value>Avsändare</value>
+  </data>
+  <data name="Property_SenderNameColumn_Desc_Key" xml:space="preserve">
+    <value>Namn på vykolumnen (fältnamn) som innehåller informationen om avsändarensnamn.</value>
+  </data>
   <data name="Property_CustomerIdentifier_Display_Key" xml:space="preserve">
     <value>Kundidentifierare</value>
   </data>

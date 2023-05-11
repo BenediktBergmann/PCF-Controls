@@ -72,6 +72,14 @@ div.BeBeControls div.conversation .message.sent:after {
     right: -10px;
 }
 
+div.BeBeControls div.conversation .message .sender {
+    padding: 0;
+    margin-bottom: 7px;
+    font-size: small;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
 div.BeBeControls div.conversation .message .metadata {
     display: block;
     float: right;

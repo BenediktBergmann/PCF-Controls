@@ -5,6 +5,7 @@ export interface IMessageProps {
     recordId: string,
     text: string,
     sender: senderEnum,
+    senderName: string,
     published: boolean,
     createDate: string,
     read: boolean,
@@ -30,6 +31,11 @@ export class Message extends React.PureComponent<IMessageProps> {
 
         return (
             <div key={this.props.recordId} className={this.generateMessageCssClasses()} onClick={() => this.props.onClick? this.props.onClick(this.props.recordId) : {}}>
+                {this.props.senderName !== "" && this.props.senderName !== null && this.props.senderName !== undefined &&
+                    <div className="sender">
+                        {this.props.senderName}
+                    </div>
+                }
                 <p>{this.props.text}</p>
                 <span className="metadata">
                     <span className="createDate">

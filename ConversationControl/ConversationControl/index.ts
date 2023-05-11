@@ -5,11 +5,11 @@ import * as ReactDOM from 'react-dom';
 import { Conversation } from './tsx/Conversation';
 import DataSetInterfaces = ComponentFramework.PropertyHelper.DataSetApi;
 import { IMessageProps } from "./tsx/Message";
-import { SpawnSyncOptionsWithBufferEncoding } from "child_process";
+//import { SpawnSyncOptionsWithBufferEncoding } from "child_process";
 
 type DataSet = ComponentFramework.PropertyTypes.DataSet;
 
-const RowRecordId: string = "rowRecId";
+//const RowRecordId: string = "rowRecId";
 
 declare var Xrm: any;
 
@@ -36,6 +36,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	private _publishedColumn: string;
 	private _hasAttachmentColumn: string;
 	private _hasErrorColumn: string;
+	private _senderNameColumn: string;
 	private _customerIdentifyers: string[];
 
 	// HTML container
@@ -72,6 +73,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		this._publishedColumn = context.parameters.PublishedColumn.raw? context.parameters.PublishedColumn.raw : "";
 		this._hasAttachmentColumn = context.parameters.HasAttachmentsColumn.raw? context.parameters.HasAttachmentsColumn.raw : "";
 		this._hasErrorColumn = context.parameters.HasErrorColumn.raw? context.parameters.HasErrorColumn.raw : "";
+		this._senderNameColumn = context.parameters.SenderNameColumn.raw? context.parameters.SenderNameColumn.raw : "";
 		this._customerIdentifyers = context.parameters.CustomerIdentifier.raw? context.parameters.CustomerIdentifier.raw.split(',') : [];
 
 		let showScrollbar = false;
@@ -130,8 +132,8 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		this._loadPageButton.classList.add(DataSetControl_LoadMoreButton_Hidden_Style);
 		this._loadPageButton.classList.add("DataSetControl_LoadMoreButton_Style");
 		this._loadPageButton.addEventListener(
-		  "click",
-		  this.onLoadMoreButtonClick.bind(this)
+			"click",
+			this.onLoadMoreButtonClick.bind(this)
 		);
 		
 		container.appendChild(this._loadPageButton);
@@ -177,7 +179,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	/**
    * Row Click Event handler for the associated row when being clicked
    */
-  	private onMessageClick(rowRecordId: string): void {
+	private onMessageClick(rowRecordId: string): void {
 		if (rowRecordId) {
 			let entityLogicalName = this._context.parameters.dataSetGrid.getTargetEntityType();
 
@@ -218,29 +220,37 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 			}
 		}
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published { background: " + messageSentBgColor + "; color: " + messageSentTextColor + "; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published { background: " + messageSentBgColor + "; color: " + messageSentTextColor + "; }\n";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published:after { border-color: transparent transparent transparent " + messageSentBgColor + "; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published:after { border-color: transparent transparent transparent " + messageSentBgColor + "; }\n";
 
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published .metadata { color: " + messageSentMetadataTextColor +"; }\n";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished { background: " + messageSentUnpublishedBgColor + "; color: " + messageSentUnpublishedTextColor + "; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.published .sender { color: " + messageSentMetadataTextColor +"; border-bottom-color: " + messageSentMetadataTextColor +"; }\n";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished:after { border-color: transparent transparent transparent " + messageSentUnpublishedBgColor + "; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished { background: " + messageSentUnpublishedBgColor + "; color: " + messageSentUnpublishedTextColor + "; }\n";
+
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished:after { border-color: transparent transparent transparent " + messageSentUnpublishedBgColor + "; }\n";
 
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished .metadata { color: " + messageSentUnpublishedMetadataTextColor +"; }\n";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.read .metadata .checkmarks{ color:" + messageSentReadCheckmarkColor + "; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.notPublished .sender { color: " + messageSentUnpublishedMetadataTextColor +"; border-bottom-color: " + messageSentUnpublishedMetadataTextColor +"; }\n";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.hasError { background: " + messageSentHasErrorBgColor + "; color: " + messageSentHasErrorTextColor + "; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.read .metadata .checkmarks{ color:" + messageSentReadCheckmarkColor + "; }\n";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.hasError:after { border-color: transparent transparent transparent " + messageSentHasErrorBgColor + "; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.hasError { background: " + messageSentHasErrorBgColor + "; color: " + messageSentHasErrorTextColor + "; }\n";
 
-		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.hasError .metadata { color: " + messageSentHasErrorMetadataTextColor +"; }";
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.hasError:after { border-color: transparent transparent transparent " + messageSentHasErrorBgColor + "; }\n";
+
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.hasError .metadata { color: " + messageSentHasErrorMetadataTextColor +"; }\n";
+		
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.sent.hasError .sender { color: " + messageSentHasErrorMetadataTextColor +"; border-bottom-color: " + messageSentHasErrorMetadataTextColor +"; }\n";
 		
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.received { background: " + messageReceivedBgColor + "; color: " + messageReceivedTextColor +"; }\n";
 
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.received .metadata { color: " + messageReceivedMetadataTextColor +"; }\n";
+		
+		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.received .sender { color: " + messageReceivedMetadataTextColor +"; border-bottom-color: " + messageReceivedMetadataTextColor +"; }\n";
 		
 		style.innerHTML += " div.BeBeControls div#" + controlId + ".conversation .message.received:after { border-color: transparent " + messageReceivedBgColor + " transparent transparent; }\n";
 
@@ -354,6 +364,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		innerFetchXml += (typeof this._readColumn !== 'undefined' && this._readColumn)?"<attribute name='" + this._readColumn + "' />" : "";
 		innerFetchXml += (typeof this._publishedColumn !== 'undefined' && this._publishedColumn)?"<attribute name='" + this._publishedColumn + "' />" : "";
 		innerFetchXml += (typeof this._hasErrorColumn !== 'undefined' && this._hasErrorColumn)?"<attribute name='" + this._hasErrorColumn + "' />" : "";
+		innerFetchXml += (typeof this._senderNameColumn !== 'undefined' && this._senderNameColumn)?"<attribute name='" + this._senderNameColumn + "' />" : "";
 		innerFetchXml += 		"<filter>" +
 									"<condition attribute='regardingobjectid' operator='eq' value='" + regardingObjectId + "' />" +
 								"</filter>";
@@ -400,6 +411,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 
 		let recordId = rawMessage.getRecordId();
 		let text = rawMessage.getFormattedValue(this._textColumn);
+		let senderName = rawMessage.getFormattedValue(this._senderNameColumn);
 		let sender = (this._customerIdentifyers.includes(rawMessage.getValue(this._senderColumn).toString()))? senderEnum.Customer : senderEnum.User;
 		let createDate = (typeof this._dateColumn !== 'undefined' && this._dateColumn !== "") ? rawMessage.getFormattedValue(this._dateColumn) : "";
 		let hasAttachments = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && rawMessage.getValue(this._hasAttachmentColumn) === "1")? true : false;
@@ -419,7 +431,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 			published = true;
 		}
 
-		message = {recordId: recordId, text: text, sender: sender, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments, hasError: hasError};
+		message = {recordId: recordId, text: text, sender: sender, senderName: senderName, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments, hasError: hasError};
 
 		return message;
 	}
@@ -431,6 +443,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		
 		let recordId = rawMessage['activityid'];
 		let text = rawMessage[this._textColumn];
+		let senderName = rawMessage[this._senderNameColumn];
 		let sender = (this._customerIdentifyers.includes(rawMessage[this._senderColumn].toString()))? senderEnum.Customer : senderEnum.User;
 		let createDate = (typeof this._dateColumn !== 'undefined' && this._dateColumn !== "") ? rawMessage[this._dateColumn + oDataFormatedValueSuffix] : "";
 		let hasAttachments = (typeof this._hasAttachmentColumn !== 'undefined' && this._hasAttachmentColumn !== "" && typeof rawMessage[this._hasAttachmentColumn] !== 'undefined' && rawMessage[this._hasAttachmentColumn].toString() === "true")? true : false;
@@ -450,7 +463,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 			published = true;
 		}
 
-		message = {recordId: recordId, text: text, sender: sender, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments, hasError: hasErorr};
+		message = {recordId: recordId, text: text, sender: sender, senderName: senderName, published: published, createDate: createDate, read: read, hasAttachments: hasAttachments, hasError: hasErorr};
 
 		return message;
 	}
@@ -460,23 +473,23 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 		let charactersLength = characters.length;
 		for ( let i = 0; i < length; i++ ) {
-		   result += characters.charAt(Math.floor(Math.random() * charactersLength));
+			result += characters.charAt(Math.floor(Math.random() * charactersLength));
 		}
 		return result;
-	 }
+	}
 
-	  /**
-	 * 'LoadMore' Button Event handler when load more button clicks
-	 * @param event
-	 */
+	/**
+	* 'LoadMore' Button Event handler when load more button clicks
+	* @param event
+	*/
 	private onLoadMoreButtonClick(event: Event): void {
 		this._context.parameters.dataSetGrid.paging.loadNextPage();
 		this.toggleLoadMoreButtonWhenNeeded(this._context.parameters.dataSetGrid);
 	}
 
-	 /**
-	 * Toggle 'LoadMore' button when needed
-	 */
+	/**
+	* Toggle 'LoadMore' button when needed
+	*/
 	private toggleLoadMoreButtonWhenNeeded(gridParam: DataSet): void {
 		if(this._useSubgridData){
 			if (

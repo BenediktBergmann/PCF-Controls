@@ -21,6 +21,9 @@ ReadColumn | Name of field that identifies whether the sent message was read | |
 PublishedColumn | Name of field to identify whether the sent message was published | |
 HasAttachmentsColumn | Name of field that indicates whether the message contains attachments | |
 HasErrorsColumn | Name of field that indicates whether the message has errors | |
+SenderNameColumn | Name of field that contains the name of the sender | |
+FilterColumn | Name of field that contains the string to compare to | |
+FilterValue | Value to which the previous column should be compared to. The idea is to bind it to a field on the parent table | |
 ShowScrollbar | Defines whether to show a scrollbar beside the control | |
 Maxheight | The maximal height the control (inner conversation container) should have. Has to be a valid css value (for example "300px" or "50%"). Will only be used when a scrollbar should be shown. |  |
 OpenStrategy | Dropdown of different possibilities on how to open messages. | X | Modal Center

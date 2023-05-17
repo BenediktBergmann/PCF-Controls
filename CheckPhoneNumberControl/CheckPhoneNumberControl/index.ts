@@ -284,14 +284,14 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 				isValid = true;
 				
 				if((this._allowedCC != undefined && this._allowedCC.length > 0 && this._allowedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) === -1) || 
-				   (this._excludedCC != undefined && this._excludedCC.length > 0 && this._excludedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) !== -1)){
+					(this._excludedCC != undefined && this._excludedCC.length > 0 && this._excludedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) !== -1)){
 					isValid = false;
 					this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Country_Key");
 				}
 				
 				if(isValid &&
-				  (this._allowedTypes != undefined && this._allowedTypes.length > 0 && this._allowedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) === -1) || 
-				  (this._excludedTypes != undefined && this._excludedTypes.length > 0 && this._excludedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) !== -1)){
+					(this._allowedTypes != undefined && this._allowedTypes.length > 0 && this._allowedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) === -1) || 
+					(this._excludedTypes != undefined && this._excludedTypes.length > 0 && this._excludedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) !== -1)){
 					isValid = false;
 					this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Type_Key");
 				}

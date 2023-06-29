@@ -151,6 +151,8 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
 		this._context = context;
+		this._filterValue = context.parameters.FilterValue.raw? context.parameters.FilterValue.raw : "";
+		
 		this.toggleLoadMoreButtonWhenNeeded(context.parameters.dataSetGrid);
 		if(!context.parameters.dataSetGrid.loading){
 

@@ -274,7 +274,7 @@
    <data name="Property_LookUpColumn_Display_Key" xml:space="preserve">
     <value>Lookup Column</value>
   </data>
-  <data name="Property_LookUpColumn_Display_Key" xml:space="preserve">
+  <data name="Property_LookUpColumn_Desc_Key" xml:space="preserve">
     <value>Name of the column which contains the lookup to the between entity. This field is used when the "Use Subgrid data" field is set to no.</value>
   </data>
   <data name="Property_ShowEmptyMessages_Display_Key" xml:space="preserve">
@@ -287,7 +287,7 @@
     <value>Sorting coloumn</value>
   </data>
   <data name="Property_SortColumn_Desc_Key" xml:space="preserve">
-    <value>The name of the coloumn the konversation should be sorted by. This field is required when the "Use Subgrid data" field is "no".</value>
+    <value>The name of the coloumn the conversation should be sorted by. This field is required when the "Use Subgrid data" field is "no".</value>
   </data>
   <data name="Property_SortOrder_Display_Key" xml:space="preserve">
     <value>Sorting order</value>

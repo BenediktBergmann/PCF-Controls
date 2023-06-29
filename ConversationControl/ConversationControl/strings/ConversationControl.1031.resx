@@ -274,7 +274,7 @@
   <data name="Property_LookUpColumn_Display_Key" xml:space="preserve">
     <value>Lookup Spalte</value>
   </data>
-  <data name="Property_LookUpColumn_Display_Key" xml:space="preserve">
+  <data name="Property_LookUpColumn_Desc_Key" xml:space="preserve">
     <value>Name der Spalte (feldname), welche ein lookup zur zwischen Tabelle ist. Wird benötigt wenn nicht die Daten des "Subgrids" verwendet werden.</value>
   </data>
   <data name="Property_ShowEmptyMessages_Display_Key" xml:space="preserve">

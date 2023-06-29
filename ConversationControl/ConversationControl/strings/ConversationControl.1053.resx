@@ -274,7 +274,7 @@
    <data name="Property_LookUpColumn_Display_Key" xml:space="preserve">
     <value>Lookup kolumn</value>
   </data>
-  <data name="Property_LookUpColumn_Display_Key" xml:space="preserve">
+  <data name="Property_LookUpColumn_Desc_Key" xml:space="preserve">
     <value>Namnet på fältet som innehåller lookup till mellan entitet. Detta fält används när fältet "Använd subgriddata" är "No".</value>
   </data>
   <data name="Property_ShowEmptyMessages_Display_Key" xml:space="preserve">

@@ -227,6 +227,9 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	}
 
 	private checkInput(input: string | null){
+		// eslint-disable-next-line no-debugger
+		debugger;
+
 		if(input === "" || input === null){
 			this._inputElement.value = this._emptyValue;
 			this._value = "";
@@ -275,10 +278,12 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	}
 
 	private isCorrectPhoneNumber(value: string): boolean{
+		// eslint-disable-next-line no-debugger
+		debugger;
 		var isValid = false;
 		if(value != null && value != "")
 		{
-			var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(this._inputElement.value, this._defaultCC) : PhoneNumber(this._inputElement.value);
+			var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(value, this._defaultCC) : PhoneNumber(value);
 
 			if(parsedPhoneNumber !== undefined && parsedPhoneNumber.isValid()){
 				isValid = true;

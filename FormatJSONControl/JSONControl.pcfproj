@@ -11,6 +11,7 @@
     <Name>JSONControl</Name>
     <ProjectGuid>281a5a64-883d-48d5-98a5-db0c7aec3a4f</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
+    <PcfBuildMode>production</PcfBuildMode>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -11,6 +11,7 @@
     <Name>CheckPhoneNumberControl</Name>
     <ProjectGuid>08eed78b-f181-4868-9a0c-3b1915a7fe7e</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
+    <PcfBuildMode>production</PcfBuildMode>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -11,6 +11,7 @@
     <Name>NordicSocialSecurityNumberControl</Name>
     <ProjectGuid>cd477540-d960-47f6-98e3-72085a8dd38a</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
+    <PcfBuildMode>production</PcfBuildMode>
   </PropertyGroup>
 
   <PropertyGroup>

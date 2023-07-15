@@ -11,6 +11,7 @@
     <Name>PasswordControl</Name>
     <ProjectGuid>e6858fc4-2655-42d8-893e-17057ec2ca26</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
+    <PcfBuildMode>production</PcfBuildMode>
   </PropertyGroup>
 
   <PropertyGroup>

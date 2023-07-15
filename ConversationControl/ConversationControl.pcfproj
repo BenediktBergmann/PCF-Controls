@@ -11,6 +11,7 @@
     <Name>ConversationControl</Name>
     <ProjectGuid>b9bc4fb2-64cd-49fb-beed-96c1fc299f3d</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
+    <PcfBuildMode>production</PcfBuildMode>
   </PropertyGroup>
 
   <PropertyGroup>

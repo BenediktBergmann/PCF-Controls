@@ -283,6 +283,12 @@
   <data name="Property_ShowEmptyMessages_Desc_Key" xml:space="preserve">
     <value>Definierar om tomma meddelanden ska visas.</value>
   </data>
+  <data name="Property_RenderHTML_Display_Key" xml:space="preserve">
+    <value>Render HTML</value>
+  </data>
+  <data name="Property_RenderHTML_Desc_Key" xml:space="preserve">
+    <value>Definerar om HTML ska blir "rendered" eller visad som text. Inställningen till Ja kan potentiellt möjliggöra Cross-Site Scripting (XSS) attacker.</value>
+  </data>
   <data name="Property_SortColumn_Display_Key" xml:space="preserve">
     <value>Sorteringskolumn</value>
   </data>

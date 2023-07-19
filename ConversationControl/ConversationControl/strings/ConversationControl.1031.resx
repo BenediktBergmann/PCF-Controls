@@ -281,7 +281,13 @@
     <value>Leere Mitteilungen anzeigen</value>
   </data>
   <data name="Property_ShowEmptyMessages_Desc_Key" xml:space="preserve">
-    <value>Definiert ob leere Mitteilungen angezeigt werden sollen.</value>
+    <value>Definiert ob leere Mitteilungen angezeigt werden sollen. Aktiviern dieser konfiguration könnte theoretisch Cross-Site Scripting (XSS) Angriffe ermöglichen.</value>
+  </data>
+  <data name="Property_RenderHTML_Display_Key" xml:space="preserve">
+    <value>HTML rendern</value>
+  </data>
+  <data name="Property_RenderHTML_Desc_Key" xml:space="preserve">
+    <value>Definiert ob HTML gerenderd werden soll oder nicht.</value>
   </data>
   <data name="Property_SortColumn_Display_Key" xml:space="preserve">
     <value>Sortierungsspalte</value>

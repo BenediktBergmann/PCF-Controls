@@ -45,6 +45,11 @@
       <value name="No" display-name-key="No" description-key="No">No</value>
     </property>
 
+    <property name="RenderHTML" display-name-key="Property_RenderHTML_Display_Key" description-key="Property_RenderHTML_Desc_Key" of-type="Enum" usage="input" required="true" default-value="No">
+      <value name="Yes" display-name-key="Yes" description-key="Yes">Yes</value> 
+      <value name="No" display-name-key="No" description-key="No">No</value>  
+    </property>
+
     <!--<property name="MessageStyle" display-name-key="Property_MessageStyle_Display_Key" description-key="Property_MessageStyle_Desc_Key" of-type="Enum" usage="input" required="true" default-value="Kaizala">
       <value name="Kaizala" display-name-key="Kaizala" description-key="Kaizala">Kaizala</value> 
       <value name="WhatsApp" display-name-key="WhatsApp" description-key="WhatsApp">WhatsApp</value>  

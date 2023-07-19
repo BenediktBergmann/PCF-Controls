@@ -283,6 +283,12 @@
   <data name="Property_ShowEmptyMessages_Desc_Key" xml:space="preserve">
     <value>Defines whether empty messages should be shown.</value>
   </data>
+  <data name="Property_RenderHTML_Display_Key" xml:space="preserve">
+    <value>Render HTML</value>
+  </data>
+  <data name="Property_RenderHTML_Desc_Key" xml:space="preserve">
+    <value>Defines whether HTML should be rendered or displayed as plain text. Setting to Yes could potentially make Cross-Site Scripting (XSS) attacks possible.</value>
+  </data>
   <data name="Property_SortColumn_Display_Key" xml:space="preserve">
     <value>Sorting coloumn</value>
   </data>

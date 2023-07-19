@@ -11,6 +11,7 @@ export interface IMessageProps {
     read: boolean,
     hasAttachments: boolean,
     hasError: boolean,
+    renderHTML?: boolean,
     onClick?: (recordId: string) => void
 }
 
@@ -36,7 +37,10 @@ export class Message extends React.PureComponent<IMessageProps> {
                         {this.props.senderName}
                     </div>
                 }
-                <p>{this.props.text}</p>
+                {this.props.renderHTML
+                    ? <p dangerouslySetInnerHTML={{__html: this.props.text}}></p>
+                    : <p>{this.props.text}</p>
+                }
                 <span className="metadata">
                     <span className="createDate">
                         {this.props.createDate}

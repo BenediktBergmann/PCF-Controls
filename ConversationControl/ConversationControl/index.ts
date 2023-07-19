@@ -27,6 +27,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	private _sortColumn: string;
 	private _sortOrder: string;
 	private _showEmptyMessages: boolean;
+	private _renderHTML: boolean;
 
 	//Column variables
 	private _textColumn: string;
@@ -88,6 +89,11 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		this._showEmptyMessages = false;
 		if(context.parameters.ShowEmptyMessages!.raw == "Yes"){
 			this._showEmptyMessages = true;
+		}
+
+		this._renderHTML = false;
+		if(context.parameters.RenderHTML!.raw == "Yes"){
+			this._renderHTML = true;
 		}
 
 		this._useSubgridData = false;
@@ -413,6 +419,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 					randomId: this._randomId,
 					noRecordsText: message !== ""? message : this._context.resources.getString("No_Record_Found"),
 					showEmptyMessages: this._showEmptyMessages,
+					renderHTML: this._renderHTML,
 					currentRecordId: (<any>this._context.mode).contextInfo.entityId,
 					onClick: this.onMessageClick.bind(this)
 				}

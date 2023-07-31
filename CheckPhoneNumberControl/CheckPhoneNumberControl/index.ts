@@ -64,45 +64,45 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._allowedTypes = [];
 		this._excludedTypes = [];
 
-		this._outputFormat = context.parameters.outputFormat.raw.toLocaleLowerCase();
+		this._outputFormat = context.parameters.outputFormat?.raw.toLocaleLowerCase();
 
-		if(context.parameters.defaultCC.raw != null && context.parameters.defaultCC.raw != "" && context.parameters.defaultCC.raw.indexOf(',') == -1){
+		if(context.parameters.defaultCC?.raw && context.parameters.defaultCC.raw !== null && context.parameters.defaultCC.raw !== "" && context.parameters.defaultCC.raw.indexOf(',') === -1){
 			this._defaultCC = context.parameters.defaultCC.raw.trim().toUpperCase();
 		}
 
-		if(context.parameters.allowedCC.raw != null && context.parameters.allowedCC.raw != ""){
+		if(context.parameters.allowedCC?.raw && context.parameters.allowedCC.raw !== null && context.parameters.allowedCC.raw !== ""){
 			this._allowedCC = context.parameters.allowedCC.raw.split(',');
 			this._allowedCC = this._allowedCC.map(el => el.trim().toUpperCase());
 		}
 
-		if(context.parameters.excludedCC.raw != null && context.parameters.excludedCC.raw != ""){
+		if(context.parameters.excludedCC?.raw && context.parameters.excludedCC.raw !== null && context.parameters.excludedCC.raw !== ""){
 			this._excludedCC = context.parameters.excludedCC.raw.split(',');
 			this._excludedCC = this._excludedCC.map(el => el.trim().toUpperCase());
 		}
 
-		if(context.parameters.allowedType.raw != null && context.parameters.allowedType.raw != ""){
+		if(context.parameters.allowedType?.raw && context.parameters.allowedType.raw !== null && context.parameters.allowedType.raw !== ""){
 			this._allowedTypes = context.parameters.allowedType.raw.split(',');
 			this._allowedTypes = this._allowedTypes.map(el => el.trim().toLowerCase());
 		}
 
-		if(context.parameters.excludedType.raw != null && context.parameters.excludedType.raw != ""){
+		if(context.parameters.excludedType?.raw && context.parameters.excludedType.raw !== null && context.parameters.excludedType.raw !== ""){
 			this._excludedTypes = context.parameters.excludedType.raw.split(',');
 			this._excludedTypes = this._excludedTypes.map(el => el.trim().toLowerCase());
 		}
 
-		this._clickToCall = context.parameters.clickToCallType.raw;
+		this._clickToCall = context.parameters.clickToCallType?.raw;
 
-		if(this._clickToCall === "custom" && context.parameters.customClickToCallType.raw != null && context.parameters.customClickToCallType.raw != ""){
+		if(this._clickToCall === "custom" && context.parameters.customClickToCallType?.raw && context.parameters.customClickToCallType.raw !== null && context.parameters.customClickToCallType.raw !== ""){
 			this._clickToCall = context.parameters.customClickToCallType.raw;
 		}
 
 		let showButton = false;
 
-		if(context.parameters.showButton!.raw == "Yes"){
+		if(context.parameters.showButton!.raw === "Yes"){
 			showButton = true;
 		}
 
-		if(context.parameters.openQuickCreate!.raw == "Yes"){
+		if(context.parameters.openQuickCreate!.raw === "Yes"){
 			this._openQuickCreate = true;
 		}
 
@@ -136,11 +136,13 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		}
 
 		var errorIconLabelElement = document.createElement("label");
-		errorIconLabelElement.innerHTML = "";
+		errorIconLabelElement.appendChild(document.createTextNode(""));
+		//errorIconLabelElement.innerHTML = "";
 		errorIconLabelElement.classList.add("icon");
 
 		this._errorLabelElement = document.createElement("label");
-		this._errorLabelElement.innerHTML = context.resources.getString("ErrorText_IncorrectNumber_Key");
+		this._errorLabelElement.appendChild(document.createTextNode(context.resources.getString("ErrorText_IncorrectNumber_Key")));
+		//this._errorLabelElement.innerHTML = context.resources.getString("ErrorText_IncorrectNumber_Key");
 
 		this._errorContainer = document.createElement("div");
 		this._errorContainer.classList.add("Error");
@@ -276,28 +278,31 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 
 	private isCorrectPhoneNumber(value: string): boolean{
 		var isValid = false;
-		if(value != null && value != "")
+		if(value != null && value !== "")
 		{
 			var parsedPhoneNumber = (this._defaultCC !== "")? PhoneNumber(value, this._defaultCC) : PhoneNumber(value);
 
 			if(parsedPhoneNumber !== undefined && parsedPhoneNumber.isValid()){
 				isValid = true;
 				
-				if((this._allowedCC != undefined && this._allowedCC.length > 0 && this._allowedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) === -1) || 
-					(this._excludedCC != undefined && this._excludedCC.length > 0 && this._excludedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) !== -1)){
+				if((this._allowedCC !== undefined && this._allowedCC.length > 0 && this._allowedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) === -1) || 
+					(this._excludedCC !== undefined && this._excludedCC.length > 0 && this._excludedCC.indexOf(parsedPhoneNumber.getRegionCode().toUpperCase()) !== -1)){
 					isValid = false;
-					this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Country_Key");
+					//this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Country_Key");
+					this._errorLabelElement.replaceChild(document.createTextNode(this._context.resources.getString("ErrorText_Unallowed_Country_Key")), this._errorLabelElement.childNodes[0]);
 				}
 				
 				if(isValid &&
-					(this._allowedTypes != undefined && this._allowedTypes.length > 0 && this._allowedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) === -1) || 
-					(this._excludedTypes != undefined && this._excludedTypes.length > 0 && this._excludedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) !== -1)){
+					(this._allowedTypes !== undefined && this._allowedTypes.length > 0 && this._allowedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) === -1) || 
+					(this._excludedTypes !== undefined && this._excludedTypes.length > 0 && this._excludedTypes.indexOf(parsedPhoneNumber.getType().toLowerCase()) !== -1)){
 					isValid = false;
-					this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Type_Key");
+					//this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_Unallowed_Type_Key");
+					this._errorLabelElement.replaceChild(document.createTextNode(this._context.resources.getString("ErrorText_Unallowed_Type_Key")), this._errorLabelElement.childNodes[0]);
 				}
 			}else{
 				isValid = false;
-				this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_IncorrectNumber_Key");
+				//this._errorLabelElement.innerHTML = this._context.resources.getString("ErrorText_IncorrectNumber_Key");
+				this._errorLabelElement.replaceChild(document.createTextNode(this._context.resources.getString("ErrorText_IncorrectNumber_Key")), this._errorLabelElement.childNodes[0]);
 			}
 		}
 		return isValid;

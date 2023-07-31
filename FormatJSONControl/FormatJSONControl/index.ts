@@ -48,13 +48,13 @@ export class FormatJSONControl implements ComponentFramework.StandardControl<IIn
 		this._context = context;
 
 		this._rows = context.parameters.rowsTextArea.raw ?? 5;
-		this._maxLength = (this._context.parameters.valueField.attributes?.MaxLength != undefined)? this._context.parameters.valueField.attributes?.MaxLength : 2000;
+		this._maxLength = (this._context.parameters.valueField.attributes?.MaxLength !== undefined)? this._context.parameters.valueField.attributes.MaxLength : 2000;
 		//reference for requiredLevel: https://docs.microsoft.com/en-us/powerapps/developer/component-framework/reference/metadata
-		this._required = (this._context.parameters.valueField.attributes?.RequiredLevel == 1)? true : false;
+		this._required = (this._context.parameters.valueField.attributes?.RequiredLevel === 1)? true : false;
 
 		this._context.parameters.valueField
 
-		if(context.parameters.showSyntaxHighlighting.raw.toLocaleLowerCase() == "yes"){
+		if(context.parameters.showSyntaxHighlighting.raw.toLocaleLowerCase() === "yes"){
 			this._syntaxHighlighting = true;
 		}
 
@@ -84,11 +84,13 @@ export class FormatJSONControl implements ComponentFramework.StandardControl<IIn
 		
 
 		var errorIconLabelElement = document.createElement("label");
-		errorIconLabelElement.innerHTML = "";
+		errorIconLabelElement.appendChild(document.createTextNode(""));
+		//errorIconLabelElement.innerHTML = "";
 		errorIconLabelElement.classList.add("icon");
 
 		this._errorLabelElement = document.createElement("label");
-		this._errorLabelElement.innerHTML = context.resources.getString("ErrorText_Key");
+		this._errorLabelElement.appendChild(document.createTextNode(context.resources.getString("ErrorText_Key")));
+		//this._errorLabelElement.innerHTML = context.resources.getString("ErrorText_Key");
 
 		this._errorContainer = document.createElement("div");
 		this._errorContainer.classList.add("Error");
@@ -135,7 +137,8 @@ export class FormatJSONControl implements ComponentFramework.StandardControl<IIn
 
 		if(masked){
 			this._textAreaElement.value = this._maskValue;
-			this._highlightedElement.innerHTML = this._maskValue;
+			this._highlightedElement.replaceChild(document.createTextNode(this._maskValue), this._highlightedElement.childNodes[0]);
+			//this._highlightedElement.innerHTML = this._maskValue;
 			//this._value = this._textAreaElement.value;
 		}
 	}
@@ -163,7 +166,7 @@ export class FormatJSONControl implements ComponentFramework.StandardControl<IIn
 	}
 
 	public textAreaOnChange():void{
-		if((this._required && (this._textAreaElement.value === "" || this._textAreaElement.value === null)) || (this._textAreaElement.value != "" && this._textAreaElement.value != null && !this.isJSON(this._textAreaElement.value))){
+		if((this._required && (this._textAreaElement.value === "" || this._textAreaElement.value === null)) || (this._textAreaElement.value !== "" && this._textAreaElement.value !== null && !this.isJSON(this._textAreaElement.value))){
 			this._textAreaElement.classList.add("incorrect");
 			this._highlightedElement.classList.add("incorrect");
 			this._errorContainer.classList.add("inputError");
@@ -179,14 +182,15 @@ export class FormatJSONControl implements ComponentFramework.StandardControl<IIn
 
 	public handleValue(input: string|null): void
 	{
-		if(input != null && input != ""){
+		if(input !== null && input !== ""){
 			if(this.isJSON(input)){
 				var json = JSON.parse(input);
 				this._value = JSON.stringify(json, null, 0);
 
 				var output = JSON.stringify(json, null, 4);
 				
-				this._highlightedElement.innerHTML = this.syntaxHighlight(output);
+				//this._highlightedElement.innerHTML = this.syntaxHighlight(output);
+				this._highlightedElement.replaceChild(document.createTextNode(output), this._highlightedElement.childNodes[0]);
 				this._textAreaElement.value = output;
 			}
 		} else {

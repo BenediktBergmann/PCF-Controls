@@ -43,7 +43,7 @@ export class HideShowSecureStringControl implements ComponentFramework.StandardC
 		this._context = context;
 		this._notifyOutputChanged = notifyOutputChanged;
 
-		if(context.parameters.defaultVisibility!.raw.toLowerCase() == "show"){
+		if(context.parameters.defaultVisibility!.raw.toLowerCase() === "show"){
 			this._inputShown = true;
 		}
 		else{

@@ -28,6 +28,7 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	private _sortOrder: string;
 	private _showEmptyMessages: boolean;
 	private _renderHTML: boolean;
+	private _isDesignMode: boolean;
 
 	//Column variables
 	private _textColumn: string;
@@ -69,67 +70,73 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		this._context = context;
 		this._randomId = this.createId(7);
 
-		this._textColumn = context.parameters.TextColumn.raw? context.parameters.TextColumn.raw : "";
-		this._senderColumn = context.parameters.SenderColumn.raw? context.parameters.SenderColumn.raw : "";
-		this._dateColumn = context.parameters.DateColumn.raw? context.parameters.DateColumn.raw : "";
-		this._readColumn = context.parameters.ReadColumn.raw? context.parameters.ReadColumn.raw : "";
-		this._publishedColumn = context.parameters.PublishedColumn.raw? context.parameters.PublishedColumn.raw : "";
-		this._hasAttachmentColumn = context.parameters.HasAttachmentsColumn.raw? context.parameters.HasAttachmentsColumn.raw : "";
-		this._hasErrorColumn = context.parameters.HasErrorColumn.raw? context.parameters.HasErrorColumn.raw : "";
-		this._senderNameColumn = context.parameters.SenderNameColumn.raw? context.parameters.SenderNameColumn.raw : "";
-		this._filterColumn = context.parameters.FilterColumn.raw? context.parameters.FilterColumn.raw : "";
-		this._filterValue = context.parameters.FilterValue.raw? context.parameters.FilterValue.raw : "";
-		this._customerIdentifyers = context.parameters.CustomerIdentifier.raw? context.parameters.CustomerIdentifier.raw.split(',') : [];
+		if (location.ancestorOrigins[0] === "https://make.powerapps.com") {
+            this._isDesignMode = true;
+        } else {
+			this._isDesignMode = false;
+		}
+
+		this._textColumn = context.parameters.TextColumn?.raw? context.parameters.TextColumn.raw : "";
+		this._senderColumn = context.parameters.SenderColumn?.raw? context.parameters.SenderColumn.raw : "";
+		this._dateColumn = context.parameters.DateColumn?.raw? context.parameters.DateColumn.raw : "";
+		this._readColumn = context.parameters.ReadColumn?.raw? context.parameters.ReadColumn.raw : "";
+		this._publishedColumn = context.parameters.PublishedColumn?.raw? context.parameters.PublishedColumn.raw : "";
+		this._hasAttachmentColumn = context.parameters.HasAttachmentsColumn?.raw? context.parameters.HasAttachmentsColumn.raw : "";
+		this._hasErrorColumn = context.parameters.HasErrorColumn?.raw? context.parameters.HasErrorColumn.raw : "";
+		this._senderNameColumn = context.parameters.SenderNameColumn?.raw? context.parameters.SenderNameColumn.raw : "";
+		this._filterColumn = context.parameters.FilterColumn?.raw? context.parameters.FilterColumn.raw : "";
+		this._filterValue = context.parameters.FilterValue?.raw? context.parameters.FilterValue.raw : "";
+		this._customerIdentifyers = context.parameters.CustomerIdentifier?.raw? context.parameters.CustomerIdentifier.raw.split(',') : [];
 
 		let showScrollbar = false;
-		if(context.parameters.ShowScrollbar!.raw == "Yes"){
+		if(context.parameters.ShowScrollbar!.raw === "Yes"){
 			showScrollbar = true;
 		}
 
 		this._showEmptyMessages = false;
-		if(context.parameters.ShowEmptyMessages!.raw == "Yes"){
+		if(context.parameters.ShowEmptyMessages!.raw === "Yes"){
 			this._showEmptyMessages = true;
 		}
 
 		this._renderHTML = false;
-		if(context.parameters.RenderHTML!.raw == "Yes"){
+		if(context.parameters.RenderHTML!.raw === "Yes"){
 			this._renderHTML = true;
 		}
 
 		this._useSubgridData = false;
-		if(context.parameters.UseSubgridData!.raw == "Yes"){
+		if(context.parameters.UseSubgridData!.raw === "Yes"){
 			this._useSubgridData = true;
 		}
-		this._entityName = context.parameters.EntityName!.raw? context.parameters.EntityName!.raw : "";
-		this._lookupColumn = context.parameters.LookUpColumn!.raw? context.parameters.LookUpColumn!.raw : "";
-		this._sortColumn = context.parameters.SortColumn!.raw? context.parameters.SortColumn!.raw : "";
-		this._sortOrder = context.parameters.SortOrder!.raw? context.parameters.SortOrder!.raw : "";
+		this._entityName = context.parameters.EntityName?.raw? context.parameters.EntityName!.raw : "";
+		this._lookupColumn = context.parameters.LookUpColumn?.raw? context.parameters.LookUpColumn!.raw : "";
+		this._sortColumn = context.parameters.SortColumn?.raw? context.parameters.SortColumn!.raw : "";
+		this._sortOrder = context.parameters.SortOrder?.raw? context.parameters.SortOrder!.raw : "";
 
 		this._openStrategy = openStrategyEnum.ModalCenter;
-		if(context.parameters.OpenStrategy!.raw == openStrategyEnum.CurrentTab){
+		if(context.parameters.OpenStrategy!.raw === openStrategyEnum.CurrentTab){
 			this._openStrategy = openStrategyEnum.CurrentTab;
-		} else if(context.parameters.OpenStrategy!.raw == openStrategyEnum.NewWindow){
+		} else if(context.parameters.OpenStrategy!.raw === openStrategyEnum.NewWindow){
 			this._openStrategy = openStrategyEnum.NewWindow;
-		} else if(context.parameters.OpenStrategy!.raw == openStrategyEnum.ModalRight){
+		} else if(context.parameters.OpenStrategy!.raw === openStrategyEnum.ModalRight){
 			this._openStrategy = openStrategyEnum.ModalRight;
 		}
 
 		this._modalWidth = context.parameters.ModalWidth.raw? context.parameters.ModalWidth.raw : 50;
 
-		let messageSentBgColor = context.parameters.SentMessageBgColor.raw? context.parameters.SentMessageBgColor.raw : "#e1ffc7";
-		let messageSentTextColor = context.parameters.SentMessageTextColor.raw? context.parameters.SentMessageTextColor.raw : "#000000";
-		let messageSentMetadataTextColor = context.parameters.SentMessageMetadataTextColor.raw? context.parameters.SentMessageMetadataTextColor.raw : "#888888";
-		let messageSentReadCheckmarkColor = context.parameters.SentMessageReadCheckmarkColor.raw? context.parameters.SentMessageReadCheckmarkColor.raw : "#4fc3f7";
-		let messageSentHasErrorBgColor = context.parameters.SentMessageHasErrorBgColor.raw? context.parameters.SentMessageHasErrorBgColor.raw : "#960f00";
-		let messageSentHasErrorTextColor = context.parameters.SentMessageHasErrorTextColor.raw? context.parameters.SentMessageHasErrorTextColor.raw : "#000000";
-		let messageSentHasErrorMetadataTextColor = context.parameters.SentMessageHasErrorMetadataTextColor.raw? context.parameters.SentMessageHasErrorMetadataTextColor.raw : "#888888";
-		let messageSentUnpublishedBgColor = context.parameters.SentMessageNotPublishedBgColor.raw? context.parameters.SentMessageNotPublishedBgColor.raw : "#f1ffe4";
-		let messageSentUnpublishedTextColor = context.parameters.SentMessageNotPublishedTextColor.raw? context.parameters.SentMessageNotPublishedTextColor.raw : "#000000";
-		let messageSentUnpublishedMetadataTextColor = context.parameters.SentMessageNotPublishedMetaDataTextColor.raw? context.parameters.SentMessageNotPublishedMetaDataTextColor.raw : "#888888";
-		let messageReceivedBgColor = context.parameters.ReceivedMessageBgColor.raw? context.parameters.ReceivedMessageBgColor.raw : "#eeeeee";
-		let messageReceivedTextColor = context.parameters.ReceivedMessageTextColor.raw? context.parameters.ReceivedMessageTextColor.raw : "#000000";
-		let messageReceivedMetadataTextColor = context.parameters.ReceivedMessageMetadataTextColor.raw? context.parameters.ReceivedMessageMetadataTextColor.raw : "#888888";
-		let maxHeight = context.parameters.MaxHeight.raw? context.parameters.MaxHeight.raw : "";
+		let messageSentBgColor = context.parameters.SentMessageBgColor?.raw? context.parameters.SentMessageBgColor.raw : "#e1ffc7";
+		let messageSentTextColor = context.parameters.SentMessageTextColor?.raw? context.parameters.SentMessageTextColor.raw : "#000000";
+		let messageSentMetadataTextColor = context.parameters.SentMessageMetadataTextColor?.raw? context.parameters.SentMessageMetadataTextColor.raw : "#888888";
+		let messageSentReadCheckmarkColor = context.parameters.SentMessageReadCheckmarkColor?.raw? context.parameters.SentMessageReadCheckmarkColor.raw : "#4fc3f7";
+		let messageSentHasErrorBgColor = context.parameters.SentMessageHasErrorBgColor?.raw? context.parameters.SentMessageHasErrorBgColor.raw : "#960f00";
+		let messageSentHasErrorTextColor = context.parameters.SentMessageHasErrorTextColor?.raw? context.parameters.SentMessageHasErrorTextColor.raw : "#000000";
+		let messageSentHasErrorMetadataTextColor = context.parameters.SentMessageHasErrorMetadataTextColor?.raw? context.parameters.SentMessageHasErrorMetadataTextColor.raw : "#888888";
+		let messageSentUnpublishedBgColor = context.parameters.SentMessageNotPublishedBgColor?.raw? context.parameters.SentMessageNotPublishedBgColor.raw : "#f1ffe4";
+		let messageSentUnpublishedTextColor = context.parameters.SentMessageNotPublishedTextColor?.raw? context.parameters.SentMessageNotPublishedTextColor.raw : "#000000";
+		let messageSentUnpublishedMetadataTextColor = context.parameters.SentMessageNotPublishedMetaDataTextColor?.raw? context.parameters.SentMessageNotPublishedMetaDataTextColor.raw : "#888888";
+		let messageReceivedBgColor = context.parameters.ReceivedMessageBgColor?.raw? context.parameters.ReceivedMessageBgColor.raw : "#eeeeee";
+		let messageReceivedTextColor = context.parameters.ReceivedMessageTextColor?.raw? context.parameters.ReceivedMessageTextColor.raw : "#000000";
+		let messageReceivedMetadataTextColor = context.parameters.ReceivedMessageMetadataTextColor?.raw? context.parameters.ReceivedMessageMetadataTextColor.raw : "#888888";
+		let maxHeight = context.parameters.MaxHeight?.raw? context.parameters.MaxHeight.raw : "";
 
 		container.appendChild(this.generateCustomStyle(this._randomId, showScrollbar, maxHeight, messageSentBgColor, messageSentTextColor, messageSentMetadataTextColor, messageSentReadCheckmarkColor, messageSentHasErrorBgColor, messageSentHasErrorTextColor, messageSentHasErrorMetadataTextColor, messageSentUnpublishedBgColor, messageSentUnpublishedTextColor, messageSentUnpublishedMetadataTextColor, messageReceivedBgColor, messageReceivedTextColor, messageReceivedMetadataTextColor));
 		
@@ -157,16 +164,20 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
 		this._context = context;
-		this._filterValue = context.parameters.FilterValue.raw? context.parameters.FilterValue.raw : "";
-		
-		this.toggleLoadMoreButtonWhenNeeded(context.parameters.dataSetGrid);
-		if(!context.parameters.dataSetGrid.loading){
+		this._filterValue = context.parameters.FilterValue?.raw? context.parameters.FilterValue.raw : "";
 
-			if (!context.parameters.dataSetGrid.columns || !context.parameters.dataSetGrid.columns.some(function(columnItem: DataSetInterfaces.Column) { return columnItem.order >= 0})) {
-				return;
+		if(!this._isDesignMode){
+			this.toggleLoadMoreButtonWhenNeeded(context.parameters.dataSetGrid);
+			if(!context.parameters.dataSetGrid.loading){
+
+				if (!context.parameters.dataSetGrid.columns || !context.parameters.dataSetGrid.columns.some(function(columnItem: DataSetInterfaces.Column) { return columnItem.order >= 0})) {
+					return;
+				}
+
+				this.generateConversation(context.parameters.dataSetGrid);
 			}
-
-			this.generateConversation(context.parameters.dataSetGrid);
+		} else {
+			this.renderConversation([]);
 		}
 	}
 
@@ -275,16 +286,16 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 			let messagesArray: IMessageProps[] = [];
 
 			for(let currentRecordId of messages.sortedRecordIds){
-				if(messages.records[currentRecordId].getValue(this._filterColumn)?.toString() == this._filterValue ||
-					this._filterValue == "" || this._filterValue == undefined ||
-					this._filterColumn == "" || this._filterColumn == undefined){
+				if(messages.records[currentRecordId].getValue(this._filterColumn)?.toString() === this._filterValue ||
+					this._filterValue === "" || this._filterValue === undefined ||
+					this._filterColumn === "" || this._filterColumn === undefined){
 					messagesArray.push(this.generateIMessagePropFromEntity(messages.records[currentRecordId]));
 				}
 			}
 
 			this.renderConversation(messagesArray);
-		} else if(!this._useSubgridData && this._entityName != ""){
-			if(this._lookupColumn != "" && typeof Xrm !== 'undefined'){
+		} else if(!this._useSubgridData && this._entityName !== ""){
+			if(this._lookupColumn !== "" && typeof Xrm !== 'undefined'){
 				let lookupObjectId = "";
 				let lookupObjectAttribute = (<any>Xrm).Page.getAttribute(this._lookupColumn);
 				if(typeof lookupObjectAttribute !== 'undefined' && lookupObjectAttribute !== null){
@@ -384,8 +395,8 @@ export class ConversationControl implements ComponentFramework.StandardControl<I
 		innerFetchXml += 		"<filter>" +
 									"<condition attribute='regardingobjectid' operator='eq' value='" + regardingObjectId + "' />";
 
-		if(typeof this._filterColumn !== 'undefined' && this._filterColumn != "" && this._filterColumn &&
-			typeof this._filterValue !== 'undefined' && this._filterValue != "" && this._filterValue){
+		if(typeof this._filterColumn !== 'undefined' && this._filterColumn !== "" && this._filterColumn &&
+			typeof this._filterValue !== 'undefined' && this._filterValue !== "" && this._filterValue){
 				innerFetchXml += "<condition attribute='" + this._filterColumn + "' operator='eq' value='" + this._filterValue + "' />";
 		}
 		innerFetchXml += 		"</filter>";

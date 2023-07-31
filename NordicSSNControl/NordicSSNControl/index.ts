@@ -64,21 +64,21 @@ export class NordicSSNControl implements ComponentFramework.StandardControl<IInp
 	{
 		this._context = context;
 
-		if(context.parameters.allowSwedishSSN!.raw == "Yes"){
+		if(context.parameters.allowSwedishSSN!.raw === "Yes"){
 			this._allowSwedishSSN = true;
 		}
 		else{
 			this._allowSwedishSSN = false;
 		}
 
-		if(context.parameters.allowSwedishCN!.raw == "Yes"){
+		if(context.parameters.allowSwedishCN!.raw === "Yes"){
 			this._allowSwedishCN = true;
 		}
 		else{
 			this._allowSwedishCN = false;
 		}
 
-		if(context.parameters.allowFinnishPIC!.raw == "Yes"){
+		if(context.parameters.allowFinnishPIC!.raw === "Yes"){
 			this._allowFinnishPIC = true;
 		}
 		else{
@@ -112,11 +112,13 @@ export class NordicSSNControl implements ComponentFramework.StandardControl<IInp
 		iconElement.appendChild(this._countryIndicatorElement);
 
 		var errorIconLabelElement = document.createElement("label");
-		errorIconLabelElement.innerHTML = "";
+		errorIconLabelElement.appendChild(document.createTextNode(""));
+		//errorIconLabelElement.innerHTML = "";
 		errorIconLabelElement.classList.add("icon");
 
 		var errorLabelElement = document.createElement("label");
-		errorLabelElement.innerHTML = context.resources.getString("ErrorText_Key");
+		errorIconLabelElement.appendChild(document.createTextNode(context.resources.getString("ErrorText_Key")));
+		//errorLabelElement.innerHTML = context.resources.getString("ErrorText_Key");
 
 		this._errorContainer = document.createElement("div");
 		this._errorContainer.classList.add("Error");
@@ -236,7 +238,7 @@ export class NordicSSNControl implements ComponentFramework.StandardControl<IInp
 	}
 
 	private isCorrectSwedishSSN(value: string): boolean{
-		if(value.length != 13){
+		if(value.length !== 13){
 			return false;
 		}
 
@@ -254,7 +256,7 @@ export class NordicSSNControl implements ComponentFramework.StandardControl<IInp
 	}
 
 	private isCorrectSwedishCN(value: string): boolean{
-		if(value.length != 13){
+		if(value.length !== 13){
 			return false;
 		}
 
@@ -305,7 +307,7 @@ export class NordicSSNControl implements ComponentFramework.StandardControl<IInp
 	}
 
 	private isCorrectFinnishPIC(value: string): boolean{
-		if(value.length != 11){
+		if(value.length !== 11){
 			return false;
 		}
 
@@ -328,7 +330,7 @@ export class NordicSSNControl implements ComponentFramework.StandardControl<IInp
 		let expectedChecksum = this._verificationCode_Finnish[(valueAsNumber % 31)];
 		let checkSum = value.substring(value.length - 1);
 
-		if(checkSum != expectedChecksum){
+		if(checkSum !== expectedChecksum){
 			return false;
 		}
 

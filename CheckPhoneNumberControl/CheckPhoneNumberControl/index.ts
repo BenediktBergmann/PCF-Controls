@@ -148,10 +148,6 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		this._errorContainer.classList.add("Error");
 		this._errorContainer.appendChild(errorIconLabelElement);
 		this._errorContainer.appendChild(this._errorLabelElement);
-		
-		//Handle Value before we add the Elements
-		this.checkInput(context.parameters.valueField.raw);
-		this._notifyOutputChanged();
 
 		// appending the HTML elements to the control's HTML container element.
 		this._container.appendChild(this._inputElement);

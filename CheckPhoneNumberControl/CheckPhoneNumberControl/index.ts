@@ -166,8 +166,8 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
 		this._context = context;
-		this.checkInput(context.parameters.valueField.raw);
 
+		let newValue = context.parameters.valueField.raw;
 		let readOnly = context.mode.isControlDisabled;
 		let masked = false;
 		if (context.parameters.valueField.security) {
@@ -185,6 +185,13 @@ export class CheckPhoneNumberControl implements ComponentFramework.StandardContr
 		if(masked){
 			this._value = this._inputElement.value;
 			this._inputElement.value = this._maskValue;
+			return;
+		}
+
+		// Only update value if it's changed
+		if (newValue !== this._inputElement.value && newValue !== null) {
+			this._inputElement.value = newValue;
+			this.checkInput(newValue);
 		}
 	}
 

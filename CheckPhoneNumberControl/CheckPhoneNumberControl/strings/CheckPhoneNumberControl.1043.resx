@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CheckPhoneNumberControl_Display_Key" xml:space="preserve">
+    <value>Valideer Telefoonnummer Control</value>
+  </data>
+  <data name="CheckPhoneNumberControl_Desc_Key" xml:space="preserve">
+    <value>Control die controleert of de invoer een geldig telefoonnummer is. Het Awesome-phonenumber pakket wordt gebruikt in dit PCF Control. https://www.npm.red/package/awesome-phonenumber</value>
+  </data>
+  <data name="PropertyValueField_Display_Key" xml:space="preserve">
+    <value>Invoerwaarde</value>
+  </data>
+  <data name="PropertyValueField_Desc_Key" xml:space="preserve">
+    <value>De invoerwaarde</value>
+  </data>
+  <data name="PropertyNumberValidField_Display_Key" xml:space="preserve">
+    <value>Veld geldig nummer</value>
+  </data>
+  <data name="PropertyNumberValidField_Desc_Key" xml:space="preserve">
+    <value>Dit veld geeft aan of het nummer geldig is of niet. Kan worden gebruikt om het indienen van het formulier te voorkomen</value>
+  </data>
+  <data name="PropertyDefaultCC_Display_Key" xml:space="preserve">
+    <value>Standaard landcode</value>
+  </data>
+  <data name="PropertyDefaultCC_Desc_Key" xml:space="preserve">
+    <value>De standaard landcode om tegen te controleren. Moet een ISO 3166 (alpha 2) landcode zijn. Een lijst van mogelijke waarden is hier te vinden: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
+  </data>
+  <data name="PropertyAllowedCC_Display_Key" xml:space="preserve">
+    <value>Toegestane landcodes</value>
+  </data>
+  <data name="PropertyAllowedCC_Desc_Key" xml:space="preserve">
+    <value>Een door komma's gescheiden lijst van toegestane landcodes. ISO 3166 (alpha 2) landcodes moeten worden gebruikt. Een lijst van mogelijke waarden is hier te vinden: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
+  </data>
+  <data name="PropertyExcludedCC_Display_Key" xml:space="preserve">
+    <value>Uitgesloten landcodes</value>
+  </data>
+  <data name="PropertyExcludedCC_Desc_Key" xml:space="preserve">
+    <value>Een door komma's gescheiden lijst van uitgesloten landcodes. ISO 3166 (alpha 2) landcodes moeten worden gebruikt. Een lijst van mogelijke waarden is hier te vinden: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes</value>
+  </data>
+  <data name="PropertyOutputFormat_Display_Key" xml:space="preserve">
+    <value>Uitvoerformaat</value>
+  </data>
+  <data name="PropertyOutputFormat_Desc_Key" xml:space="preserve">
+    <value>Het formaat dat de uitvoer moet hebben.</value>
+  </data>
+  <data name="PropertyOutputFormat_International_Display_Key" xml:space="preserve">
+    <value>Internationaal</value>
+  </data>
+  <data name="PropertyOutputFormat_International_Desc_Key" xml:space="preserve">
+    <value>Internationaal (+46 70 712 34 56)</value>
+  </data>
+  <data name="PropertyOutputFormat_National_Display_Key" xml:space="preserve">
+    <value>Nationaal</value>
+  </data>
+  <data name="PropertyOutputFormat_National_Desc_Key" xml:space="preserve">
+    <value>Nationaal (070-712 34 56)</value>
+  </data>
+  <data name="PropertyOutputFormat_E164_Desc_Key" xml:space="preserve">
+    <value>E164 (+46707123456)</value>
+  </data>
+  <data name="ErrorText_IncorrectNumber_Key" xml:space="preserve">
+    <value>Ongeldig telefoonnummer</value>
+  </data>
+  <data name="PropertyAllowedType_Display_Key" xml:space="preserve">
+    <value>Toegestane typen</value>
+  </data>
+  <data name="PropertyAllowedType_Desc_Key" xml:space="preserve">
+    <value>Door komma's gescheiden lijst van toegestane nummertypen. Een lijst van mogelijke waarden is hier te vinden: https://www.npmjs.com/package/awesome-phonenumber#phone-number-types</value>
+  </data>
+  <data name="PropertyExcludedType_Display_Key" xml:space="preserve">
+    <value>Uitgesloten typen</value>
+  </data>
+  <data name="PropertyExcludedType_Desc_Key" xml:space="preserve">
+    <value>Door komma's gescheiden lijst van uitgesloten nummertypen. Een lijst van mogelijke waarden is hier te vinden: https://www.npmjs.com/package/awesome-phonenumber#phone-number-types</value>
+  </data>
+  <data name="ErrorText_Unallowed_Country_Key" xml:space="preserve">
+    <value>Telefoonnummer van een land dat niet is toegestaan.</value>
+  </data>
+  <data name="ErrorText_Unallowed_Type_Key" xml:space="preserve">
+    <value>Telefoonnummer van een type dat niet is toegestaan.</value>
+  </data>
+  <data name="PropertyShowButton_Display_Key" xml:space="preserve">
+    <value>Knop weergeven</value>
+  </data>
+  <data name="PropertyShowButton_Desc_Key" xml:space="preserve">
+    <value>Indien actief wordt een knop weergegeven voor "klik om te bellen"</value>
+  </data>
+  <data name="PropertyOpenQuickCreate_Display_Key" xml:space="preserve">
+    <value>Formulier "Snel aanmaken" openen</value>
+  </data>
+  <data name="PropertyOpenQuickCreate_Desc_Key" xml:space="preserve">
+    <value>Indien actief opent de knop het formulier voor snel aanmaken</value>
+  </data>
+  <data name="PropertyClickToCallType_Display_Key" xml:space="preserve">
+    <value>Klik-om-te-bellen provider</value>
+  </data>
+  <data name="PropertyClickToCallType_Desc_Key" xml:space="preserve">
+    <value>"Klik om te bellen" provider die gebruikt moet worden.</value>
+  </data>
+  <data name="PropertyCustomClickToCallType_Display_Key" xml:space="preserve">
+    <value>Aangepaste klik-om-te-bellen provider</value>
+  </data>
+  <data name="PropertyCustomClickToCallType_Desc_Key" xml:space="preserve">
+    <value>Geef een aangepaste "klik om te bellen" provider op. Werkt alleen wanneer u "aangepast" kiest als provider</value>
+  </data>
+</root>
